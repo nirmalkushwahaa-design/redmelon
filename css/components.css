@@ -1,0 +1,90 @@
+/* Redmelon v0.2 — Components used across sections — nav, rail, footer, WhatsApp, reveal. */
+/* ============ nav ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:70;padding-top:env(safe-area-inset-top,0px);
+  border-bottom:1px solid transparent;transition:background .4s,backdrop-filter .4s,border-color .4s}
+.nav.is-stuck{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(15px) saturate(150%);border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;gap:18px;max-width:var(--max);margin:0 auto;padding:15px var(--gut)}
+.logo{font-family:var(--disp);font-weight:700;font-synthesis-weight:none;font-size:var(--t-xl);letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.logo-tld{color:var(--ink3)}
+.logo-sm{font-size:var(--t-lg)}
+.wa-fab{position:relative}
+.logo i{width:11px;height:11px;border-radius:50%;background:var(--red);display:block;box-shadow:0 0 0 3px var(--redSoft)}
+.nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav-links a{font-size:var(--t-sm);color:var(--ink2);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.tgl{width:38px;height:38px;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--ink2);transition:.25s}
+.tgl:hover{color:var(--ink);border-color:var(--red);transform:rotate(18deg)}
+.tgl svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+:root:not([data-ui="light"]) .tgl .sun{display:none}
+:root[data-ui="light"] .tgl .moon{display:none}
+@media(max-width:880px){.nav-links a:not(.keep){display:none}}
+
+/* ============ buttons ============ */
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:var(--r-sm);
+  font-size:var(--t-sm);font-weight:700;letter-spacing:.04em;white-space:nowrap;overflow:hidden;will-change:transform;min-height:46px}
+.btn-1{background:var(--red-deep);color:var(--on-brand)}
+.btn-1 .sheen{position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.42) 50%,transparent 75%);transform:translateX(-120%)}
+.btn-2{border:1px solid var(--line2);color:var(--ink);background:transparent}
+.btn-2:hover{border-color:var(--red);color:var(--red-deep)}
+.btn-s{padding:10px 18px;font-size:var(--t-sm);min-height:40px}
+.arrow{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ============ gutter rail ============ */
+.rail{position:fixed;left:24px;top:50%;translate:0 -50%;z-index:50;display:flex;flex-direction:column;gap:11px;pointer-events:none}
+@media(max-width:1180px){.rail{display:none}}
+/* The expanded label needs clear space beside the 1280px container. Below
+   this width it would print over the section cards, so the dots stand alone. */
+@media(max-width:1420px){.rail-lab{display:none}}
+.rail-item{display:flex;align-items:center;gap:10px;opacity:.42;transition:opacity .35s}
+.rail-item.on{opacity:1}
+.rail-dot{width:7px;height:7px;border-radius:50%;background:var(--ink3);transition:.35s}
+.rail-item.on .rail-dot{background:var(--red);box-shadow:0 0 0 4px var(--redSoft);transform:scale(1.15)}
+.rail-lab{font-family:var(--label);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);
+  opacity:0;transform:translateX(-6px);transition:.35s}
+.rail-item.on .rail-lab{opacity:1;transform:none;color:var(--ink2)}
+
+/* ============ footer ============ */
+.foot{border-top:1px solid var(--line);padding:54px 0 90px;background:var(--bg2)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:28px}
+@media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot h4{font-family:var(--label);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 12px;font-weight:500}
+.foot li{list-style:none;font-size:var(--t-sm);color:var(--ink2);margin-bottom:8px}
+.foot ul{margin:0;padding:0}
+.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:42px;padding-top:22px;border-top:1px solid var(--line);font-size:var(--t-xs);color:var(--ink3)}
+
+/* ============ whatsapp widget ============ */
+.wa{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:12px;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(max-width:560px){.wa{right:14px;bottom:14px}}
+.wa-fab{width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.34);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.wa-fab:hover{transform:scale(1.07)}
+.wa-fab svg{width:29px;height:29px;fill:#fff}
+.wa-badge{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+.wa-panel{width:min(348px,calc(100vw - 28px));background:var(--surface);border:1px solid var(--line2);border-radius:var(--r-md);
+  box-shadow:var(--shadow);overflow:hidden;transform-origin:bottom right;display:none}
+.wa-panel.open{display:block}
+.wa-top{background:#128C7E;color:#fff;padding:15px 18px;display:flex;align-items:center;gap:11px}
+.wa-top .av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:var(--t-sm)}
+.wa-top .t1{font-weight:600;font-size:var(--t-sm);line-height:1.2}
+.wa-top .t2{font-size:var(--t-xs);opacity:.85}
+.wa-x{margin-left:auto;font-size:var(--t-lg);line-height:1;opacity:.85;color:#fff}
+.wa-body{padding:16px;max-height:330px;overflow-y:auto;background:var(--bg2);display:flex;flex-direction:column;gap:9px}
+.wa-msg{max-width:84%;padding:10px 13px;border-radius:var(--r-md);font-size:var(--t-sm);line-height:1.5}
+.wa-in{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-top-left-radius:4px;color:var(--ink)}
+.wa-out{align-self:flex-end;background:#25D366;color:#07301B;border-top-right-radius:4px;font-weight:500}
+.wa-opts{padding:13px 16px 16px;display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid var(--line);background:var(--surface)}
+.wa-opt{border:1px solid var(--line2);border-radius:var(--r-pill);padding:9px 14px;font-size:var(--t-xs);color:var(--ink2);transition:.2s;min-height:38px}
+.wa-opt:hover{border-color:#25D366;color:var(--ink);background:color-mix(in srgb,#25D366 10%,transparent)}
+.wa-opt.go{background:#25D366;border-color:#25D366;color:#07301B;font-weight:600}
+
+/* ============ reveal ============ */
+html.anim .rv{opacity:0;transform:translateY(24px)}
+html.anim .rv-w{opacity:0}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.anim .rv,html.anim .rv-w{opacity:1!important;transform:none!important}
+  .marquee-track,.cue-line::after{animation:none}
+  *{transition-duration:.01ms!important}
+}

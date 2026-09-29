@@ -1,0 +1,58 @@
+/* Redmelon v0.2 — Design tokens — colours, type, radii. Change branding HERE and nowhere else. */
+/* ============ TOKENS — dark is the default, light is one override block ============ */
+:root{
+  /* Dark (proposed) — Redmelon design system tokens */
+  --bg:#090A0C; --bg2:#101215; --surface:#101215; --surface2:#191C20;
+  --line:#292C31; --line2:#767D87;
+  --ink:#F5F5F3; --ink2:#B3B7BD; --ink3:#A1A7B0;
+  --red:#E4422A; --red-deep:#C23824; --text-red:#FF6A52; --accent:#FF6A52; --redSoft:rgba(228,66,42,.17);
+  --slate:#B3B7BD; --slate2:#767D87; --slateSoft:rgba(163,169,194,.14);
+  /* checkpoint green — the one place a second hue is allowed, because a
+     checkpoint is a different kind of signal from the brand accent */
+  --ok:#8CC63F; --ok-soft:rgba(140,198,63,.13); --text-ok:#A9D96B;
+  --midnight:#10102D; --rind:#92C845; --teal:#22BE9B;
+  --on-brand:#FFFFFF; --on-bright:#10102D; --focus:#50E3C2;
+  --grid:rgba(255,255,255,.06); --shadow:0 12px 32px rgba(0,0,0,.5);
+  /* dithered contact field — a fixed brand ramp, identical in both themes
+     so the panel reads as artwork rather than UI chrome */
+  --art-0:#090A0C; --art-1:#7A2320; --art-2:#C23824; --art-3:#FF6A52;
+  /* ---- Type scale ----------------------------------------------------
+     Nine steps, all on Tailwind's values. There were 23 distinct sizes on
+     the page before v0.3.1; half-steps like 13.5 and 14.5 are what made it
+     feel unsettled. Nothing outside this list. */
+  --t-xs:12px; --t-sm:14px; --t-base:16px; --t-lg:18px; --t-xl:20px;
+  --t-2xl:24px; --t-3xl:30px; --t-4xl:36px; --t-5xl:48px;
+  /* fluid display sizes, each landing on a step at the top end */
+  --t-hero:clamp(44px,6.8vw,98px);
+  --t-h2:clamp(36px,4.7vw,66px);
+  --t-h3:clamp(30px,3vw,44px);
+  --t-h4:clamp(20px,1.6vw,24px);
+  --t-thesis:clamp(20px,2.1vw,30px);
+  --t-h2-sm:clamp(24px,2.4vw,30px);
+
+  --r-sm:4px; --r-md:8px; --r-pill:50px;
+  --disp:"Cal Sans","Montserrat",system-ui,sans-serif;
+  --sans:"Montserrat",system-ui,-apple-system,sans-serif;
+  --label:"Montserrat",system-ui,sans-serif;
+  --gut:clamp(22px,5.2vw,88px); --max:1480px;
+}
+:root[data-ui="light"]{
+  /* Light (live site) */
+  --bg:#FFFFFF; --bg2:#F0F0F0; --surface:#FFFFFF; --surface2:#F0F0F0;
+  --line:#D6D6D6; --line2:#8A8A8A;
+  --ink:#222222; --ink2:#505050; --ink3:#6B6B6B;
+  --red:#E4422A; --red-deep:#C23824; --text-red:#AE2E13; --accent:#E4422A; --redSoft:rgba(228,66,42,.10);
+  --slate:#4C5E6A; --slate2:#4E7A18; --slateSoft:rgba(86,107,120,.12);  /* slate deepened: 4.20 -> 5.09 on the tinted bar */
+  --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12;
+  --on-brand:#FFFFFF; --on-bright:#10102D; --focus:#10102D;
+  --grid:rgba(16,16,45,.07); --shadow:0 1px 2px rgba(16,16,45,.08);
+}
+
+/* Phase 1 motion direction: shared values for the added components. */
+:root{--r-circle:50%;--r-square:0px;--t-art:clamp(56px,9vw,128px);--t-signature:clamp(40px,15vw,230px);--ease-out:cubic-bezier(.16,1,.3,1);--hero-glow:rgba(228,66,42,.10);--art-particle:#FF755D;--art-particle-faint:#B72B1F;--shadow-panel:0 24px 80px rgba(0,0,0,.25)}
+:root[data-ui="light"]{--hero-glow:rgba(228,66,42,.06);--art-particle:#B32F1D;--art-particle-faint:#CC624E;--shadow-panel:0 24px 80px rgba(0,0,0,.08)}
+
+:root{--checkpoint-accent:#8CC63F}
+
+/* Shared heading hierarchy across sections and cards. */
+:root{--title-section:var(--t-h2);--title-card:clamp(24px,2.4vw,30px)}

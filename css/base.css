@@ -1,0 +1,33 @@
+/* Redmelon v0.2 — Reset, typography, shared utilities, buttons. */
+*{box-sizing:border-box}
+/* a component's display value must not beat the hidden attribute */
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--t-base);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .5s ease,color .5s ease}
+h1,h2,h3,h4{font-family:var(--disp);margin:0;font-weight:700;font-synthesis-weight:none;
+  letter-spacing:-.012em;line-height:1.08;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:var(--r-sm)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--red);color:#fff;padding:10px 16px;border-radius:0 0 6px 0;z-index:200}
+.skip:focus{left:0}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut);width:100%}
+.eyebrow{font-family:var(--label);font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.eyebrow b{color:var(--text-red);font-weight:600}
+.lede{font-size:var(--t-lg);line-height:1.6;color:var(--ink2);max-width:62ch}
+.muted{color:var(--ink2);font-size:var(--t-sm);line-height:1.6}
+.mono{font-family:var(--label);font-size:var(--t-xs);font-weight:500;letter-spacing:.06em;color:var(--ink3)}
+.sec{position:relative;padding:clamp(70px,8.5vw,126px) 0;border-top:1px solid var(--line);scroll-margin-top:84px}
+.sec-head{display:flex;flex-direction:column;gap:14px;max-width:64ch}
+.sec h2{font-size:var(--t-h2)}
+
+/* ---- small layout utilities (replaced inline style attributes in v0.2) ---- */
+.lede-spaced{margin-top:26px}
+.muted-narrow{max-width:42ch}
+.note-sm{margin-top:12px;max-width:36ch;font-size:var(--t-sm)}
+.pad-b{padding-bottom:22px}
+.panel-title-lg{font-size:var(--t-2xl)}
