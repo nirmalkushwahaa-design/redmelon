@@ -1,4 +1,4 @@
-# Redmelon
+# Redmelon - GPT Astra
 
 Phase 1 single-page website for Redmelon: AI engineering with human judgement.
 
