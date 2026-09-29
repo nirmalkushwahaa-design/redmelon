@@ -19,7 +19,7 @@
       bubble(key === 'book' ? 'Book a call' : 'Send a brief', true);
       setTimeout(() => { bubble('Taking you there now.'); setOpts([['Start over','start_over']]); toggle(false);
         window.redmelonScrollTo(document.getElementById('contact'),!RM);
-        setTimeout(() => document.getElementById('f-name').focus({ preventScroll:true }), 700); }, 380);
+        setTimeout(() => document.querySelector('.brief-step:not([hidden]) h3, #sent:not([hidden])').focus({ preventScroll:true }), 700); }, 380);
       return;
     }
     if (key === 'start_over') { body.innerHTML = ''; step('hello'); return; }
@@ -51,32 +51,6 @@
   fab.addEventListener('click', () => toggle(!open));
   document.getElementById('waClose').addEventListener('click', () => { toggle(false); fab.focus({ preventScroll:true }); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { toggle(false); fab.focus({ preventScroll:true }); } });
-})();
-
-/* ---------------- contact form ---------------- */
-(function(){
-  const form = document.getElementById('brief'), sent = document.getElementById('sent');
-  const email = document.getElementById('f-email'), hint = document.getElementById('emailHint');
-  const FREE = /@(gmail|yahoo|hotmail|outlook|icloud|proton(mail)?)\./i;
-  email.addEventListener('blur', () => {
-    hint.textContent = FREE.test(email.value) ? 'A work address helps us route this — not required.' : '';
-  });
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    const missing = [...form.querySelectorAll('[required]')].filter(i => !i.value.trim());
-    if (missing.length) { missing.forEach(i => i.style.borderColor = 'var(--red)'); missing[0].focus(); return; }
-    document.getElementById('sentName').textContent = document.getElementById('f-name').value.trim().split(/\s+/)[0] || 'There';
-    form.hidden = true; sent.hidden = false;
-    sent.tabIndex=-1; sent.focus({preventScroll:true}); window.redmelonScrollTo(sent,false);
-    if (window.ScrollTrigger) ScrollTrigger.refresh();
-  });
-  form.querySelectorAll('[required]').forEach(i => i.addEventListener('input', () => i.style.borderColor = ''));
-  document.getElementById('resetForm').addEventListener('click', () => {
-    form.hidden = false; sent.hidden = true;
-    document.getElementById("f-name").focus({preventScroll:true});
-    if (window.ScrollTrigger) ScrollTrigger.refresh();
-  });
 })();
 
 /* Scroll effects are initialized after the preloader by scroll.js. */
