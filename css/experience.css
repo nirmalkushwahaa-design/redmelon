@@ -167,8 +167,8 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:-.035em}
 .foot-signature{font-family:var(--disp);font-size:var(--t-signature);letter-spacing:-.06em;line-height:1.2;margin-top:60px;overflow:hidden;border-bottom:1px solid var(--line);padding-bottom:24px;white-space:nowrap}
 .foot-signature span{color:var(--text-red)}
 .foot-base{margin-top:0;border:0;padding-top:24px}
-.wa-fab{background:var(--surface2);border:1px solid var(--line2);box-shadow:var(--shadow-panel);width:54px;height:54px}
-.wa-fab svg{fill:var(--ink);width:24px;height:24px}
+.wa-fab{background:var(--whatsapp-green);border:1px solid var(--whatsapp-green);box-shadow:var(--shadow-panel);width:54px;height:54px}
+.wa-fab svg{fill:var(--on-brand);width:24px;height:24px}
 .wa-badge{display:none!important}
 .wa-top{background:var(--surface2);color:var(--ink)}
 .wa-x{min-width:40px;min-height:40px;color:var(--ink)}

@@ -56,3 +56,5 @@
 
 /* Shared heading hierarchy across sections and cards. */
 :root{--title-section:var(--t-h2);--title-card:clamp(24px,2.4vw,30px)}
+
+:root{--whatsapp-green:#25D366}
