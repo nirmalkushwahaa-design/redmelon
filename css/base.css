@@ -51,7 +51,7 @@ input,select,textarea{font:inherit;color:inherit}
   background:linear-gradient(110deg,transparent 25%,var(--sheen) 50%,transparent 75%)}
 .btn-1:hover .sheen{transition:transform var(--d-reveal) var(--ease);transform:translateX(120%)}
 .btn-ghost{border:1px solid var(--line2);color:var(--ink)}
-.btn-ghost:hover{border-color:var(--ink)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--red);color:var(--text-red)}
 .btn-s{min-height:44px;padding:10px 18px}
 .arrow{display:inline-block;transition:transform var(--d-ui) var(--ease)}
 .btn:hover .arrow,a:hover .arrow,button:hover .arrow{transform:translateX(4px)}

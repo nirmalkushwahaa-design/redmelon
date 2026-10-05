@@ -154,8 +154,10 @@
         '<g class="pop"><rect class="m-panel" x="160" y="150" width="80" height="100" rx="6"/>' + t(200, 140, 'AI', 'middle') + '</g>' +
         '<g class="pop"><rect class="m-panel" x="280" y="150" width="80" height="100" rx="6"/>' + t(320, 140, 'PEOPLE', 'middle') + '</g>' +
         '<rect class="m-item" x="66" y="226" width="20" height="20" rx="3"/><rect class="m-item" x="190" y="226" width="20" height="20" rx="3"/><rect class="m-item" x="214" y="226" width="20" height="20" rx="3"/>' +
+        '<path class="m-red draw" d="M120 200 C 142 200, 142 180, 160 180"/>' +
         '<path class="m-red draw" d="M240 200 C 262 200, 262 180, 280 180"/>' +
-        t(200, 300, 'AI TAKES THE VOLUME', 'middle') + t(320, 324, 'PEOPLE TAKE THE EXCEPTIONS', 'middle') + '</svg>';
+        /* captions stacked and centred so both fit inside the frame */
+        t(200, 300, 'AI TAKES THE VOLUME', 'middle') + t(200, 324, 'PEOPLE TAKE THE EXCEPTIONS', 'middle') + '</svg>';
     }
     return '';
   }

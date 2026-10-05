@@ -25,10 +25,10 @@
 .split span{position:relative;flex:1;height:36px;border-radius:var(--r-sm);background:var(--bg2);box-shadow:inset 0 0 0 1px var(--track);overflow:hidden;display:flex;align-items:center;padding-inline:12px}
 .split i{position:absolute;inset:0;font-style:normal;display:flex;align-items:center;padding-inline:12px;clip-path:inset(0 0 0 0)}
 .split-ai i{background:var(--line)}
-.split-lead i{background:var(--ink)}
+.split-lead i{background:var(--red)}
 .split b{position:relative;font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 .split-ai i b{color:var(--ink)}
-.split-lead i b{color:var(--bg)}
+.split-lead i b{color:var(--on-brand)}  /* white on --red = 5:1, passes AA */
 
 @media (max-width:980px){
   .step-in{grid-template-columns:1fr}

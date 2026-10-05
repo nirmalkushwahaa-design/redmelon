@@ -17,7 +17,8 @@
 .card h3{font-size:var(--t-3xl)}
 .card p{margin-top:10px;color:var(--ink2)}
 .card-go{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:14px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
-  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2)}
+  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2);
+  transition:color var(--d-ui) var(--ease),text-decoration-color var(--d-ui) var(--ease)}
 .card-go::after{content:"";position:absolute;inset:0}           /* whole card is the hit area */
 .card-studio{background:var(--midnight);border-color:var(--midnight)}
 /* hover (from the client's version): red border, number fills red, glyph turns red */
@@ -26,6 +27,7 @@
   .card:hover,.card:focus-within{border-color:var(--red);transform:translateY(-4px)}
   .card:hover .card-num,.card:focus-within .card-num{color:var(--red);-webkit-text-stroke-color:var(--red)}
   .card:hover .card-glyph,.card:focus-within .card-glyph{color:var(--red)}
+  .card:hover .card-go,.card:focus-within .card-go{color:var(--text-red);text-decoration-color:var(--red)}
 }
 .track-view.is-drag{cursor:grabbing;user-select:none}
 /* touch / narrow: native swipe with snap, no pin */
