@@ -2,6 +2,6 @@
 .problem-grid{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center}
 .problem-grid .sec-head{align-items:center;max-width:none}
 .problem-body{font-size:var(--t-h3);line-height:1.4;color:var(--ink);margin-inline:auto;width:100%}
-/* paragraph spans 6 of 12 columns (half the content width), centred; full width on phones */
-@media (min-width:901px){.problem-body{width:calc(50% - var(--col-gap,24px) / 2)}}
+/* paragraph spans the full 12 columns so it sits in about three lines on desktop */
+@media (min-width:901px){.problem-body{width:100%;text-wrap:balance}}
 .fx-w{display:inline-block;will-change:transform,opacity,filter}
