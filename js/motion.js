@@ -50,7 +50,7 @@
 
   /* every other H2, except the Studio one which waits for its wipe */
   $$('[data-split]').forEach(function (el) {
-    if (el === heroH || el.classList.contains('studio-h')) return;
+    if (el === heroH || el.classList.contains('studio-h') || el.closest('#problem')) return;
     splitReveal(el);
   });
 
@@ -72,18 +72,25 @@
       scrollTrigger: { trigger: w, start: START, once: true } });
   });
 
-  /* ---------- B · problem: words fill --ink3 to --ink on scrub (no pin) ---------- */
+  /* ---------- problem: "fade-in-blur" word reveal (motion-primitives TextEffect,
+     preset fade-in-blur, speedReveal 1.1, speedSegment 0.3), heading then body ---------- */
   (function () {
-    var p = $('#problemBody'); if (!p) return;
-    var words = p.textContent.trim().split(/\s+/);
-    p.innerHTML = words.map(function (w) { return '<span class="w">' + RM.esc(w) + '</span>'; }).join(' ');
-    var spans = $$('.w', p), lit = -1;
-    ScrollTrigger.create({ trigger: p, start: 'top 80%', end: 'bottom 45%', scrub: true,
-      onUpdate: function (s) {
-        var n = Math.round(s.progress * spans.length);
-        if (n === lit) return; lit = n;
-        spans.forEach(function (sp, i) { sp.classList.toggle('lit', i < n); });
-      } });
+    var sec = $('#problem'); if (!sec) return;
+    var SPEED_REVEAL = 1.1, SPEED_SEGMENT = 0.3;
+    var STAGGER = 0.05 / SPEED_REVEAL;            /* per-word delay */
+    var DURATION = 0.3 / SPEED_SEGMENT;           /* each word's fade */
+    function words(el) {
+      var label = el.textContent.trim();
+      el.setAttribute('aria-label', label);
+      el.innerHTML = label.split(/\s+/).map(function (w) { return '<span class="fx-w" aria-hidden="true">' + RM.esc(w) + '</span>'; }).join(' ');
+      return $$('.fx-w', el);
+    }
+    var all = words($('h2', sec)).concat(words($('#problemBody')));
+    gsap.set(all, { opacity: 0, filter: 'blur(12px)', y: 20 });
+    ScrollTrigger.create({ trigger: sec, start: 'top 75%', once: true, onEnter: function () {
+      gsap.to(all, { opacity: 1, filter: 'blur(0px)', y: 0, duration: DURATION, stagger: STAGGER, ease: E,
+        onComplete: function () { gsap.set(all, { clearProps: 'filter,transform,willChange' }); } });
+    } });
   })();
 
   /* ---------- the two pins (desktop only) ---------- */

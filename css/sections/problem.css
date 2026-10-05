@@ -1,9 +1,5 @@
-/* ===== 12.4 PROBLEM (tone --bg) ===== */
-.problem-grid{display:grid;gap:32px}
-.problem-body{font-size:var(--t-h3);line-height:1.4;color:var(--ink);max-width:30ch}
-/* scroll-fill words: --ink3 until lit (motion only; reduced motion stays --ink) */
-.motion .problem-body .w{color:var(--ink3);transition:color var(--d-ui) var(--ease)}
-.motion .problem-body .w.lit{color:var(--ink)}
-@media (min-width:1024px){
-  .problem-grid{grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,96px);align-items:start}
-}
+/* ===== 12.4 PROBLEM (tone --bg) · centred ===== */
+.problem-grid{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center}
+.problem-grid .sec-head{align-items:center;max-width:none}
+.problem-body{font-size:var(--t-h3);line-height:1.4;color:var(--ink);max-width:32ch;margin-inline:auto}
+.fx-w{display:inline-block;will-change:transform,opacity,filter}
