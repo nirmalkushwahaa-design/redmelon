@@ -79,8 +79,8 @@ RM.SERVICES = [
     tags: ['Document processing', 'Workflow automation', 'Copilots', 'Decision support'] }
 ];
 
-/* panel 04 agent loop labels; 'Approve' is the red node */
-RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Approve', 'Act', 'Learn'];
+/* panel 04 agent loop labels; 'Human approve' is the green node */
+RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Human approve', 'Act', 'Learn'];
 
 /* 12.6 · how we work */
 RM.STEPS = [
