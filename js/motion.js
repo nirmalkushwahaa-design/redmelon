@@ -131,8 +131,9 @@
       art.style.top = Math.round((p0.top - y + p0.height / 2) - (a.top + a.height / 2)) + 'px';
     }
     tuck(); ScrollTrigger.addEventListener('refreshInit', tuck);
-    /* the 01 illustration starts a little before 01 settles (160px early), and hides again on the way back up */
-    var early = ScrollTrigger.create({ trigger: sw, start: 'top top+=160', end: function () { return st.end; },
+    /* the 01 illustration appears (and draws in) as soon as the section comes into view, before 01 arrives;
+       it hides again on the way back up */
+    var early = ScrollTrigger.create({ trigger: sw, start: 'top 60%', end: function () { return st.end; },
       onEnter: function () { RM.setService(Math.max(0, Math.floor(st.progress * (N - 1) + .04))); },
       onLeaveBack: function () { RM.hideServiceArt(); } });
     if (scrollY < early.start) RM.hideServiceArt();
