@@ -137,9 +137,12 @@
       case 'loop':
         var R = 130, C0 = 2 * Math.PI * R, nodes = RM.LOOP.map(function (name, i) {
           var a = (-90 + i * 60) * Math.PI / 180, x = 200 + R * Math.cos(a), y = 200 + R * Math.sin(a);
-          var approve = name === 'Approve', ly = y + (y < 200 ? -20 : 30);
+          var approve = name === 'Approve', side = Math.abs(x - 200) > 20;
+          /* side nodes: label beside the dot, outside the ring; top and bottom: above / below */
+          var lx = side ? x + (x > 200 ? 20 : -20) : x, ly = side ? y + 4 : y + (y < 200 ? -20 : 30);
+          var anchor = side ? (x > 200 ? 'start' : 'end') : 'middle';
           return '<g class="loop-node' + (approve ? ' is-approve' : '') + '"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (approve ? 13 : 10) + '"/>' +
-            t(x.toFixed(1), ly.toFixed(1), name.toUpperCase(), 'middle') + '</g>';
+            t(lx.toFixed(1), ly.toFixed(1), name.toUpperCase(), anchor) + '</g>';
         }).join('');
         return '<svg viewBox="0 0 400 400" class="motif motif-loop">' +
           '<circle class="loop-ring" cx="200" cy="200" r="' + R + '"/>' +

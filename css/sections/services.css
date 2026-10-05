@@ -81,8 +81,8 @@ html:not(.motion) .card{scroll-snap-align:start}
 .m-item{fill:var(--ink2)}
 .loop-ring{fill:none;stroke:var(--track);stroke-width:1.5}
 .loop-node circle{fill:var(--surface);stroke:var(--line2);stroke-width:1.5;transition:fill var(--d-ui) var(--ease),stroke var(--d-ui) var(--ease)}
-.loop-node.on circle{fill:var(--ink);stroke:var(--ink)}
-.loop-node.is-approve circle{fill:var(--red);stroke:var(--red)}
+.loop-node.on circle{fill:var(--red);stroke:var(--red)}
+.loop-node.is-approve circle{fill:var(--ok);stroke:var(--ok)}
 .loop-node text{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;fill:var(--ink3)}
 .loop-node.on text,.loop-node.is-approve text{fill:var(--ink)}
 .loop-center{font-family:var(--disp);font-size:30px;fill:var(--ink)}
