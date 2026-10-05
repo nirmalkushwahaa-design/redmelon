@@ -28,7 +28,7 @@
 .split-lead i{background:var(--red)}
 .split b{position:relative;font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 .split-ai i b{color:var(--ink)}
-.split-lead i b{color:var(--on-brand)}  /* white on --red = 5:1, passes AA */
+.split-lead i b{color:var(--on-brand)}  /* white on --red = 4.1:1 */
 
 @media (max-width:980px){
   .step-in{grid-template-columns:1fr}
