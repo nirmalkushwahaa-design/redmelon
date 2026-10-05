@@ -126,7 +126,7 @@
         '<g class="pop"><rect class="m-panel" x="40" y="250" width="120" height="100" rx="8"/><path class="m-red draw" d="M56 320 L80 300 L100 310 L140 272"/></g></svg>';
       case 'graph': return '<svg viewBox="0 0 400 400" class="motif">' +
         '<path class="m-line draw" d="M110 100 L166 200"/><path class="m-line draw" d="M110 200 L166 200"/><path class="m-line draw" d="M110 300 L166 200"/>' +
-        '<path class="m-red draw" d="M234 200 L290 120"/><path class="m-line draw" d="M234 200 L290 200"/><path class="m-line draw" d="M234 200 L290 280"/>' +
+        '<path class="m-red draw" d="M234 200 L290 120"/><path class="m-red draw" d="M234 200 L290 200"/><path class="m-red draw" d="M234 200 L290 280"/>' +
         '<g class="pop"><rect class="m-node" x="30" y="84" width="80" height="32" rx="4"/>' + t(70, 105, 'DOCS', 'middle') + '</g>' +
         '<g class="pop"><rect class="m-node" x="30" y="184" width="80" height="32" rx="4"/>' + t(70, 205, 'DATA', 'middle') + '</g>' +
         '<g class="pop"><rect class="m-node" x="30" y="284" width="80" height="32" rx="4"/>' + t(70, 305, 'APIS', 'middle') + '</g>' +
