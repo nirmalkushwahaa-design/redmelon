@@ -8,8 +8,8 @@
 .hero-in{position:relative;z-index:2;pointer-events:none}
 .hero-in a,.hero-in button{pointer-events:auto}
 .hero .eyebrow::before{display:none}
-.hero-h{margin-top:22px;font-size:var(--t-display);line-height:.98;letter-spacing:-.03em;max-width:11ch}
-.hero-h .hl{color:var(--accent)}
+.hero-h{margin-top:22px;font-size:min(var(--t-display),9.5vw);line-height:.98;letter-spacing:-.03em}
+.hero-h .hl{color:var(--accent);white-space:nowrap}
 .hero .lede{margin-top:28px}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:34px}
 
