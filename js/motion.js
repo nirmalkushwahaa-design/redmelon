@@ -42,12 +42,10 @@
   var heroFade = $$('.hero-fade'), heroH = $('#heroH1');
   gsap.set(heroFade, { opacity: 0, y: 16 });
   gsap.set(heroH, { opacity: 0 });
-  gsap.set('#pipeFill', { scaleX: 0 });
   RM.afterPreload(function () {
     gsap.set(heroH, { opacity: 1 });
     splitReveal(heroH, false);
     gsap.to(heroFade, { opacity: 1, y: 0, duration: D.reveal, stagger: D.stagger, delay: .35 });
-    gsap.to('#pipeFill', { scaleX: 1, duration: D.reveal, delay: .7, ease: E });   /* pipeline line draws once */
   });
 
   /* every other H2, except the Studio one which waits for its wipe */

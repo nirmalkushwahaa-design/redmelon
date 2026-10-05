@@ -19,7 +19,7 @@ RM.CONFIG = {
 
 /* A/B test copy (12.2). Swap HERO_H1 to test; the live H1 is in index.html. */
 RM.AB = {
-  HERO_H1_A: 'AI does the volume. A senior lead makes every call.',
+  HERO_H1_A: 'AI at scale. Humans in charge.',
   HERO_H1_B: 'Your AI pilot works in the demo. We make it work in the business.'
 };
 
