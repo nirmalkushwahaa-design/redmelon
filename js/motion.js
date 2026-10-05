@@ -116,8 +116,9 @@
       animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
       onUpdate: function (s) {
         var f = s.progress * (N - 1);
-        RM.setService(Math.round(f));
-        RM.setLoop(Math.max(0, Math.min(1, f - 2.5)));          /* ring fills as panel 04 becomes active */
+        /* the illustration changes only once the next title has reached the top mark */
+        RM.setService(Math.floor(f + .04));
+        RM.setLoop(Math.max(0, Math.min(1, (f - 2.96) / .6)));  /* ring fills once panel 04 is in place */
       } });
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
     return function () { ScrollTrigger.removeEventListener('refreshInit', alignTop); col.style.removeProperty('--pt'); sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
