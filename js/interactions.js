@@ -139,7 +139,12 @@
         var nodes = $$('.loop-node', svg), lit = Math.floor(p * nodes.length - .001);
         nodes.forEach(function (n, k) { n.classList.toggle('on', k <= lit); });
         var name = RM.LOOP[Math.max(0, Math.min(RM.LOOP.length - 1, lit))];
-        $('.loop-center', svg).textContent = p <= 0 ? RM.LOOP[0] : name;
+        if (p <= 0) name = RM.LOOP[0];
+        /* at the green step the centre reads 'Human approve' on its own (no 'Agent loop' caption) */
+        var human = name === 'Approve', c = $('.loop-center', svg);
+        c.textContent = human ? 'Human approve' : name;
+        c.setAttribute('y', human ? 211 : 226); c.classList.toggle('is-human', human);
+        $('.loop-cap', svg).style.display = human ? 'none' : '';
       });
     };
     RM.setService(0); RM.setLoop(F.motion ? 0 : 1);

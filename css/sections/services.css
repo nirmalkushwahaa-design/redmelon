@@ -65,8 +65,8 @@ html:not(.motion) .card{scroll-snap-align:start}
 /* pinned mode: right column is a window whose list is scrubbed upward */
 .switch.is-pinned .switch-in{height:100vh;padding-block:calc(var(--nav-h) + 24px) 24px;align-items:center}
 .switch.is-pinned .switch-art{position:relative;top:auto}        /* top offset set in motion.js: level with the service text */
-.switch.is-pinned .switch-col{height:100%;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,black 14%,black 86%,transparent);mask-image:linear-gradient(transparent,black 14%,black 86%,transparent)}
-.switch.is-pinned .switch-panels{padding-block:30vh}
+.switch.is-pinned .switch-col{height:100%;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,black 8%,black 86%,transparent);mask-image:linear-gradient(transparent,black 8%,black 86%,transparent)}
+.switch.is-pinned .switch-panels{padding-block:18vh 30vh}        /* less empty space above each service */
 .switch.is-pinned .switch-stage{max-height:calc(100vh - var(--nav-h) - 120px);margin-inline:auto}
 
 /* motif strokes (one red stroke per motif) */
@@ -91,6 +91,7 @@ html:not(.motion) .card{scroll-snap-align:start}
 .loop-node text{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;fill:var(--ink3)}
 .loop-node.on text,.loop-node.is-approve text{fill:var(--ink)}
 .loop-center{font-family:var(--disp);font-size:30px;fill:var(--ink)}
+.loop-center.is-human{font-size:26px}                           /* fits inside the ring */
 
 @media (max-width:900px){
   .switch-in{display:block;padding-block:var(--sec-pad) 0}
