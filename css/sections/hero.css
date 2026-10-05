@@ -7,6 +7,7 @@
   background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 70%,transparent) 0,transparent 160px,transparent 88%,var(--bg) 100%)}
 .hero-in{position:relative;z-index:2;pointer-events:none}
 .hero-in a,.hero-in button{pointer-events:auto}
+.hero .eyebrow::before{display:none}
 .hero-h{margin-top:22px;font-size:var(--t-display);line-height:.98;letter-spacing:-.03em;max-width:11ch}
 .hero-h .hl{color:var(--accent)}
 .hero .lede{margin-top:28px}
