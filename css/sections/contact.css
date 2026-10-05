@@ -1,0 +1,50 @@
+/* ===== 12.11 CONTACT · callback form (tone --bg, .zone-dark art panel) ===== */
+.contact-box{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);overflow:hidden}
+.contact-art{position:relative;min-height:640px;background:var(--art-0);overflow:hidden}
+.contact-art .dither{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.contact-card{position:absolute;left:clamp(16px,6%,40px);right:clamp(16px,6%,40px);bottom:clamp(16px,6%,40px);max-width:400px;padding:26px 28px;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow);will-change:transform}
+.contact-card h3{font-size:var(--t-xl)}
+.contact-card ul{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.contact-card li{display:flex;gap:12px;font-size:var(--t-sm);line-height:1.55;color:var(--ink2)}
+.contact-card li::before{content:"";flex:none;width:7px;height:7px;margin-top:7px;background:var(--ink3);transform:rotate(45deg)}
+.contact-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:var(--t-xs);line-height:1.6;color:var(--ink3)}
+
+.contact-form{position:relative;padding:clamp(24px,3.4vw,48px)}
+.contact-h{margin-top:14px;font-size:var(--t-h3);line-height:1.15;max-width:22ch}
+.contact-lede{margin:14px 0 24px;font-size:var(--t-sm);color:var(--ink2);max-width:52ch}
+.start-note{margin:-8px 0 20px;padding:10px 14px;border-radius:var(--r-sm);background:var(--redSoft);font-size:var(--t-sm);color:var(--ink)}
+.form-err{font-size:var(--t-sm);color:var(--text-red);margin-bottom:12px}
+.form-err:empty{display:none}
+.submit{width:100%;margin-top:8px}
+.submit .spin{display:none;width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+.submit.is-loading .spin{display:inline-block}
+.submit.is-loading .arrow{display:none}
+.submit:disabled{opacity:.85;cursor:progress}
+@keyframes spin{to{transform:rotate(360deg)}}
+.success{display:flex;flex-direction:column;gap:14px;min-height:420px;justify-content:center}
+.success h3{font-size:var(--t-h3)}
+.success p{color:var(--ink2);max-width:46ch}
+.success .text-link{align-self:flex-start}
+.success:focus{outline:none}
+
+/* close button only exists in sheet mode */
+.sheet-x{display:none}
+
+@media (max-width:940px){
+  .contact-box{grid-template-columns:1fr}
+  .contact-art{min-height:0;padding:clamp(140px,40vw,220px) 20px 20px;display:flex}
+  .contact-card{position:relative;inset:auto;z-index:1;max-width:none;width:100%}
+}
+
+/* ≤560px: the form opens as a full-height sheet from any CTA */
+.sheet-backdrop{position:fixed;inset:0;z-index:var(--z-sheet);background:var(--backdrop);opacity:0;pointer-events:none;transition:opacity var(--d-ui) var(--ease)}
+.sheet-backdrop.on{opacity:1;pointer-events:auto}
+@media (max-width:560px){
+  .contact-form.is-sheet{position:fixed;inset:auto 0 0 0;z-index:calc(var(--z-sheet) + 1);height:100dvh;overflow-y:auto;background:var(--surface);
+    padding:64px 20px calc(24px + env(safe-area-inset-bottom,0px));animation:sheet-up var(--d-ui) var(--ease) both}
+  .contact-form.is-sheet .sheet-x{display:grid;place-items:center;position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;
+    border:1px solid var(--line2);font-size:var(--t-2xl);line-height:1}
+}
+@keyframes sheet-up{from{transform:translateY(100%)}to{transform:none}}
+html.sheet-open{overflow:hidden}

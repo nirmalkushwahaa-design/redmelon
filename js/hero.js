@@ -1,90 +1,81 @@
-/* Interactive particle loop. Decorative; drag gestures never gate page content. */
-(function(){
+/* =====================================================================
+   HERO · ripple grid canvas. Quiet resting fill, hover lifts a cell,
+   click starts a ripple. The loop sleeps when idle, off-screen or hidden.
+   ===================================================================== */
+(function () {
   'use strict';
-  const canvas=document.getElementById('gl'), area=document.getElementById('heroArt');
-  const ctx=canvas.getContext('2d'), pause=document.getElementById('artPause');
-  if(!ctx)return;
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let width=0,height=0,visible=true,localPause=false,globalPause=root.dataset.motion?root.dataset.motion==='paused':reduced.matches,raf=0,last=0,time=0;
-  let angle=.38,target=.38,tilt=.95,targetTilt=.95,drag=null;
-  let bright,faint,line;
-  const points=[];
-  for(let u=0;u<116;u++){
-    for(let v=0;v<34;v++){
-      const a=u/116*Math.PI*2,b=v/34*Math.PI*2;
-      const ripple=1+.065*Math.sin(a*3);
-      const radius=.65+.225*Math.cos(b)*ripple;
-      points.push({x:radius*Math.cos(a),y:radius*Math.sin(a),z:.225*Math.sin(b)*ripple,lit:(u*13+v*7)%19===0});
+  var RM = window.RM, cv = RM.$('#grid');
+  var ctx = cv && cv.getContext ? cv.getContext('2d') : null;
+  if (!ctx) return;
+  var hero = cv.parentElement, W = 0, H = 0, DPR = 1, cell = 56, cols = 0, rows = 0;
+  var LINE = '', HOT = '', hover = null, ripples = [], vis = false, raf = 0, auto = 0;
+  var still = RM.flags.rm;
+
+  function colors() {
+    var s = getComputedStyle(document.documentElement);
+    LINE = s.getPropertyValue('--hairline').trim();
+    HOT = s.getPropertyValue('--red').trim();
+  }
+  function size() {
+    W = hero.clientWidth; H = hero.clientHeight; DPR = RM.dpr();
+    cell = W < 620 ? 40 : 56;
+    cols = Math.ceil(W / cell) + 1; rows = Math.ceil(H / cell) + 1;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  function tri(t, d) { if (t < 0 || t > d) return 0; var k = t / d; return k < .5 ? k * 2 : 2 - k * 2; }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    /* resting fill .011 */
+    ctx.globalAlpha = .011; ctx.fillStyle = HOT; ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1; ctx.strokeStyle = LINE; ctx.lineWidth = 1; ctx.beginPath();
+    for (var c = 0; c <= cols; c++) { ctx.moveTo(c * cell + .5, 0); ctx.lineTo(c * cell + .5, H); }
+    for (var r = 0; r <= rows; r++) { ctx.moveTo(0, r * cell + .5); ctx.lineTo(W, r * cell + .5); }
+    ctx.stroke();
+    var busy = false;
+    ctx.fillStyle = HOT;
+    for (r = 0; r < rows; r++) for (c = 0; c < cols; c++) {
+      var heat = 0;
+      if (hover) { var hd = Math.hypot(hover.c - c, hover.r - r); if (hd < 1.6) heat = (1 - hd / 1.6) * .5; }
+      for (var i = 0; i < ripples.length; i++) {
+        var rp = ripples[i], d = Math.hypot(rp.c - c, rp.r - r);
+        heat = Math.max(heat, tri(now - rp.t0 - d * 55, 200 + d * 80) * (1 - Math.min(d / 18, 1)) * rp.s);
+      }
+      if (heat > .01) { ctx.globalAlpha = heat * .42; ctx.fillRect(c * cell + 1, r * cell + 1, cell - 1, cell - 1); }
     }
+    ctx.globalAlpha = 1;
+    ripples = ripples.filter(function (rp) { return now - rp.t0 < 4200; });
+    busy = ripples.length > 0 || !!hover;
+    return busy;
   }
-  function colors(){
-    const style=getComputedStyle(root);bright=style.getPropertyValue('--art-particle').trim();faint=style.getPropertyValue('--art-particle-faint').trim();line=style.getPropertyValue('--line').trim();draw();
+  function tick(now) {
+    raf = 0;
+    if (!vis) return;
+    if (draw(now)) raf = requestAnimationFrame(tick);   /* sleeps when nothing moves */
   }
-  onTheme=colors;
-  function size(){
-    width=area.clientWidth;height=area.clientHeight;
-    const dpr=Math.min(devicePixelRatio||1,2);
-    canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();
-  }
-  function draw(){
-    if(!width||!bright)return;
-    ctx.clearRect(0,0,width,height);
-    const scale=Math.min(width,height)*.44;
-    const ca=Math.cos(angle),sa=Math.sin(angle),ct=Math.cos(tilt),st=Math.sin(tilt);
-    const twist=-.48,cz=Math.cos(twist),sz=Math.sin(twist);
-    const transformed=points.map(p=>{
-      const x=p.x*ca+p.z*sa,z=-p.x*sa+p.z*ca;
-      const y=p.y*ct-z*st,depth=p.y*st+z*ct;
-      const px=x*cz-y*sz,py=x*sz+y*cz;
-      const perspective=3/(3-depth*.45);
-      return {x:width*.5+px*scale*perspective,y:height*.51+py*scale*perspective,z:depth,lit:p.lit,p:perspective};
-    }).sort((a,b)=>a.z-b.z);
-    for(const p of transformed){
-      const alpha=.18+(p.z+1)/2*.78;
-      ctx.globalAlpha=Math.min(1,alpha);ctx.fillStyle=p.lit?bright:(p.z>0?bright:faint);
-      const r=(p.lit?1.15:.76)*p.p*(width<450?.87:1);
-      ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fill();
+  function wake() { if (!raf && vis && !still) raf = requestAnimationFrame(tick); }
+  function at(e) { var b = cv.getBoundingClientRect(); return { c: Math.floor((e.clientX - b.left) / cell), r: Math.floor((e.clientY - b.top) / cell) }; }
+  function ripple(c, r, s) { ripples.push({ c: c, r: r, t0: performance.now(), s: s }); if (ripples.length > 5) ripples.shift(); wake(); }
+
+  colors(); size(); draw(performance.now());
+  RM.themeHooks.push(function () { colors(); draw(performance.now()); wake(); });
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { size(); draw(performance.now()); }, 120); });
+  if (still) return;                                     /* reduced motion: one still frame */
+
+  cv.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') { hover = at(e); wake(); } });
+  cv.addEventListener('pointerleave', function () { hover = null; wake(); });
+  cv.addEventListener('pointerdown', function (e) { var p = at(e); ripple(p.c, p.r, 1); });
+
+  RM.onScreen(hero, function (v) {
+    vis = v;
+    if (v) {
+      wake();
+      if (!auto) auto = setInterval(function () { if (!hover) ripple(Math.floor(Math.random() * cols), Math.floor(Math.random() * rows * .45), .55); }, 4200);
+    } else {
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      clearInterval(auto); auto = 0;
     }
-    ctx.globalAlpha=1;
-    canvas.dataset.rendered='true';
-  }
-  function running(){return visible&&!document.hidden&&!localPause&&!globalPause;}
-  function tick(now){
-    raf=0;if(!running())return;
-    if(now-last>30){
-      const delta=Math.min(now-last,80);last=now;time+=delta;
-      if(!drag)target+=delta*.000065;
-      angle+=(target-angle)*.1;tilt+=(targetTilt-tilt)*.08;
-      draw();
-    }
-    raf=requestAnimationFrame(tick);
-  }
-  function sync(){
-    if(running()&&!raf){last=performance.now();raf=requestAnimationFrame(tick);}
-    else if(!running()&&raf){cancelAnimationFrame(raf);raf=0;}
-    pause.textContent=localPause||globalPause?'▷':'Ⅱ';pause.setAttribute('aria-label',globalPause?'Motion paused by page preference':localPause?'Resume particle animation':'Pause particle animation');
-    pause.disabled=globalPause;
-    pause.setAttribute('aria-pressed',String(localPause||globalPause));
-  }
-  pause.addEventListener('click',()=>{
-    if(globalPause){localPause=false;return;}
-    localPause=!localPause;sync();
-  });
-  area.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button')||globalPause||localPause)return;
-    drag={id:e.pointerId,x:e.clientX,y:e.clientY,start:target,tilt:targetTilt};
-    area.classList.add('is-dragging');area.setPointerCapture(e.pointerId);
-  });
-  area.addEventListener('pointermove',e=>{
-    if(!drag||drag.id!==e.pointerId)return;
-    target=drag.start+(e.clientX-drag.x)*.012;targetTilt=drag.tilt+(e.clientY-drag.y)*.004;
-  });
-  function release(e){if(drag&&drag.id===e.pointerId){drag=null;area.classList.remove('is-dragging');}}
-  area.addEventListener('pointerup',release);area.addEventListener('pointercancel',release);area.addEventListener('lostpointercapture',release);
-  document.addEventListener('visibilitychange',sync);
-  document.addEventListener('redmelon:motion',e=>{globalPause=e.detail.paused;sync();draw();});
-  if('IntersectionObserver' in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;sync();}).observe(area);
-  if('ResizeObserver' in window)new ResizeObserver(size).observe(area);
-  else addEventListener('resize',size);
-  colors();size();sync();
+  }, '0px');
+  RM.afterPreload(function () { ripple(Math.round(cols * .72), Math.round(rows * .22), 1); });
 })();

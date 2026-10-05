@@ -1,0 +1,18 @@
+/* ===== 12.10 FAQ (tone --bg) ===== */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px);align-items:start}
+.faq-side{position:sticky;top:calc(var(--nav-h) + 32px)}
+.faq-side h2{max-width:12ch}
+.faq-list{border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:64px;padding:18px 0;cursor:pointer;list-style:none;
+  font-family:var(--disp);font-size:var(--t-xl);line-height:1.3}
+.qa summary::-webkit-details-marker{display:none}
+.qa-plus{flex:none;width:32px;height:32px;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;font-family:var(--sans);
+  transition:transform var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
+.qa[open] .qa-plus{transform:rotate(45deg);border-color:var(--ink)}
+.qa summary:hover .qa-plus{border-color:var(--ink)}
+.qa-a{padding:0 48px 24px 0;color:var(--ink2);max-width:64ch}
+/* smooth height where supported (interpolate-size), instant elsewhere */
+.qa::details-content{block-size:0;overflow:hidden;transition:block-size var(--d-reveal) var(--ease),content-visibility var(--d-reveal) allow-discrete}
+.qa[open]::details-content{block-size:auto}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}.faq-side{position:static}}
