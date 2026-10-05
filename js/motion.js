@@ -65,7 +65,7 @@
   }
   batch('.tiles .tile');
   batch('.lead');
-  batch('.contact-art');
+  batch('.brief-shell');
   batch('.switch-stage');
 
   /* selected work: rectangle wipe from the bottom */
@@ -143,12 +143,6 @@
     ScrollTrigger.create({ trigger: '#proof', start: 'top bottom', end: 'bottom top',
       onUpdate: function (s) { to(gsap.utils.clamp(-8, 8, s.getVelocity() / -300)); rest.restart(true); } });
   })();
-
-  /* ---------- contact card drifts sideways a little (desktop, max 26px) ---------- */
-  mm.add('(min-width: 941px)', function () {
-    gsap.fromTo('#contactCard', { x: -13 }, { x: 13, ease: 'none',
-      scrollTrigger: { trigger: '#contact', start: 'top bottom', end: 'bottom top', scrub: true } });
-  });
 
   /* keep measurements honest once fonts and images settle */
   addEventListener('load', function () { ScrollTrigger.refresh(); });

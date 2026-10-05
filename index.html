@@ -251,91 +251,47 @@
   </div>
 </section>
 
-<!-- 12.11 CONTACT -->
+<!-- 12.11 CONTACT · three-step guided brief (restored from v0.2 as-is) -->
 <section class="sec contact" id="contact" data-rail="Contact">
   <div class="wrap">
-    <div class="contact-box">
-      <div class="contact-art zone-dark" aria-hidden="false">
-        <canvas class="dither" aria-hidden="true"></canvas>
-        <div class="contact-card" id="contactCard">
-          <h3>What the callback covers</h3>
-          <ul>
-            <li>The process you want to change, in your words</li>
-            <li>Whether it's a real candidate for AI</li>
-            <li>Where the senior sign-off points would sit</li>
-            <li>What it would take, and roughly what it would cost</li>
-          </ul>
-          <p class="contact-note">Commercials, timelines and team shape depend on the work, so we scope them on the call.</p>
-        </div>
+    <div class="brief-layout">
+      <div class="brief-intro">
+        <p class="eyebrow">Your next chapter</p>
+        <h2>Let’s build<br>what’s next.</h2>
+        <p class="brief-lede">A complex challenge. An early idea. Something that should work better. Start with what you know.</p>
+        <div class="brief-orbit" aria-hidden="true"><span>HUMAN</span><i>×</i><span>AI</span></div>
+        <div class="brief-expect"><p class="eyebrow">A conversation, not a pitch</p><p>We’ll explore the challenge, where AI can help, and the decisions that need a person.</p><p class="brief-small">Scope, team and next steps—shaped around your project.</p></div>
       </div>
-
-      <div class="contact-form" id="formWrap">
-        <button class="sheet-x" id="sheetClose" type="button" aria-label="Close the form">×</button>
-        <div id="formView">
-          <p class="eyebrow">Get a call back</p>
-          <h2 class="contact-h" data-split>Bring the slow, expensive process. We'll tell you if it's worth building.</h2>
-          <p class="contact-lede">Leave your details and a senior lead will call you back. Prefer email? Write to <span class="need">[NEED: real email]</span>.</p>
-          <p class="start-note" id="startNote" hidden></p>
-
-          <form id="callback" novalidate>
-            <div class="field">
-              <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-name" name="name" required autocomplete="name" placeholder="Full name" aria-describedby="e-name">
-              <span class="err" id="e-name" aria-live="polite"></span>
-            </div>
-            <div class="field">
-              <label for="f-email">Work email <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" aria-describedby="e-email h-email">
-              <span class="hint" id="h-email" aria-live="polite"></span>
-              <span class="err" id="e-email" aria-live="polite"></span>
-            </div>
-            <div class="field">
-              <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+44 7700 900000" aria-describedby="h-phone e-phone">
-              <span class="hint" id="h-phone">So we can call you back</span>
-              <span class="err" id="e-phone" aria-live="polite"></span>
-            </div>
-            <div class="field">
-              <label for="f-what">What are you trying to build? <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-what" name="what" required placeholder="One line is enough" aria-describedby="e-what">
-              <span class="err" id="e-what" aria-live="polite"></span>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="f-time">Best time to call</label>
-                <input id="f-time" name="time" placeholder="e.g. weekdays after 2pm">
-              </div>
-              <div class="field">
-                <label for="f-tz">Time zone</label>
-                <select id="f-tz" name="tz"></select>
-              </div>
-            </div>
-            <div class="field">
-              <label for="f-stage">Where it stands today</label>
-              <select id="f-stage" name="stage">
-                <option value="">Choose one (optional)</option>
-                <option>Idea, nothing built</option>
-                <option>First version needed</option>
-                <option>Stalled pilot</option>
-                <option>Manual process</option>
-                <option>Inside our boundary</option>
-                <option>Live system to improve</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-co">Company</label>
-              <input id="f-co" name="company" autocomplete="organization" placeholder="Company name">
-            </div>
-            <p class="form-err" id="formErr" role="alert"></p>
-            <button class="btn btn-1 mag submit" id="submit" type="submit"><span class="sheen"></span><span class="spin" aria-hidden="true"></span><span class="submit-lab">Request my call back</span> <span class="arrow" aria-hidden="true">→</span></button>
-          </form>
-        </div>
-
-        <div class="success" id="success" hidden tabindex="-1">
-          <h3 id="successH">Thanks. We've got it.</h3>
-          <p>A senior lead will call you within <span class="need">[NEED: response window]</span>, at the time you picked if you gave one.</p>
-          <button class="text-link" id="again" type="button">Send another request</button>
-        </div>
+      <div class="brief-shell">
+        <ol class="brief-progress" aria-label="Brief progress"><li aria-current="step"><span>01</span> Your focus</li><li><span>02</span> The project</li><li><span>03</span> About you</li></ol>
+        <form id="brief" novalidate>
+          <section class="brief-step" data-step="0" aria-labelledby="brief-title-0">
+            <p class="brief-kicker">STEP 01 / 03</p><h3 id="brief-title-0" tabindex="-1">What can we help with?</h3><p class="brief-help">Choose one or more. It’s okay if you’re still figuring it out.</p>
+            <fieldset class="service-options"><legend class="brief-sr">Select services</legend>
+              <label><input type="checkbox" name="service" value="Agentic systems"><span>Agentic systems<small>Make workflows work smarter</small></span><b aria-hidden="true">+</b></label>
+              <label><input type="checkbox" name="service" value="AI engineering"><span>AI engineering<small>Turn intelligence into a product</small></span><b aria-hidden="true">+</b></label>
+              <label><input type="checkbox" name="service" value="Enterprise UX"><span>Enterprise UX<small>Build experiences people trust</small></span><b aria-hidden="true">+</b></label>
+              <label><input type="checkbox" name="service" value="Production & media"><span>Production & media<small>Create with purpose, at scale</small></span><b aria-hidden="true">+</b></label>
+              <label class="service-wide"><input type="checkbox" name="service" value="Explore together"><span>Let’s figure it out together</span><b aria-hidden="true">+</b></label>
+            </fieldset>
+          </section>
+          <section class="brief-step" data-step="1" aria-labelledby="brief-title-1" hidden>
+            <p class="brief-kicker">STEP 02 / 03</p><h3 id="brief-title-1" tabindex="-1">Tell us about the project.</h3><p class="brief-help">A few lines are enough to get started.</p>
+            <div class="field"><label for="f-stage">Where it stands today</label><select id="f-stage"><option>An idea — nothing built yet</option><option>A pilot that works in the demo</option><option>A stalled build</option><option>A live system we need to fix</option></select></div>
+            <div class="field"><label for="f-what">What would you like to build or fix? *</label><textarea id="f-what" required placeholder="The challenge, the opportunity, or the outcome you want"></textarea></div>
+            <div class="field"><label for="f-more">Anything else? (optional)</label><input id="f-more" placeholder="Timeline, constraints, or useful context"></div>
+          </section>
+          <section class="brief-step" data-step="2" aria-labelledby="brief-title-2" hidden>
+            <p class="brief-kicker">STEP 03 / 03</p><h3 id="brief-title-2" tabindex="-1">Put a name to the idea.</h3><p class="brief-help">Who should we have the conversation with?</p>
+            <div class="field"><label for="f-name">Name *</label><input id="f-name" required autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label for="f-email">Work email *</label><input id="f-email" type="email" required autocomplete="email" placeholder="you@company.com"><span class="hint" id="emailHint"></span></div>
+            <div class="field"><label for="f-co">Company *</label><input id="f-co" required autocomplete="organization" placeholder="Company name"></div>
+          </section>
+          <p id="brief-error" role="alert"></p>
+          <div class="brief-actions"><button type="button" id="brief-back" class="brief-back" hidden>← Back</button><button class="btn btn-1" type="submit" id="brief-next">Continue <span aria-hidden="true">↗</span></button></div>
+          <p class="brief-preview">Preview only—your brief stays on this page and is not sent.</p>
+        </form>
+        <div class="brief-result" id="sent" hidden tabindex="-1"><p class="eyebrow">Ready for a conversation</p><h3>Your brief, at a glance.</h3><p class="brief-help">This is a preview. Nothing has been sent.</p><dl id="brief-summary"></dl><button class="btn btn-2" id="resetForm" type="button">Edit your brief</button></div>
       </div>
     </div>
   </div>
@@ -396,7 +352,7 @@
 <script src="js/hero.js"></script>
 <script src="js/dither.js"></script>
 <script src="js/interactions.js"></script>
-<script src="js/form.js"></script>
+<script src="js/brief.js"></script>
 <script src="js/whatsapp.js"></script>
 <script src="js/motion.js"></script>
 </body>

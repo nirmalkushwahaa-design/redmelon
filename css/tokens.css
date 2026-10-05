@@ -11,7 +11,7 @@
   --line:#D6D6D6; --line2:#8A8A8A; --hairline:rgba(16,16,45,.07);
   --ink:#222222; --ink2:#505050; --ink3:#6B6B6B;
   --red:#E4422A; --red-deep:#C23824; --text-red:#AE2E13; --accent:#E4422A; --redSoft:rgba(228,66,42,.10);
-  --rind:#8CC63F; --ok:#4E7A18; --midnight:#10102D;
+  --rind:#8CC63F; --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12; --midnight:#10102D;
   --on-brand:#FFFFFF; --focus:#10102D;
   --art-0:#0B0B1F; --art-1:#7A2320; --art-2:#C23824; --art-3:#FF6A52;
   --track:var(--line2);                       /* progress tracks, >=3:1 */
@@ -60,7 +60,7 @@
   --line:#2A2A4F; --line2:#6E6E96; --hairline:rgba(255,255,255,.07);
   --ink:#F2F2F7; --ink2:#A3A9C2; --ink3:#9AA7B3;
   --text-red:#FF6A52; --accent:#FF6A52; --redSoft:rgba(228,66,42,.17);
-  --ok:#8CC63F; --focus:#50E3C2;
+  --ok:#8CC63F; --ok-soft:rgba(140,198,63,.13); --text-ok:#A9D96B; --focus:#50E3C2;
 }
 
 /* ---------- the one light "flip" section in dark mode: copies LIGHT values ---------- */
@@ -70,7 +70,7 @@
   --line:#D6D6D6; --line2:#8A8A8A; --hairline:rgba(16,16,45,.07);
   --ink:#222222; --ink2:#505050; --ink3:#6B6B6B;
   --text-red:#AE2E13; --accent:#E4422A; --redSoft:rgba(228,66,42,.10);
-  --ok:#4E7A18; --focus:#10102D;
+  --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12; --focus:#10102D;
 }
 
 /* ---------- always-dark panels (Studio, contact art): copies DARK values ---------- */
@@ -80,5 +80,5 @@
   --line:#2A2A4F; --line2:#6E6E96; --hairline:rgba(255,255,255,.07);
   --ink:#F2F2F7; --ink2:#A3A9C2; --ink3:#9AA7B3;
   --text-red:#FF6A52; --accent:#FF6A52; --redSoft:rgba(228,66,42,.17);
-  --ok:#8CC63F; --focus:#50E3C2;
+  --ok:#8CC63F; --ok-soft:rgba(140,198,63,.13); --text-ok:#A9D96B; --focus:#50E3C2;
 }

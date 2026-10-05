@@ -1,50 +1,64 @@
-/* ===== 12.11 CONTACT · callback form (tone --bg, .zone-dark art panel) ===== */
-.contact-box{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);overflow:hidden}
-.contact-art{position:relative;min-height:640px;background:var(--art-0);overflow:hidden}
-.contact-art .dither{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
-.contact-card{position:absolute;left:clamp(16px,6%,40px);right:clamp(16px,6%,40px);bottom:clamp(16px,6%,40px);max-width:400px;padding:26px 28px;
-  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow);will-change:transform}
-.contact-card h3{font-size:var(--t-xl)}
-.contact-card ul{margin-top:16px;display:flex;flex-direction:column;gap:10px}
-.contact-card li{display:flex;gap:12px;font-size:var(--t-sm);line-height:1.55;color:var(--ink2)}
-.contact-card li::before{content:"";flex:none;width:7px;height:7px;margin-top:7px;background:var(--ink3);transform:rotate(45deg)}
-.contact-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:var(--t-xs);line-height:1.6;color:var(--ink3)}
+/* ===== 12.11 CONTACT · three-step guided brief (restored from v0.2 as-is) ===== */
+.contact{padding-bottom:100px}
 
-.contact-form{position:relative;padding:clamp(24px,3.4vw,48px)}
-.contact-h{margin-top:14px;font-size:var(--t-h3);line-height:1.15;max-width:22ch}
-.contact-lede{margin:14px 0 24px;font-size:var(--t-sm);color:var(--ink2);max-width:52ch}
-.start-note{margin:-8px 0 20px;padding:10px 14px;border-radius:var(--r-sm);background:var(--redSoft);font-size:var(--t-sm);color:var(--ink)}
-.form-err{font-size:var(--t-sm);color:var(--text-red);margin-bottom:12px}
-.form-err:empty{display:none}
-.submit{width:100%;margin-top:8px}
-.submit .spin{display:none;width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
-.submit.is-loading .spin{display:inline-block}
-.submit.is-loading .arrow{display:none}
-.submit:disabled{opacity:.85;cursor:progress}
-@keyframes spin{to{transform:rotate(360deg)}}
-.success{display:flex;flex-direction:column;gap:14px;min-height:420px;justify-content:center}
-.success h3{font-size:var(--t-h3)}
-.success p{color:var(--ink2);max-width:46ch}
-.success .text-link{align-self:flex-start}
-.success:focus{outline:none}
+/* layout: intro on the left, the brief on the right */
+.brief-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,90px);align-items:start}
+.brief-intro{position:relative;padding-top:24px}
+.brief-intro h2{margin-top:20px;max-width:12ch}
+.brief-lede{color:var(--ink2);max-width:38ch;margin-top:28px;font-size:var(--t-lg)}
+.brief-orbit{display:flex;align-items:center;gap:24px;padding:36px 0;color:var(--ink3);font-size:var(--t-xs);letter-spacing:.18em}
+.brief-orbit i{display:grid;place-items:center;width:64px;height:64px;border:1px solid var(--line2);border-radius:50%;color:var(--text-red);font-size:var(--t-3xl);font-style:normal;animation:brief-orbit 12s linear infinite}
+@keyframes brief-orbit{to{transform:rotate(360deg)}}
+.brief-expect{border-top:1px solid var(--line);padding-top:24px;max-width:38ch}
+.brief-expect p:not(.eyebrow){margin-top:12px;color:var(--ink2)}
+.brief-small{font-size:var(--t-sm)}
 
-/* close button only exists in sheet mode */
-.sheet-x{display:none}
+/* the brief card */
+.brief-shell{border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(24px,3.5vw,48px);background:radial-gradient(ellipse at top right,var(--redSoft),transparent 65%),var(--surface);min-width:0}
+.brief-progress{display:flex;justify-content:space-between;gap:12px;list-style:none;margin:0 0 38px;padding:0 0 24px;border-bottom:1px solid var(--line);font-size:var(--t-xs);color:var(--ink3)}
+.brief-progress li{display:flex;gap:8px;align-items:center}
+.brief-progress span{font-variant-numeric:tabular-nums}
+.brief-progress [aria-current]{color:var(--ink);font-weight:700}
+.brief-progress .is-complete{color:var(--text-ok)}
+.brief-kicker{font-size:var(--t-xs);letter-spacing:.12em;color:var(--text-red);margin-bottom:12px}
+.brief-step h3,.brief-result h3{font-size:var(--t-h3);line-height:1.2}
+.brief-step h3:focus{outline:none}
+.brief-help{color:var(--ink2);font-size:var(--t-sm);margin:12px 0 28px}
 
-@media (max-width:940px){
-  .contact-box{grid-template-columns:1fr}
-  .contact-art{min-height:0;padding:clamp(140px,40vw,220px) 20px 20px;display:flex}
-  .contact-card{position:relative;inset:auto;z-index:1;max-width:none;width:100%}
-}
+/* step 1: service choices */
+.service-options{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.service-options label{position:relative;display:flex;gap:10px;justify-content:space-between;align-items:center;padding:18px 16px;min-height:104px;border:1px solid var(--line2);border-radius:var(--r-md);cursor:pointer;background:var(--bg);font-size:var(--t-sm);transition:background .2s,border-color .2s}
+.service-options label:has(:checked){border-color:var(--ok);background:var(--ok-soft)}
+.service-options label:has(:focus-visible){outline:2px solid var(--focus);outline-offset:3px}
+.service-options input,.brief-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.service-options small{display:block;color:var(--ink3);font-size:var(--t-xs);line-height:1.5;margin-top:6px}
+.service-options b{color:var(--ink3);font-size:var(--t-xl);font-weight:400;transition:transform var(--d-ui) var(--ease)}
+.service-options :has(:checked) b{color:var(--text-ok);transform:rotate(45deg)}
+.service-wide{grid-column:1/-1;min-height:64px!important}
 
-/* ≤560px: the form opens as a full-height sheet from any CTA */
-.sheet-backdrop{position:fixed;inset:0;z-index:var(--z-sheet);background:var(--backdrop);opacity:0;pointer-events:none;transition:opacity var(--d-ui) var(--ease)}
-.sheet-backdrop.on{opacity:1;pointer-events:auto}
-@media (max-width:560px){
-  .contact-form.is-sheet{position:fixed;inset:auto 0 0 0;z-index:calc(var(--z-sheet) + 1);height:100dvh;overflow-y:auto;background:var(--surface);
-    padding:64px 20px calc(24px + env(safe-area-inset-bottom,0px));animation:sheet-up var(--d-ui) var(--ease) both}
-  .contact-form.is-sheet .sheet-x{display:grid;place-items:center;position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;
-    border:1px solid var(--line2);font-size:var(--t-2xl);line-height:1}
-}
-@keyframes sheet-up{from{transform:translateY(100%)}to{transform:none}}
-html.sheet-open{overflow:hidden}
+/* steps 2 and 3: fields (v0.2 look) */
+.brief-step .field{margin-bottom:18px}
+.brief-step .field label{font-size:var(--t-xs);font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.brief-step .field :is(input,textarea,select){background-color:var(--bg);border-color:var(--line2);border-radius:var(--r-sm);padding:13px 14px}
+.brief-step .field textarea{width:100%;min-height:84px;resize:vertical;border:1px solid var(--line2);font-size:var(--t-base);color:var(--ink);font-family:var(--sans)}
+.brief-step .field textarea::placeholder{color:var(--ink3);opacity:1}
+.brief-step .field textarea:focus{outline:none;border-color:var(--ink)}
+.brief-step .field textarea:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+/* actions, preview note, result */
+.brief-actions{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:26px}
+.brief-actions .btn{margin-left:auto;min-width:160px}
+.brief-back{min-height:48px;color:var(--ink2)}
+.brief-preview{font-size:var(--t-xs);color:var(--ink3);margin-top:24px;line-height:1.6}
+#brief-error{font-size:var(--t-sm);color:var(--text-red);margin-top:16px}
+#brief-error:empty{display:none}
+.brief-result:focus{outline:none}
+#brief-summary{margin:24px 0;overflow-wrap:anywhere}
+#brief-summary dt{font-size:var(--t-xs);color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;margin-top:18px}
+#brief-summary dd{margin:4px 0 0;color:var(--ink);white-space:pre-wrap}
+.btn-2{border:1px solid var(--line2);color:var(--ink)}
+.btn-2:hover{border-color:var(--ink)}
+
+@media(max-width:880px){.brief-layout{grid-template-columns:1fr}.brief-intro h2{max-width:none}.brief-lede{max-width:48ch}.brief-orbit{padding:20px 0}.brief-expect{max-width:none}.brief-shell{padding:28px}}
+@media(max-width:520px){.brief-shell{padding:22px}.brief-progress{gap:8px;font-size:var(--t-xs)}.brief-progress li{display:block}.brief-progress span{display:block;margin-bottom:4px}.service-options{grid-template-columns:1fr}.service-options label{min-height:80px}.brief-lede{font-size:var(--t-base)}}
+.rm .brief-orbit i{animation:none}
