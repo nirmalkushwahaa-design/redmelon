@@ -1,6 +1,7 @@
 /* ===== 12.3 PROOF · logo wall + selected work (tone --bg2) ===== */
 .proof{padding-block:clamp(56px,6vw,88px) var(--sec-pad);background:var(--bg2);color:var(--ink)}
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
+.proof-head{display:flex;justify-content:center;text-align:center}
 
 /* logo marquee, restored from the first draft: slow loop, brand-coloured names,
    hover swaps the name for its stat. Skew on scroll velocity comes from motion.js. */
