@@ -1,5 +1,5 @@
 /* ===== 12.3 PROOF · logo wall + selected work (tone --bg2) ===== */
-.proof{padding-block:clamp(56px,6vw,88px) var(--sec-pad);background:var(--bg2);color:var(--ink)}
+.proof{padding-block:clamp(56px,6vw,88px);background:var(--bg2);color:var(--ink)}
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
 .proof-head{display:flex;justify-content:center;text-align:center}
 
@@ -34,7 +34,7 @@
 .rm .marquee-name,.rm .marquee-stat{transition:none}
 
 /* selected work */
-.work{margin-top:clamp(72px,8vw,120px)}
+.work{background:var(--bg2)}
 .work-need{margin-top:12px;font-size:var(--t-sm)}
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
 .work-card{display:flex;flex-direction:column}
