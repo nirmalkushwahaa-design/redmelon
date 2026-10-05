@@ -65,16 +65,21 @@
   var reviewWork = C.REVIEW_MODE || C.SHOW_WORK;
   var reviewVoices = C.REVIEW_MODE || C.SHOW_VOICES;
 
-  /* logo wall: two copies so the marquee loops seamlessly */
+  /* logo wall: the list repeats until wider than any screen, then doubles so the
+     -50% loop is seamless. Hover swaps the name for its stat (first-draft behaviour). */
   (function () {
     var ul = $('#logos'); if (!ul) return;
-    function cells(hidden) {
-      return RM.LOGOS.map(function (l) {
-        return '<li class="logo-cell"' + (hidden ? ' aria-hidden="true"' : '') +
-          ' style="--brand:' + l.color + ';--brand-d:' + l.dark + '"><span>' + RM.esc(l.name) + '</span></li>';
-      }).join('');
-    }
-    ul.innerHTML = cells(false) + cells(true) + cells(true) + cells(true);
+    var ARROW = { up: '<path d="M12 5.5V19m6-8s-4.419-6-6-6s-6 6-6 6"/>', down: '<path d="M12 18.5V5m6 8s-4.419 6-6 6s-6-6-6-6"/>' };
+    var base = []; for (var i = 0; i < 4; i++) base = base.concat(RM.LOGOS);
+    var list = base.concat(base);
+    ul.innerHTML = list.map(function (l, k) {
+      var stat = l.v ? '<span class="marquee-stat" aria-hidden="true"><span class="marquee-stat-v">' +
+        '<svg class="marquee-arrow' + (l.up ? ' is-up' : '') + '" viewBox="0 0 24 24">' + ARROW[l.up ? 'up' : 'down'] + '</svg>' + RM.esc(l.v) + '</span>' +
+        '<span class="marquee-stat-l">' + RM.esc(l.l) + '</span></span>' : '';
+      return '<li class="marquee-cell' + (l.v ? ' has-stat' : '') + '"' + (k >= RM.LOGOS.length ? ' aria-hidden="true"' : '') +
+        (l.color ? ' style="--brand-l:' + l.color + ';--brand-d:' + l.dark + '"' : '') +
+        '><span class="marquee-name">' + RM.esc(l.name) + '</span>' + stat + '</li>';
+    }).join('');
   })();
 
   /* selected work */

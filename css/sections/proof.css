@@ -2,24 +2,35 @@
 .proof{padding-block:clamp(56px,6vw,88px) var(--sec-pad);background:var(--bg2);color:var(--ink)}
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
 
-/* velocity-skew marquee (skew driven by motion.js, max ±8deg) */
+/* logo marquee, restored from the first draft: slow loop, brand-coloured names,
+   hover swaps the name for its stat. Skew on scroll velocity comes from motion.js. */
 .marquee{position:relative;margin-top:24px;overflow:hidden;padding:6px 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
-          mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);
+          mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
 .marquee:focus-visible{outline-offset:-2px}
-.marquee-track{display:flex;gap:14px;width:max-content;animation:marquee 60s linear infinite}
+.marquee-track{display:flex;gap:18px;width:max-content;will-change:transform;animation:marquee 92s linear infinite}
 .marquee:hover .marquee-track,.marquee:focus-within .marquee-track,.marquee:focus .marquee-track{animation-play-state:paused}
 @keyframes marquee{to{transform:translateX(-50%)}}
-.logo-cell{display:grid;place-items:center;flex:none;width:200px;height:84px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
-  transition:border-color var(--d-ui) var(--ease)}
-.logo-cell span{font-family:var(--disp);font-size:var(--t-xl);letter-spacing:-.01em;color:var(--ink3);filter:grayscale(1);transition:color var(--d-ui) var(--ease)}
-.logo-cell:hover{border-color:var(--line2)}
-.logo-cell:hover span{color:var(--brand)}
-:root[data-ui="dark"] .logo-cell:hover span{color:var(--brand-d)}
+.marquee-cell{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex:none;
+  height:82px;min-width:216px;padding:0 30px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
+  transition:border-color .3s,transform .3s}
+.marquee-cell:hover{border-color:var(--red);transform:translateY(-3px)}
+.marquee-name{font-family:var(--disp);font-size:var(--t-base);letter-spacing:-.02em;white-space:nowrap;color:var(--brand-l,var(--ink2));
+  transition:transform .34s var(--ease),opacity .28s ease}
+:root[data-ui="dark"] .marquee-name{color:var(--brand-d,var(--ink2))}
+.marquee-cell.has-stat:hover .marquee-name{transform:translateY(-34px);opacity:0}
+.marquee-stat{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  transform:translateY(34px);opacity:0;transition:transform .34s var(--ease),opacity .28s ease .04s}
+.marquee-cell:hover .marquee-stat{transform:none;opacity:1}
+.marquee-stat-v{display:flex;align-items:center;gap:5px;font-family:var(--disp);font-size:var(--t-xl);letter-spacing:-.02em;color:var(--ink);line-height:1}
+.marquee-arrow{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--ink2)}
+.marquee-arrow.is-up{color:var(--ok)}
+.marquee-stat-l{font-size:var(--t-xs);color:var(--ink3);white-space:nowrap;text-align:center}
 /* reduced motion: a static wrapped grid */
 .rm .marquee{-webkit-mask-image:none;mask-image:none}
 .rm .marquee-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center;padding-inline:var(--gut)}
-.rm .logo-cell[aria-hidden="true"]{display:none}
+.rm .marquee-cell[aria-hidden="true"]{display:none}
+.rm .marquee-name,.rm .marquee-stat{transition:none}
 
 /* selected work */
 .work{margin-top:clamp(72px,8vw,120px)}

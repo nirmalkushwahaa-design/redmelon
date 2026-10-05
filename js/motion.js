@@ -143,7 +143,7 @@
 
   /* ---------- B · logo marquee skews with scroll velocity (max ±8deg) ---------- */
   (function () {
-    var tr = $('#logos'); if (!tr) return;
+    var tr = $('#marquee'); if (!tr) return;   /* skew the frame; the track's own transform runs the CSS loop */
     var to = gsap.quickTo(tr, 'skewX', { duration: .5 }), rest = gsap.delayedCall(.15, function () { to(0); }).pause();
     ScrollTrigger.create({ trigger: '#proof', start: 'top bottom', end: 'bottom top',
       onUpdate: function (s) { to(gsap.utils.clamp(-8, 8, s.getVelocity() / -300)); rest.restart(true); } });

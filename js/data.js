@@ -24,12 +24,16 @@ RM.AB = {
 };
 
 /* 12.3 · logo wall. Brand colours are third-party and live here, not in tokens. */
+/* Hover stats (restored from the first draft). { v: figure, l: what it measures,
+   up: true when a rising number is the win }.
+   THE FIGURES ARE PLACEHOLDERS from the first draft: not measured and not cleared
+   by any client. Replace with real numbers, or set v to '' to hide a stat. */
 RM.LOGOS = [
-  { name: 'Mondelez',  color: '#4F2170', dark: '#B79AD6' },
-  { name: 'DBS Bank',  color: '#E2231A', dark: '#FF6B63' },
-  { name: 'Ford',      color: '#00274E', dark: '#6FA3E0' },
-  { name: 'Ogilvy',    color: '#D6001C', dark: '#FF5A6A' },
-  { name: 'GridCrest', color: '#0B6E4F', dark: '#4FD1A5' }
+  { name: 'Mondelez',  color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
+  { name: 'DBS Bank',  color: '#ED0000', dark: '#FF3333', v: '3\u00d7',   l: 'review throughput',       up: true  },
+  { name: 'Ford',      color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
+  { name: 'Ogilvy',    color: '#E81F23', dark: '#EB4448', v: '2.5\u00d7', l: 'concepts per sprint',     up: true  },
+  { name: 'GridCrest', color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false }
 ];
 
 /* 12.3 · selected work. Image, client name, one plain line. */
