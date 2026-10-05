@@ -20,7 +20,7 @@
 .step-who{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
 .step-row p:last-child{color:var(--ink2)}
 
-/* AI / Senior lead split bar: labels only, no percentages; fills left to right */
+/* AI / Human expert split bar: labels only, no percentages; fills left to right */
 .split{display:flex;gap:4px;align-self:center}
 .split span{position:relative;flex:1;height:36px;border-radius:var(--r-sm);background:var(--bg2);box-shadow:inset 0 0 0 1px var(--track);overflow:hidden;display:flex;align-items:center;padding-inline:12px}
 .split i{position:absolute;inset:0;font-style:normal;display:flex;align-items:center;padding-inline:12px;clip-path:inset(0 0 0 0)}

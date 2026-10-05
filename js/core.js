@@ -192,10 +192,10 @@
         '<div class="step-title"><span class="step-n">' + s.n + '</span><h3>' + s.title + '</h3></div>' +
         '<div class="step-rows">' +
           '<div class="step-row"><p class="step-who">AI does</p><p>' + RM.esc(s.ai) + '</p></div>' +
-          '<div class="step-row"><p class="step-who">Senior lead decides</p><p>' + RM.esc(s.lead) + '</p></div>' +
+          '<div class="step-row"><p class="step-who">Human expert decides</p><p>' + RM.esc(s.lead) + '</p></div>' +
         '</div>' +
-        '<div class="split" aria-hidden="true"><span class="split-ai"><b>AI</b><i><b>AI</b></i></span><span class="split-lead"><b>Senior lead</b><i><b>Senior lead</b></i></span></div>' +
-        '<p class="sr-only">In this step AI does the volume and the senior lead makes the decision.</p>' +
+        '<div class="split" aria-hidden="true"><span class="split-ai"><b>AI</b><i><b>AI</b></i></span><span class="split-lead"><b>Human expert</b><i><b>Human expert</b></i></span></div>' +
+        '<p class="sr-only">In this step AI does the volume and the human expert makes the decision.</p>' +
         '</div></li>';
     }).join('');
   })();

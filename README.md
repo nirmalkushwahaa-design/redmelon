@@ -2,7 +2,7 @@
 
 Redmelon 0.2: the Phase 1 single-page site, built from `REDMELON-MASTER-BUILD-SPEC.md` (v1.0, 5 Oct 2026).
 
-**One message:** AI does the volume. A senior lead is involved in every stage and makes every final decision.
+**One message:** AI does the volume. A human expert is involved in every stage and makes every final decision.
 
 ## Preview
 
