@@ -137,7 +137,7 @@
       case 'loop':
         var R = 130, C0 = 2 * Math.PI * R, nodes = RM.LOOP.map(function (name, i) {
           var a = (-90 + i * 60) * Math.PI / 180, x = 200 + R * Math.cos(a), y = 200 + R * Math.sin(a);
-          var approve = name === 'Human approve', side = Math.abs(x - 200) > 20;
+          var approve = name === 'Approve', side = Math.abs(x - 200) > 20;
           /* side nodes: label beside the dot, outside the ring; top and bottom: above / below */
           var lx = side ? x + (x > 200 ? 20 : -20) : x, ly = side ? y + 4 : y + (y < 200 ? -20 : 30);
           var anchor = side ? (x > 200 ? 'start' : 'end') : 'middle';
@@ -147,7 +147,7 @@
         return '<svg viewBox="0 0 400 400" class="motif motif-loop">' +
           '<circle class="loop-ring" cx="200" cy="200" r="' + R + '"/>' +
           '<circle class="loop-prog m-red" cx="200" cy="200" r="' + R + '" transform="rotate(-90 200 200)" stroke-dasharray="' + C0.toFixed(1) + '" stroke-dashoffset="' + C0.toFixed(1) + '" data-len="' + C0.toFixed(1) + '"/>' +
-          nodes + t(200, 196, 'AGENT LOOP', 'middle') + '<text class="loop-center" x="200" y="226" text-anchor="middle">Human approve</text></svg>';
+          nodes + '<text class="loop-center" x="200" y="211" text-anchor="middle">Human approve</text></svg>';
       case 'conveyor': return '<svg viewBox="0 0 400 400" class="motif">' +
         '<line class="m-line" x1="0" y1="250" x2="400" y2="250"/>' +
         '<g class="pop"><rect class="m-panel" x="40" y="150" width="80" height="100" rx="6"/>' + t(80, 140, 'INTAKE', 'middle') + '</g>' +

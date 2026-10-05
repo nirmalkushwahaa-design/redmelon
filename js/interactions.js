@@ -138,8 +138,6 @@
         prog.setAttribute('stroke-dashoffset', (len * (1 - p)).toFixed(1));
         var nodes = $$('.loop-node', svg), lit = Math.floor(p * nodes.length - .001);
         nodes.forEach(function (n, k) { n.classList.toggle('on', k <= lit); });
-        var name = RM.LOOP[Math.max(0, Math.min(RM.LOOP.length - 1, lit))];
-        $('.loop-center', svg).textContent = p <= 0 ? RM.LOOP[0] : name;
       });
     };
     RM.setService(0); RM.setLoop(F.motion ? 0 : 1);
