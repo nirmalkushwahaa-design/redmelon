@@ -36,7 +36,7 @@
 .tgl{width:44px;height:44px;flex:none;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--ink2);
   transition:color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
 .tgl:hover{color:var(--ink);border-color:var(--ink)}
-.tgl svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.tgl svg{width:18px;height:18px}
 .tgl .moon{display:none}
 :root[data-ui="light"] .tgl .moon{display:block}
 :root[data-ui="light"] .tgl .sun{display:none}
@@ -106,7 +106,7 @@
 .wa-fab{width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:var(--shadow);
   transition:transform var(--d-ui) var(--ease)}
 .wa-fab:hover{transform:scale(1.06)}
-.wa-fab svg{width:28px;height:28px;fill:var(--on-brand)}
+.wa-fab svg{width:28px;height:28px;color:var(--on-brand)}
 @media (max-width:560px){.wa{right:14px;bottom:14px}.wa-fab{width:52px;height:52px}}
 .wa-panel{width:min(348px,calc(100vw - 28px));background:var(--surface);border:1px solid var(--line2);border-radius:var(--r-md);overflow:hidden;
   box-shadow:var(--shadow);transform-origin:bottom right}

@@ -24,7 +24,7 @@
   transform:translateY(34px);opacity:0;transition:transform .34s var(--ease),opacity .28s ease .04s}
 .marquee-cell:hover .marquee-stat{transform:none;opacity:1}
 .marquee-stat-v{display:flex;align-items:center;gap:5px;font-family:var(--disp);font-size:var(--t-xl);letter-spacing:-.02em;color:var(--ink);line-height:1}
-.marquee-arrow{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--ink2)}
+.marquee-arrow{width:17px;height:17px;flex:none;color:var(--ink2)}
 .marquee-arrow.is-up{color:var(--ok)}
 .marquee-stat-l{font-size:var(--t-xs);color:var(--ink3);white-space:nowrap;text-align:center}
 /* reduced motion: a static wrapped grid */

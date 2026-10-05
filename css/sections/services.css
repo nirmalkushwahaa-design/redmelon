@@ -11,8 +11,7 @@
   padding:28px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);overflow:hidden;
   transition:border-color var(--d-ui) var(--ease),transform var(--d-ui) var(--ease)}
 .card-num{font-family:var(--disp);font-size:var(--t-num);line-height:.85;color:transparent;-webkit-text-stroke:1.2px var(--line2)}
-.card-glyph{position:absolute;right:24px;top:26px;width:64px;height:64px;fill:none;stroke:var(--line2);stroke-width:1.5;transition:stroke var(--d-ui) var(--ease)}
-.card-glyph .g-fill{fill:var(--line2);transition:fill var(--d-ui) var(--ease)}
+.card-glyph{position:absolute;right:24px;top:26px;width:56px;height:56px;color:var(--line2);transition:color var(--d-ui) var(--ease)}
 .card h3{font-size:var(--t-3xl)}
 .card p{margin-top:10px;color:var(--ink2)}
 .card-go{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:14px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
@@ -24,8 +23,7 @@
 @media (hover:hover){
   .card:hover,.card:focus-within{border-color:var(--red);transform:translateY(-4px)}
   .card:hover .card-num,.card:focus-within .card-num{color:var(--red);-webkit-text-stroke-color:var(--red)}
-  .card:hover .card-glyph,.card:focus-within .card-glyph{stroke:var(--red)}
-  .card:hover .card-glyph .g-fill,.card:focus-within .card-glyph .g-fill{fill:var(--red)}
+  .card:hover .card-glyph,.card:focus-within .card-glyph{color:var(--red)}
 }
 .track-view.is-drag{cursor:grabbing;user-select:none}
 /* touch / narrow: native swipe with snap, no pin */

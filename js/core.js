@@ -69,12 +69,11 @@
      -50% loop is seamless. Hover swaps the name for its stat (first-draft behaviour). */
   (function () {
     var ul = $('#logos'); if (!ul) return;
-    var ARROW = { up: '<path d="M12 5.5V19m6-8s-4.419-6-6-6s-6 6-6 6"/>', down: '<path d="M12 18.5V5m6 8s-4.419 6-6 6s-6-6-6-6"/>' };
     var base = []; for (var i = 0; i < 4; i++) base = base.concat(RM.LOGOS);
     var list = base.concat(base);
     ul.innerHTML = list.map(function (l, k) {
       var stat = l.v ? '<span class="marquee-stat" aria-hidden="true"><span class="marquee-stat-v">' +
-        '<svg class="marquee-arrow' + (l.up ? ' is-up' : '') + '" viewBox="0 0 24 24">' + ARROW[l.up ? 'up' : 'down'] + '</svg>' + RM.esc(l.v) + '</span>' +
+        RM.icon(l.up ? 'up' : 'down', 'marquee-arrow' + (l.up ? ' is-up' : '')) + RM.esc(l.v) + '</span>' +
         '<span class="marquee-stat-l">' + RM.esc(l.l) + '</span></span>' : '';
       return '<li class="marquee-cell' + (l.v ? ' has-stat' : '') + '"' + (k >= RM.LOGOS.length ? ' aria-hidden="true"' : '') +
         (l.color ? ' style="--brand-l:' + l.color + ';--brand-d:' + l.dark + '"' : '') +
@@ -98,20 +97,12 @@
     }).join('');
   })();
 
-  /* card track glyphs (stroke = currentColor) */
-  var GLYPH = {
-    strategy: '<circle cx="36" cy="36" r="30"/><circle cx="36" cy="36" r="16"/><circle cx="36" cy="36" r="3" class="g-fill"/><path d="M36 2v14M36 56v14M2 36h14M56 36h14"/>',
-    experience: '<rect x="4" y="10" width="44" height="34" rx="4"/><rect x="24" y="28" width="44" height="34" rx="4"/><path d="M32 40h28M32 48h18"/>',
-    engineering: '<circle cx="12" cy="18" r="5"/><circle cx="12" cy="54" r="5"/><circle cx="36" cy="36" r="6"/><circle cx="60" cy="18" r="5"/><circle cx="60" cy="54" r="5"/><path d="M16 21l15 11M16 51l15-11M41 32l15-11M41 40l15 11"/>',
-    agentic: '<path d="M36 6a30 30 0 1 1-21.2 8.8"/><path d="M8 8l7 7-7 4"/><circle cx="36" cy="36" r="8" class="g-fill"/>',
-    automation: '<path d="M4 36h64"/><rect x="8" y="24" width="14" height="24" rx="3"/><rect x="29" y="24" width="14" height="24" rx="3"/><rect x="50" y="24" width="14" height="24" rx="3"/><path d="M60 30l6 6-6 6"/>',
-    studio: '<path d="M6 30a30 30 0 0 0 60 0z"/><path d="M6 30a30 30 0 0 0 60 0" stroke-width="4"/><circle cx="26" cy="40" r="2" class="g-fill"/><circle cx="36" cy="46" r="2" class="g-fill"/><circle cx="46" cy="40" r="2" class="g-fill"/>'
-  };
+  /* card track glyphs: Hugeicons stroke-rounded (js/icons.js) */
   (function () {
     var ol = $('#track'); if (!ol) return;
     ol.innerHTML = RM.TRACK.map(function (t) {
       return '<li class="card' + (t.studio ? ' card-studio zone-dark' : '') + '">' +
-        '<svg class="card-glyph" viewBox="0 0 72 72" aria-hidden="true">' + GLYPH[t.glyph] + '</svg>' +
+        RM.icon(t.glyph, 'card-glyph') +
         '<span class="card-num" aria-hidden="true">' + t.n + '</span>' +
         '<div class="card-body"><h3>' + RM.esc(t.title) + '</h3><p>' + RM.esc(t.line) + '</p>' +
         '<a class="card-go" href="' + t.href + '">See details <span class="arrow" aria-hidden="true">→</span><span class="sr-only"> about ' + RM.esc(t.title) + '</span></a></div></li>';
