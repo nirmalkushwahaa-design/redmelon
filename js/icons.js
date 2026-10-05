@@ -33,25 +33,3 @@ RM.ICONS = {
 RM.icon = function (name, cls) {
   return '<svg class="' + (cls || '') + '" viewBox="0 0 24 24" fill="none" aria-hidden="true">' + (RM.ICONS[name] || '') + '</svg>';
 };
-
-/* Solid-on-hover roles per path index (Hugeicons Free has no solid set, so the
-   line icons are filled on hover): f = fills solid, k = knocked out as a line in
-   the card colour, kf = knocked out and filled. Paths not listed stay as lines. */
-RM.ICON_ROLES = {
-  strategy:    { 1: 'f', 0: 'k', 2: 'k' },
-  experience:  { 0: 'f', 1: 'kf', 2: 'k', 3: 'f' },
-  engineering: { 0: 'f', 1: 'f', 2: 'f', 3: 'f', 4: 'f', 5: 'k' },
-  agentic:     { 1: 'f', 4: 'f', 2: 'k', 3: 'k' },
-  automation:  { 0: 'f', 1: 'f', 2: 'f', 6: 'f' },
-  studio:      { 1: 'f', 0: 'kf', 2: 'f' }
-};
-RM.icon = function (name, cls) {
-  var roles = RM.ICON_ROLES[name] || {}, i = -1, base = [], over = [];
-  (RM.ICONS[name] || '').replace(/<path [^>]*\/>/g, function (p) {
-    i++; var r = roles[i];
-    if (r) p = p.replace('<path ', '<path class="ic-' + r + '" ');
-    (r === 'k' || r === 'kf' ? over : base).push(p);   /* knockouts paint last, above the fills */
-    return p;
-  });
-  return '<svg class="' + (cls || '') + '" viewBox="0 0 24 24" fill="none" aria-hidden="true">' + base.join('') + over.join('') + '</svg>';
-};

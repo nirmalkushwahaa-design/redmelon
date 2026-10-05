@@ -14,9 +14,6 @@
 .card-glyph{position:absolute;right:24px;top:26px;width:56px;height:56px;color:var(--line2);transition:color var(--d-ui) var(--ease)}
 /* match the outlined numbers: same 1.2px line at any icon size */
 .card-glyph [stroke]{stroke-width:1.2px;vector-effect:non-scaling-stroke}
-.card{--card-bg:var(--surface)}
-.card-studio{--card-bg:var(--midnight)}
-.card-glyph path{transition:fill var(--d-ui) var(--ease),stroke var(--d-ui) var(--ease)}
 .card h3{font-size:var(--t-3xl)}
 .card p{margin-top:10px;color:var(--ink2)}
 .card-go{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:14px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
@@ -29,10 +26,6 @@
   .card:hover,.card:focus-within{border-color:var(--red);transform:translateY(-4px)}
   .card:hover .card-num,.card:focus-within .card-num{color:var(--red);-webkit-text-stroke-color:var(--red)}
   .card:hover .card-glyph,.card:focus-within .card-glyph{color:var(--red)}
-  /* line icon turns solid, like the number */
-  .card:hover .card-glyph .ic-f,.card:focus-within .card-glyph .ic-f{fill:currentColor}
-  .card:hover .card-glyph .ic-k,.card:focus-within .card-glyph .ic-k{stroke:var(--card-bg);stroke-width:1.6px}
-  .card:hover .card-glyph .ic-kf,.card:focus-within .card-glyph .ic-kf{stroke:var(--card-bg);fill:var(--card-bg);stroke-width:1.6px}
 }
 .track-view.is-drag{cursor:grabbing;user-select:none}
 /* touch / narrow: native swipe with snap, no pin */
