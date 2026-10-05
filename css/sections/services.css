@@ -19,10 +19,13 @@
   text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2)}
 .card-go::after{content:"";position:absolute;inset:0}           /* whole card is the hit area */
 .card-studio{background:var(--midnight);border-color:var(--midnight)}
+/* hover (from the client's version): red border, number fills red, glyph turns red */
+.card-num{transition:color var(--d-ui) var(--ease),-webkit-text-stroke-color var(--d-ui) var(--ease)}
 @media (hover:hover){
-  .card:hover{border-color:var(--line2);transform:translateY(-4px)}
-  .card:hover .card-glyph{stroke:var(--ink)}
-  .card:hover .card-glyph .g-fill{fill:var(--ink)}
+  .card:hover,.card:focus-within{border-color:var(--red);transform:translateY(-4px)}
+  .card:hover .card-num,.card:focus-within .card-num{color:var(--red);-webkit-text-stroke-color:var(--red)}
+  .card:hover .card-glyph,.card:focus-within .card-glyph{stroke:var(--red)}
+  .card:hover .card-glyph .g-fill,.card:focus-within .card-glyph .g-fill{fill:var(--red)}
 }
 .track-view.is-drag{cursor:grabbing;user-select:none}
 /* touch / narrow: native swipe with snap, no pin */
