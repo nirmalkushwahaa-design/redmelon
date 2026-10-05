@@ -106,28 +106,29 @@
     /* PIN 2 · service switcher */
     var sw = $('#switch'), list = $('#switchPanels'), panels = $$('.panel', sw), N = panels.length;
     sw.classList.add('is-pinned');
-    var col = list.parentElement;
     function span() { return panels[N - 1].offsetTop - panels[0].offsetTop; }
-    /* after 05 is in place, keep scrolling until 05 has left the top; the illustration stays pinned */
-    function exit() {
-      var y = gsap.getProperty(list, 'y') || 0;
-      return panels[0].getBoundingClientRect().top - y - col.getBoundingClientRect().top + panels[N - 1].offsetHeight;
-    }
-    function total() { return span() + exit(); }
-    var ratio = 1;                                              /* total travel / travel to 05, cached on refresh */
-    var tl = gsap.timeline({ defaults: { ease: 'none' } })
-      .fromTo(list, { y: 0 }, { y: function () { return -total(); }, duration: 1 });
-    var st = ScrollTrigger.create({ trigger: sw, start: 'top top',
-      end: function () { ratio = total() / span(); return '+=' + Math.round(innerHeight * .7 * N * ratio); },
-      pin: true, scrub: true, invalidateOnRefresh: true, animation: tl,
+    var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N); },
+      pin: true, scrub: true, invalidateOnRefresh: true,
+      animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
       onUpdate: function (s) {
-        var f = Math.min(N - 1, s.progress * ratio * (N - 1));
+        var f = s.progress * (N - 1);
         /* the illustration changes only once the next title has reached its resting spot */
         RM.setService(Math.floor(f + .04));
         RM.setLoop(Math.max(0, Math.min(1, (f - 2.96) / .6)));  /* ring fills once panel 04 is in place */
       } });
-    RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) / ratio * (st.end - st.start) + 2; };
-    return function () { sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    /* once 05 is in place, How we work comes straight up under it: the empty band below 05
+       is covered by pulling the next section up (it paints over the end of the pinned frame) */
+    var next = sw.closest('section').nextElementSibling;
+    function tuck() {
+      if (!next) return;
+      var y = gsap.getProperty(list, 'y') || 0, top = sw.getBoundingClientRect().top;
+      var bottom05 = panels[0].getBoundingClientRect().top - y - top + panels[N - 1].offsetHeight;
+      var gap = Math.max(0, Math.round(innerHeight - bottom05 - 64));
+      next.style.marginTop = -gap + 'px';
+    }
+    tuck(); ScrollTrigger.addEventListener('refreshInit', tuck);
+    RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
+    return function () { ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () { batch('.track .card'); });
 
