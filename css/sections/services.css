@@ -74,6 +74,9 @@ html:not(.motion) .card{scroll-snap-align:start}
 .m-node{fill:var(--surface);stroke:var(--ink2);stroke-width:1.5}
 .m-core{fill:var(--surface);stroke:var(--ink);stroke-width:2}
 .m-hot{fill:var(--ink)}
+/* AI strategy roadmap: all stops orange (outline), final stop solid orange */
+.motif-road .m-node{stroke:var(--red)}
+.motif-road .m-hot{fill:var(--red)}
 .m-txt{font-family:var(--sans);font-size:12px;font-weight:600;fill:var(--ink2);letter-spacing:.06em}
 .m-panel{fill:var(--surface);stroke:var(--line2);stroke-width:1}
 .m-panel2{fill:var(--bg2);stroke:var(--line2)}

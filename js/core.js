@@ -113,13 +113,13 @@
   function motif(kind) {
     var t = function (x, y, s, a) { return '<text class="m-txt" x="' + x + '" y="' + y + '"' + (a ? ' text-anchor="' + a + '"' : '') + '>' + s + '</text>'; };
     switch (kind) {
-      case 'roadmap': return '<svg viewBox="0 0 400 400" class="motif">' +
+      case 'roadmap': return '<svg viewBox="0 0 400 400" class="motif motif-road">' +
         '<path class="m-line" stroke-dasharray="4 6" d="M40 330 C 120 330, 110 250, 180 240 S 260 170, 280 130 S 330 70, 360 60"/>' +
         '<path class="m-red draw" d="M40 330 C 120 330, 110 250, 180 240 S 260 170, 280 130 S 330 70, 360 60"/>' +
-        '<g class="pop"><circle class="m-node" cx="40" cy="330" r="9"/>' + t(58, 356, 'MAP') + '</g>' +
-        '<g class="pop"><circle class="m-node" cx="180" cy="240" r="9"/>' + t(196, 266, 'RANK') + '</g>' +
-        '<g class="pop"><circle class="m-node" cx="280" cy="130" r="9"/>' + t(200, 126, 'PILOT') + '</g>' +
-        '<g class="pop"><circle class="m-hot" cx="360" cy="60" r="11"/>' + t(300, 40, 'SCALE') + '</g></svg>';
+        '<g class="pop"><circle class="m-node" cx="40" cy="330" r="9"/>' + t(31, 356, 'MAP') + '</g>' +
+        '<g class="pop"><circle class="m-node" cx="180" cy="240" r="9"/>' + t(196, 258, 'RANK') + '</g>' +
+        '<g class="pop"><circle class="m-node" cx="280" cy="130" r="9"/>' + t(264, 134, 'PILOT', 'end') + '</g>' +
+        '<g class="pop"><circle class="m-hot" cx="360" cy="60" r="11"/>' + t(360, 36, 'SCALE', 'middle') + '</g></svg>';
       case 'panels': return '<svg viewBox="0 0 400 400" class="motif">' +
         '<g class="pop"><rect class="m-panel" x="40" y="50" width="220" height="150" rx="8"/><rect class="m-soft" x="58" y="70" width="90" height="10" rx="5"/><rect class="m-soft" x="58" y="92" width="160" height="8" rx="4"/><rect class="m-soft" x="58" y="108" width="130" height="8" rx="4"/><rect class="m-btn" x="58" y="150" width="70" height="28" rx="4"/></g>' +
         '<g class="pop"><rect class="m-panel" x="150" y="170" width="210" height="180" rx="8"/><circle class="m-node" cx="176" cy="200" r="10"/><rect class="m-soft" x="196" y="194" width="120" height="12" rx="6"/><rect class="m-panel2" x="230" y="226" width="110" height="34" rx="12"/><rect class="m-soft" x="168" y="276" width="140" height="34" rx="12"/>' + t(176, 337, 'APPROVE · EDIT · REJECT') + '</g>' +
