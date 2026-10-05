@@ -106,10 +106,6 @@
     /* PIN 2 · service switcher */
     var sw = $('#switch'), list = $('#switchPanels'), panels = $$('.panel', sw), N = panels.length;
     sw.classList.add('is-pinned');
-    /* each active panel's top lines up with the top of the illustration */
-    var stage = $('#switchStage'), col = list.parentElement;
-    function alignTop() { col.style.setProperty('--pt', Math.max(0, Math.round(stage.getBoundingClientRect().top - col.getBoundingClientRect().top)) + 'px'); }
-    alignTop(); ScrollTrigger.addEventListener('refreshInit', alignTop);
     function span() { return panels[N - 1].offsetTop - panels[0].offsetTop; }
     var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N); },
       pin: true, scrub: true, invalidateOnRefresh: true,
@@ -121,7 +117,7 @@
         RM.setLoop(Math.max(0, Math.min(1, (f - 2.96) / .6)));  /* ring fills once panel 04 is in place */
       } });
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
-    return function () { ScrollTrigger.removeEventListener('refreshInit', alignTop); col.style.removeProperty('--pt'); sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    return function () { sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () { batch('.track .card'); });
 
