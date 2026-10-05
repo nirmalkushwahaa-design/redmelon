@@ -110,6 +110,9 @@
     var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N); },
       pin: true, scrub: true, invalidateOnRefresh: true,
       animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
+      /* the 01 illustration appears only once 01 is in place, and hides again on the way back up */
+      onEnter: function (s) { RM.setService(Math.floor(s.progress * (N - 1) + .04)); },
+      onLeaveBack: function () { RM.hideServiceArt(); },
       onUpdate: function (s) {
         var f = s.progress * (N - 1);
         /* the illustration changes only once the next title has reached its resting spot */
@@ -118,17 +121,21 @@
       } });
     /* once 05 is in place, How we work comes straight up under it: the empty band below 05
        is covered by pulling the next section up (it paints over the end of the pinned frame) */
-    var next = sw.closest('section').nextElementSibling;
+    var next = sw.closest('section').nextElementSibling, art = $('.switch-art', sw);
     function tuck() {
-      if (!next) return;
       var y = gsap.getProperty(list, 'y') || 0, top = sw.getBoundingClientRect().top;
       var bottom05 = panels[0].getBoundingClientRect().top - y - top + panels[N - 1].offsetHeight;
       var gap = Math.max(0, Math.round(innerHeight - bottom05 - 64));
-      next.style.marginTop = -gap + 'px';
+      if (next) next.style.marginTop = -gap + 'px';
+      /* illustration sits level with the service text: its centre lines up with 01's centre */
+      art.style.top = '0px';
+      var a = art.getBoundingClientRect(), p0 = panels[0].getBoundingClientRect();
+      art.style.top = Math.round((p0.top - y + p0.height / 2) - (a.top + a.height / 2)) + 'px';
     }
     tuck(); ScrollTrigger.addEventListener('refreshInit', tuck);
+    if (scrollY < st.start) RM.hideServiceArt();
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
-    return function () { ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    return function () { RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () { batch('.track .card'); });
 

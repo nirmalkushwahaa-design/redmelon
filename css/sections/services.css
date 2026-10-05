@@ -64,7 +64,7 @@ html:not(.motion) .card{scroll-snap-align:start}
 
 /* pinned mode: right column is a window whose list is scrubbed upward */
 .switch.is-pinned .switch-in{height:100vh;padding-block:calc(var(--nav-h) + 24px) 24px;align-items:center}
-.switch.is-pinned .switch-art{position:relative;top:auto}
+.switch.is-pinned .switch-art{position:relative;top:auto}        /* top offset set in motion.js: level with the service text */
 .switch.is-pinned .switch-col{height:100%;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,black 14%,black 86%,transparent);mask-image:linear-gradient(transparent,black 14%,black 86%,transparent)}
 .switch.is-pinned .switch-panels{padding-block:30vh}
 .switch.is-pinned .switch-stage{max-height:calc(100vh - var(--nav-h) - 120px);margin-inline:auto}

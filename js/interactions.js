@@ -129,6 +129,8 @@
       dots.forEach(function (d, k) { d.classList.toggle('on', k === i); d.setAttribute('aria-selected', k === i); });
       if (count) count.textContent = '0' + (i + 1) + ' / 0' + N;
     };
+    /* before 01 reaches its place, no illustration is shown (desktop pin only) */
+    RM.hideServiceArt = function () { cur = -1; arts.forEach(function (a) { a.classList.remove('on'); }); };
     /* agent loop progress (panel 04), p in 0..1 */
     RM.setLoop = function (p) {
       $$('.motif-loop', sw).forEach(function (svg) {
