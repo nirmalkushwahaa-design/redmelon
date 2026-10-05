@@ -1,0 +1,6 @@
+/* ===== ABOUT (tone --bg) ===== */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,8vw,140px);align-items:center}
+.about-h{margin-top:18px;font-size:var(--t-statement);line-height:1;letter-spacing:-.03em;max-width:13ch}
+.about-body{display:flex;flex-direction:column;gap:20px;max-width:46ch}
+.about-body p{font-size:var(--t-lede);line-height:1.7;color:var(--ink2)}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:32px}.about-h{max-width:none}}

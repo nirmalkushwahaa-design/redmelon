@@ -31,7 +31,7 @@
       a.innerHTML = '<span class="rail-dot" aria-hidden="true"></span><span class="rail-lab" aria-hidden="true">' + s.dataset.rail + '</span>';
       rail.appendChild(a); s._rail = a;
     });
-    var navLinks = $$('.nav-links a'), map = { services: '#services', process: '#process', studio: '#studio', work: '#work', faq: '#faq' };
+    var navLinks = $$('.nav-links a'), map = { services: '#services', process: '#process', studio: '#studio', work: '#work', about: '#about', faq: '#faq' };
     function setNav(id) { navLinks.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === map[id]); }); }
     if (!('IntersectionObserver' in window)) return;
     var io = new IntersectionObserver(function (es) {
@@ -47,7 +47,7 @@
         setNav(s.id);
       });
     }, { rootMargin: '-50% 0px -50% 0px' });
-    secs.concat($$('#faq,#work')).forEach(function (s) { io.observe(s); });
+    secs.concat($$('#faq,#work,#about')).forEach(function (s) { io.observe(s); });
   })();
 
   /* ---------- magnetic primary CTAs (fine pointer, motion only, max 8px) ---------- */
