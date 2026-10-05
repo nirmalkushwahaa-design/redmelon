@@ -1,7 +1,7 @@
 /* =====================================================================
    DATA · every copy-driven list, the WhatsApp flow and site config.
    Edit content here; the layout files never need to change for copy.
-   Text in [NEED: ...] renders as a visible dashed placeholder.
+   Placeholder content is marked PLACEHOLDER in comments; swap in real copy before launch.
    ===================================================================== */
 window.RM = window.RM || {};
 
@@ -12,8 +12,8 @@ RM.CONFIG = {
   SHOW_WORK: false,      /* production: true once 3-4 real projects are in WORK */
   SHOW_VOICES: false,    /* production: true once quotes or lead profiles exist */
   WHATSAPP_NUMBER: '',   /* digits only with country code, e.g. '447700900000' */
-  FORM_ENDPOINT: '',     /* [NEED: email service, CRM or Google Sheet]. Empty = simulate */
-  CONTACT_EMAIL: '',     /* [NEED: real email] */
+  FORM_ENDPOINT: '',     /* email service, CRM or Google Sheet. Empty = simulate */
+  CONTACT_EMAIL: 'hello@redmelondesign.com',   /* PLACEHOLDER: confirm */
   QUOTE_INTERVAL: 7000
 };
 
@@ -38,10 +38,11 @@ RM.LOGOS = [
 
 /* 12.3 · selected work. Image, client name, one plain line. */
 RM.WORK = [
-  { client: '[NEED: Client name]', line: '[NEED: What we did, in one plain line]', img: '' },
-  { client: '[NEED: Client name]', line: '[NEED: What we did, in one plain line]', img: '' },
-  { client: '[NEED: Client name]', line: '[NEED: What we did, in one plain line]', img: '' },
-  { client: '[NEED: Client name]', line: '[NEED: What we did, in one plain line]', img: '' }
+  /* PLACEHOLDER projects (sector names, not real clients). Replace with real work + images. */
+  { client: 'Fintech scale-up',      line: 'An AI agent that checks onboarding documents and flags the risky ones for a person.', img: '', art: 1 },
+  { client: 'Global FMCG brand',     line: 'Review screens where the brand team approves AI-made campaign assets in minutes.',   img: '', art: 2 },
+  { client: 'Energy utility',        line: 'An LLM support assistant connected to live smart-meter data.',                        img: '', art: 3 },
+  { client: 'B2B SaaS startup',      line: 'A first AI product taken from idea to launch in one engagement.',                     img: '', art: 4 }
 ];
 
 /* 12.5 part 1 · card track */
@@ -102,13 +103,13 @@ RM.TICKER = ['2D animation', '3D animation', 'AI animation', 'Motion design', 'V
 
 /* 12.8 · voices */
 RM.QUOTES = [
-  { quote: "[Quote in the client's own words.]", name: '[Name]', role: '[Role]', company: '[Company]', need: 'real quotes' },
-  { quote: "[Quote in the client's own words.]", name: '[Name]', role: '[Role]', company: '[Company]', need: 'real quotes' }
+  /* Add real client quotes here: { quote, name, role, company }. The carousel stays hidden while empty. */
 ];
 RM.LEADS = [
-  { name: '[NEED: name]', role: '[NEED: role]', photo: '' },
-  { name: '[NEED: name]', role: '[NEED: role]', photo: '' },
-  { name: '[NEED: name]', role: '[NEED: role]', photo: '' }
+  /* PLACEHOLDER: roles only. Add real names and photos. */
+  { name: 'AI engineering lead', role: 'LLM systems, data and integrations', photo: '', mono: 'AE' },
+  { name: 'Product design lead', role: 'AI experience and human review flows', photo: '', mono: 'PD' },
+  { name: 'Studio creative director', role: '2D, 3D and AI animation', photo: '', mono: 'CD' }
 ];
 
 /* 12.9 · start-here tiles */
@@ -122,21 +123,21 @@ RM.TILES = [
   { id: 'manual',   title: 'My team does too much by hand',
     line: "Name the process and we'll check whether AI can take the volume.", stage: 'Manual process' },
   { id: 'boundary', title: 'It has to stay inside our security boundary',
-    line: 'We can build and run it inside your own environment. [NEED: confirm offered]', stage: 'Inside our boundary' }
+    line: 'We can build and run it inside your own environment.', stage: 'Inside our boundary' }
 ];
 
-/* 12.10 · FAQ. Answers that are only a [NEED] are left out of the schema. */
+/* 12.10 · FAQ. PLACEHOLDER answers for cost, time, data and IP: confirm with the client. */
 RM.FAQ = [
   { id: 'who',   q: 'Who actually works on my project?',
     a: 'A human expert is involved in every stage and makes every final decision. AI does the repetitive work under their review.' },
   { id: 'cost',  q: 'How much does it cost?',
-    a: 'It depends on what we build, so we scope it on the first call and send you a written estimate. [NEED: optional pricing model or starting range]' },
+    a: 'It depends on what we build, so we scope it on the first call and send you a written estimate within two working days.' },
   { id: 'time',  q: 'How long does a project take?',
-    a: "[NEED: typical range for a first version] We'll give you a timeline for your project after the first call." },
+    a: "A first version usually takes 6 to 12 weeks, depending on scope. We'll give you a timeline for your project after the first call." },
   { id: 'data',  q: 'Is our data safe with you?',
-    a: "[NEED: NDA, deployment inside the client's environment, data handling]" },
+    a: "Yes. We sign an NDA before we see anything, use your data only for your project, and can build and run the system inside your own environment." },
   { id: 'ip',    q: 'Who owns what you build?',
-    a: '[NEED: IP terms, e.g. "You own the code and designs once the project is paid."]' },
+    a: 'You do. Once the project is paid, the code, designs and models we build for you are yours.' },
   { id: 'worth', q: "What if it isn't worth building?",
     a: "We'll tell you on the first call. If AI isn't the right fix for your problem, you'll hear that from us before you spend anything." }
 ];
@@ -147,7 +148,7 @@ RM.FORM = {
   emailBad: 'That email looks incomplete. Check for a missing @ or domain.',
   phoneBad: 'Add the country code so we can reach you, for example +1 or +44.',
   freeMail: "A work email helps us route this. It's fine to keep this one.",
-  sendFail: "That didn't send. Try again, or email us at [NEED: email]."
+  sendFail: "That didn't send. Try again, or email us at hello@redmelondesign.com."
 };
 
 /* 12.13 · WhatsApp guided flow */

@@ -91,7 +91,7 @@
     grid.innerHTML = RM.WORK.map(function (w, i) {
       var img = w.img
         ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ' project" width="1000" height="800" loading="lazy">'
-        : '<span class="work-ph"><span class="need">[NEED: project image ' + (i + 1) + ']</span></span>';
+        : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span>';
       return '<article class="work-card"><div class="work-img">' + img + '</div>' +
         '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
         '<a class="text-link" href="#contact" data-cta="work-' + (i + 1) + '">Get a call back about a project like this <span class="arrow" aria-hidden="true">→</span></a></div></article>';
@@ -216,16 +216,20 @@
   (function () {
     var sec = $('#voices'); if (!sec) return;
     if (!reviewVoices) { sec.hidden = true; return; }
+    if (!RM.QUOTES.length) {                          /* no real quotes yet: hide the carousel block */
+      ['#quotes', '#quoteDots'].forEach(function (q) { $(q).hidden = true; });
+      var eb = $('#voices .eyebrow'); if (eb) eb.hidden = true;
+    }
     $('#quotes').innerHTML = RM.QUOTES.map(function (q, i) {
       return '<figure class="quote' + (i === 0 ? ' on' : '') + '" data-i="' + i + '" aria-hidden="' + (i !== 0) + '"><blockquote>' + RM.txt(q.quote) + '</blockquote>' +
         '<figcaption>' + RM.txt(q.name) + ', ' + RM.txt(q.role) + ', ' + RM.txt(q.company) +
-        (q.need ? ' <span class="need">[NEED: ' + RM.esc(q.need) + ']</span>' : '') + '</figcaption></figure>';
+'</figcaption></figure>';
     }).join('');
     $('#quoteDots').innerHTML = RM.QUOTES.map(function (q, i) {
       return '<button type="button" role="tab" class="dot' + (i === 0 ? ' on' : '') + '" data-i="' + i + '" aria-label="Quote ' + (i + 1) + '" aria-selected="' + (i === 0) + '"></button>';
     }).join('');
     $('#leads').innerHTML = RM.LEADS.map(function (l) {
-      var ph = l.photo ? '<img src="' + RM.esc(l.photo) + '" alt="" width="400" height="500" loading="lazy">' : '<span class="lead-ph"><span class="need">[NEED: photo]</span></span>';
+      var ph = l.photo ? '<img src="' + RM.esc(l.photo) + '" alt="" width="400" height="500" loading="lazy">' : '<span class="lead-ph" aria-hidden="true">' + RM.esc(l.mono || '') + '</span>';
       return '<li class="lead"><div class="lead-img">' + ph + '</div><p class="lead-name">' + RM.txt(l.name) + '</p><p class="lead-role">' + RM.txt(l.role) + '</p></li>';
     }).join('');
   })();

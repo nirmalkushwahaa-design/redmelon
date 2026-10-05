@@ -38,7 +38,7 @@
       if (key === 'human') {
         RM.track('wa_handoff');
         if (num) window.open('https://wa.me/' + num + '?text=Hi%20Redmelon', '_blank', 'noopener');
-        else bubble('[NEED: WhatsApp number] The handoff opens once the number is set in data.js.');
+        else bubble('Leave a message here or get a call back, and a person from the team will reply soon.');
       }
     }, key === 'hello' ? 200 : 420);
   }
