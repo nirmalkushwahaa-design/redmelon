@@ -33,7 +33,7 @@
 .rm .idea-pic>img,.rm .idea-pic .ph-art{animation:none}
 /* pinned (motion.js): the section fills the screen while you scroll through the four words */
 .idea{padding-top:clamp(56px,6vw,88px)}
-.idea.is-pinned{min-height:100vh;display:flex;align-items:flex-start;padding-block:calc(var(--nav-h) + 32px) 32px}   /* content starts at the top: no empty band above it */
+.idea.is-pinned{min-height:100vh;display:flex;align-items:center;padding-block:calc(var(--nav-h) + 16px) 16px}   /* content starts at the top: no empty band above it */
 @media (max-width:900px){
   .idea-grid{grid-template-columns:1fr}
   .idea-art{order:-1;max-width:420px;width:100%;min-height:0;aspect-ratio:1.15}

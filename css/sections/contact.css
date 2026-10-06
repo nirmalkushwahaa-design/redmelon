@@ -84,3 +84,9 @@
 .brief-shell .btn-2:hover{background:var(--on-brand);color:var(--red)}
 .brief-back{color:var(--on-brand)}
 #brief-error{font-weight:600}
+
+/* step tabs: the current step is a white pill with orange text; done steps get a tick-style dim; future steps stay faint */
+.brief-shell .brief-progress li{padding:8px 14px;border-radius:var(--r-pill);color:var(--on-brand-2);opacity:.7;transition:background-color var(--d-ui) var(--ease),color var(--d-ui) var(--ease),opacity var(--d-ui) var(--ease)}
+.brief-shell .brief-progress [aria-current]{background:var(--on-brand);color:var(--red);opacity:1}
+.brief-shell .brief-progress .is-complete{opacity:1;color:var(--on-brand);box-shadow:inset 0 0 0 1px var(--on-brand-line2)}
+@media(max-width:520px){.brief-shell .brief-progress li{padding:6px 10px}}
