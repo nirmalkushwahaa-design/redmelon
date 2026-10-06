@@ -1,11 +1,11 @@
 /* ===== 12.3 PROOF · logo wall + selected work (tone --bg2) ===== */
-.proof{padding-block:clamp(56px,6vw,88px);background:var(--bg);color:var(--ink)}        /* same plain background as the Problem section */
+.proof{padding-block:clamp(36px,4vw,56px);background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}   /* compact band with a divider, like the reference */        /* same plain background as the Problem section */
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
 .proof-head{display:flex;justify-content:center;text-align:center}
 
 /* logo marquee, restored from the first draft: slow loop, brand-coloured names,
    hover swaps the name for its stat. Skew on scroll velocity comes from motion.js. */
-.marquee{position:relative;margin-top:24px;overflow:hidden;padding:6px 0;
+.marquee{position:relative;margin-top:16px;overflow:hidden;padding:6px 0;
   -webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);
           mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
 .marquee:focus-visible{outline-offset:-2px}
@@ -13,7 +13,7 @@
 .marquee:hover .marquee-track,.marquee:focus-within .marquee-track,.marquee:focus .marquee-track{animation-play-state:paused}
 @keyframes marquee{to{transform:translateX(-50%)}}
 .marquee-cell{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex:none;
-  height:112px;min-width:240px;padding:0 32px;                    /* no box: names float on the page */
+  height:84px;min-width:240px;padding:0 32px;                    /* no box: names float on the page */
   transition:transform .3s}
 .marquee-name{font-family:var(--disp);font-size:var(--t-3xl);letter-spacing:-.02em;white-space:nowrap;color:var(--brand-l,var(--ink2));
   transition:transform .34s var(--ease),opacity .28s ease}

@@ -24,12 +24,15 @@
 .idea-pic{position:absolute;inset:0;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .6s var(--ease),transform .8s var(--ease)}
 .idea-pic.on{opacity:1;transform:none}
 .idea-pic.has-media img{object-fit:contain}
+.idea-pic{overflow:visible}                               /* the drift never gets cut off */
+.idea-pic.has-media img{padding-block:5%;box-sizing:border-box}
 /* the picture never sits still: a slow drift up and down while you read */
 .idea-pic>img,.idea-pic .ph-art{animation:ideaDrift 7s ease-in-out infinite}
 @keyframes ideaDrift{0%,100%{transform:translateY(-10px)}50%{transform:translateY(12px)}}
 .rm .idea-pic>img,.rm .idea-pic .ph-art{animation:none}
 /* pinned (motion.js): the section fills the screen while you scroll through the four words */
-.idea.is-pinned{min-height:100vh;display:flex;align-items:center;padding-block:calc(var(--nav-h) + 24px) 32px}
+.idea{padding-top:clamp(56px,6vw,88px)}
+.idea.is-pinned{min-height:100vh;display:flex;align-items:flex-start;padding-block:calc(var(--nav-h) + 32px) 32px}   /* content starts at the top: no empty band above it */
 @media (max-width:900px){
   .idea-grid{grid-template-columns:1fr}
   .idea-art{order:-1;max-width:420px;width:100%}

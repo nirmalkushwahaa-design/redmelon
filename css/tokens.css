@@ -13,6 +13,8 @@
   --red:#E4422A; --red-deep:var(--red); --text-red:var(--red); --accent:var(--red);   /* one orange everywhere (Nirmal, 6 Oct) */ --redSoft:rgba(228,66,42,.10);
   --rind:#8CC63F; --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12; --midnight:#10102D;
   --on-brand:#FFFFFF; --focus:#10102D;
+  /* frosted-glass cards (What we do) */
+  --glass:rgba(255,255,255,.08); --glass-line:rgba(255,255,255,.18); --glass-ink:#222222; --glass-ink2:#505050;
   /* text and lines on an orange (--red) surface, e.g. the brief card */
   --on-brand-2:rgba(255,255,255,.9); --on-brand-line:rgba(255,255,255,.38); --on-brand-line2:rgba(255,255,255,.72); --on-brand-soft:rgba(255,255,255,.12);
   --art-0:#0B0B1F; --art-1:#7A2320; --art-2:#C23824; --art-3:#FF6A52;
