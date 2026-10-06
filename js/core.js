@@ -217,34 +217,29 @@
     });
   })();
 
-  /* the big idea: cycles THINK · DESIGN · BUILD · MOVE, each held while its bar fills; pauses off-screen */
+  /* the big idea: RM.setIdea(k) shows word k and its picture; RM.ideaBars(f) fills the bars (f = 0..4).
+     Scroll drives both in motion.js; without motion it stays on THINK. */
   (function () {
     var box = $('#ideaWord'); if (!box) return;
-    var WORDS = ['THINK', 'DESIGN', 'BUILD', 'MOVE'], HOLD = 2600, w = $('.idea-w', box), stop = $('.idea-stop', box),
-        bars = RM.$$('#ideaBars i'), k = 0, t0 = 0, raf = 0, on = false;
-    var anim = RM.flags.motion && window.gsap;
-    function set(i, intro) {
-      k = i; w.innerHTML = WORDS[i].split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
-      bars.forEach(function (b, n) { b.style.setProperty('--p', n < i ? 1 : 0); });
-      if (!anim) return;
-      gsap.fromTo(w.children, { yPercent: 110 }, { yPercent: 0, duration: .7, stagger: .045, ease: RM.ease || 'power3.out' });
-      gsap.fromTo(stop, { scale: 0 }, { scale: 1, duration: .5, delay: .15 + WORDS[i].length * .045, ease: 'back.out(2.4)' });
-    }
-    function out(done) {
-      if (!anim) return done();
-      gsap.to(w.children, { yPercent: -110, duration: .45, stagger: .03, ease: 'power2.in' });
-      gsap.to(stop, { scale: 0, duration: .3, onComplete: done });
-    }
-    function tick(t) {
-      if (!t0) t0 = t;
-      var p = Math.min(1, (t - t0) / HOLD);
-      bars[k].style.setProperty('--p', p);
-      if (p >= 1) { t0 = 0; cancelAnimationFrame(raf); raf = 0; out(function () { set((k + 1) % WORDS.length); if (on) raf = requestAnimationFrame(tick); }); return; }
-      raf = requestAnimationFrame(tick);
-    }
-    set(0);
-    if (RM.flags.rm) { bars.forEach(function (b) { b.style.setProperty('--p', 1); }); return; }   /* reduced motion: THINK, still */
-    RM.onScreen(box, function (v) { on = v; if (v && !raf) { t0 = 0; raf = requestAnimationFrame(tick); } else if (!v && raf) { cancelAnimationFrame(raf); raf = 0; } }, '0px');
+    var WORDS = ['THINK', 'DESIGN', 'BUILD', 'MOVE'], w = $('.idea-w', box), stop = $('.idea-stop', box),
+        bars = RM.$$('#ideaBars i'), pics = RM.$$('#ideaArt .idea-pic'), cur = -1;
+    var anim = function () { return RM.flags.motion && window.gsap; };
+    RM.setIdea = function (k) {
+      if (k === cur) return;
+      var first = cur < 0; cur = k;
+      pics.forEach(function (p, n) { p.classList.toggle('on', n === k); });
+      function show() {
+        w.innerHTML = WORDS[k].split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
+        if (!anim()) return;
+        gsap.fromTo(w.children, { yPercent: 110 }, { yPercent: 0, duration: .6, stagger: .04, ease: RM.ease || 'power3.out', overwrite: true });
+        gsap.fromTo(stop, { scale: 0 }, { scale: 1, duration: .45, delay: .1 + WORDS[k].length * .04, ease: 'back.out(2.4)', overwrite: true });
+      }
+      if (first || !anim()) return show();
+      gsap.to(w.children, { yPercent: -110, duration: .3, stagger: .02, ease: 'power2.in', overwrite: true });
+      gsap.to(stop, { scale: 0, duration: .25, overwrite: true, onComplete: show });
+    };
+    RM.ideaBars = function (f) { bars.forEach(function (b, n) { b.style.setProperty('--p', Math.max(0, Math.min(1, f - n))); }); };
+    RM.setIdea(0); RM.ideaBars(RM.flags.motion ? 0 : 4);
   })();
 
   /* how we work steps */

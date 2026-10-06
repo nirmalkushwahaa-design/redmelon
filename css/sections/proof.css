@@ -1,5 +1,5 @@
 /* ===== 12.3 PROOF · logo wall + selected work (tone --bg2) ===== */
-.proof{padding-block:clamp(56px,6vw,88px);background:var(--bg2);color:var(--ink)}
+.proof{padding-block:clamp(56px,6vw,88px);background:var(--bg);color:var(--ink)}        /* same plain background as the Problem section */
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
 .proof-head{display:flex;justify-content:center;text-align:center}
 
@@ -13,18 +13,17 @@
 .marquee:hover .marquee-track,.marquee:focus-within .marquee-track,.marquee:focus .marquee-track{animation-play-state:paused}
 @keyframes marquee{to{transform:translateX(-50%)}}
 .marquee-cell{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex:none;
-  height:82px;min-width:216px;padding:0 30px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
-  transition:border-color .3s,transform .3s}
-.marquee-cell:hover{border-color:var(--red);transform:translateY(-3px)}
-.marquee-name{font-family:var(--disp);font-size:var(--t-base);letter-spacing:-.02em;white-space:nowrap;color:var(--brand-l,var(--ink2));
+  height:112px;min-width:240px;padding:0 32px;                    /* no box: names float on the page */
+  transition:transform .3s}
+.marquee-name{font-family:var(--disp);font-size:var(--t-3xl);letter-spacing:-.02em;white-space:nowrap;color:var(--brand-l,var(--ink2));
   transition:transform .34s var(--ease),opacity .28s ease}
 :root[data-ui="dark"] .marquee-name{color:var(--brand-d,var(--ink2))}
-.marquee-cell.has-stat:hover .marquee-name{transform:translateY(-34px);opacity:0}
+.marquee-cell.has-stat:hover .marquee-name{transform:translateY(-48px);opacity:0}
 .marquee-stat{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  transform:translateY(34px);opacity:0;transition:transform .34s var(--ease),opacity .28s ease .04s}
+  transform:translateY(48px);opacity:0;transition:transform .34s var(--ease),opacity .28s ease .04s}
 .marquee-cell:hover .marquee-stat{transform:none;opacity:1}
-.marquee-stat-v{display:flex;align-items:center;gap:5px;font-family:var(--disp);font-size:var(--t-xl);letter-spacing:-.02em;color:var(--ink);line-height:1}
-.marquee-arrow{width:17px;height:17px;flex:none;color:var(--ink2)}
+.marquee-stat-v{display:flex;align-items:center;gap:6px;font-family:var(--disp);font-size:var(--t-3xl);   /* same size as the names */letter-spacing:-.02em;color:var(--ink);line-height:1}
+.marquee-arrow{width:24px;height:24px;flex:none;color:var(--ink2)}
 .marquee-arrow.is-up{color:var(--ok)}
 .marquee-stat-l{font-size:var(--t-xs);color:var(--ink3);white-space:nowrap;text-align:center}
 /* reduced motion: a static wrapped grid */

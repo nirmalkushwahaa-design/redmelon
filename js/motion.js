@@ -169,6 +169,22 @@
   gsap.fromTo('#melonSlice', { rotate: -12 }, { rotate: 10, ease: 'none',
     scrollTrigger: { trigger: '#studio', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+  /* ---------- B · the big idea: scrolling moves through THINK · DESIGN · BUILD · MOVE.
+     Desktop: the section pins while you scroll. Phones: no pin, the words change as the section passes. ---------- */
+  (function () {
+    var sec = $('#idea'); if (!sec || !RM.setIdea) return;
+    function update(s) { var f = s.progress * 4; RM.ideaBars(f); RM.setIdea(Math.min(3, Math.floor(f))); }
+    gsap.matchMedia().add({ desk: '(min-width: 901px)', mob: '(max-width: 900px)' }, function (c) {
+      if (c.conditions.desk) {
+        sec.classList.add('is-pinned');
+        ScrollTrigger.create({ trigger: sec, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * 2.6); },
+          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 1, onUpdate: update });
+        return function () { sec.classList.remove('is-pinned'); };
+      }
+      ScrollTrigger.create({ trigger: '#ideaWord', start: 'top 80%', end: 'top 15%', scrub: true, onUpdate: update });
+    });
+  })();
+
   /* ---------- A · image slots (placeholders now, real files later; same motion either way) ---------- */
   (function () {
     /* hero render: rises in with the copy, then tilts a little toward the pointer */
