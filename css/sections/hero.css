@@ -7,7 +7,7 @@
   background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 70%,transparent) 0,transparent 160px,transparent 88%,var(--bg) 100%)}
 .hero-in{position:relative;z-index:2;pointer-events:none}
 .hero-in a,.hero-in button{pointer-events:auto}
-.hero-h{margin-top:22px;font-size:min(var(--t-display),5.2vw);line-height:.98;letter-spacing:-.03em}
+.hero-h{margin-top:22px;font-size:min(4.4vw,64px);   /* fits the 4-column copy area */ line-height:.98;letter-spacing:-.03em}
 .hero-h .hl{color:var(--accent);white-space:nowrap}
 .hero .lede{margin-top:28px}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:34px}
@@ -19,7 +19,7 @@
 @media (max-height:760px) and (min-width:901px){.cue{display:none}}
 
 /* hero: copy left, render right (under the full-width H1) */
-.hero-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(24px,4vw,64px);align-items:start}   /* image top-aligned with the eyebrow */
+.hero-row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:start}   /* image top-aligned with the eyebrow */
 .hero-art{width:100%;max-width:480px;aspect-ratio:1;justify-self:end;margin-top:0;perspective:900px;pointer-events:auto}
 .hero-art .ph-art{transform-style:preserve-3d}
 @media (max-width:900px){
@@ -29,8 +29,8 @@
 }
 
 /* real hero image: transparent render, gentle float (tilt toward the pointer comes from motion.js) */
-.hero-art.has-media{aspect-ratio:1000/797;width:130%;max-width:620px;margin-left:-30%;justify-self:end;align-self:center}
-@media (max-width:900px){.hero-art.has-media{width:100%;max-width:420px;margin-left:0;justify-self:center}}
+.hero-art.has-media{aspect-ratio:1400/834;width:112%;max-width:none;margin-right:-6%;justify-self:end;align-self:center}   /* copy takes 4 of 12 columns, the picture the rest */
+@media (max-width:900px){.hero-art.has-media{width:100%;max-width:520px;margin:0;justify-self:center}}
 .hero-art.has-media{overflow:visible}                          /* the float never gets cut off */
 .hero-art.has-media img{object-fit:contain;padding-block:4%;box-sizing:border-box;animation:ideaDrift 7s ease-in-out infinite}
 .rm .hero-art.has-media img{animation:none}
