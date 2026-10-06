@@ -217,29 +217,27 @@
     });
   })();
 
-  /* the big idea: RM.setIdea(k) shows word k and its picture; RM.ideaBars(f) fills the bars (f = 0..4).
-     Scroll drives both in motion.js; without motion it stays on THINK. */
+  /* the big idea, scrubbed by scroll (motion.js calls RM.ideaScrub with f = 0..4):
+     the current word is solid; as you scroll, the next word draws in as an outline over it,
+     the current one fades back, then the outline fills in and becomes the new solid word. */
   (function () {
     var box = $('#ideaWord'); if (!box) return;
-    var WORDS = ['THINK', 'DESIGN', 'BUILD', 'MOVE'], w = $('.idea-w', box), stop = $('.idea-stop', box),
-        bars = RM.$$('#ideaBars i'), pics = RM.$$('#ideaArt .idea-pic'), cur = -1;
-    var anim = function () { return RM.flags.motion && window.gsap; };
-    RM.setIdea = function (k) {
-      if (k === cur) return;
-      var first = cur < 0; cur = k;
-      pics.forEach(function (p, n) { p.classList.toggle('on', n === k); });
-      function show() {
-        w.innerHTML = WORDS[k].split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
-        if (!anim()) return;
-        gsap.fromTo(w.children, { yPercent: 110 }, { yPercent: 0, duration: .6, stagger: .04, ease: RM.ease || 'power3.out', overwrite: true });
-        gsap.fromTo(stop, { scale: 0 }, { scale: 1, duration: .45, delay: .1 + WORDS[k].length * .04, ease: 'back.out(2.4)', overwrite: true });
-      }
-      if (first || !anim()) return show();
-      gsap.to(w.children, { yPercent: -110, duration: .3, stagger: .02, ease: 'power2.in', overwrite: true });
-      gsap.to(stop, { scale: 0, duration: .25, overwrite: true, onComplete: show });
+    var WORDS = ['THINK', 'DESIGN', 'BUILD', 'MOVE'], A = $('.idea-a', box), B = $('.idea-b', box),
+        bars = RM.$$('#ideaBars i'), pics = RM.$$('#ideaArt .idea-pic'), cur = -1, nxt = -1;
+    function word(el, i) { el.firstChild.nodeValue = WORDS[i]; }
+    function ramp(t, a, b) { t = (t - a) / (b - a); return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
+    RM.ideaScrub = function (f) {
+      f = Math.max(0, Math.min(3.999, f));
+      var k = Math.floor(f), t = f - k, last = k === WORDS.length - 1;
+      if (k !== cur) { cur = k; word(A, k); pics.forEach(function (p, n) { p.classList.toggle('on', n === k); }); }
+      if (!last && k + 1 !== nxt) { nxt = k + 1; word(B, nxt); }
+      var outl = last ? 0 : ramp(t, .35, .7), fill = last ? 0 : ramp(t, .72, 1), fade = last ? 0 : ramp(t, .45, .95);
+      A.style.opacity = 1 - fade; A.style.transform = 'scale(' + (1 - fade * .04) + ')';
+      B.style.opacity = outl; B.style.setProperty('--fill', fill);
+      bars.forEach(function (b, n) { b.style.setProperty('--p', Math.max(0, Math.min(1, f - n))); });
     };
-    RM.ideaBars = function (f) { bars.forEach(function (b, n) { b.style.setProperty('--p', Math.max(0, Math.min(1, f - n))); }); };
-    RM.setIdea(0); RM.ideaBars(RM.flags.motion ? 0 : 4);
+    RM.ideaScrub(RM.flags.motion ? 0 : 0);
+    if (!RM.flags.motion) bars.forEach(function (b) { b.style.setProperty('--p', 1); });
   })();
 
   /* how we work steps */

@@ -172,16 +172,16 @@
   /* ---------- B · the big idea: scrolling moves through THINK · DESIGN · BUILD · MOVE.
      Desktop: the section pins while you scroll. Phones: no pin, the words change as the section passes. ---------- */
   (function () {
-    var sec = $('#idea'); if (!sec || !RM.setIdea) return;
-    function update(s) { var f = s.progress * 4; RM.ideaBars(f); RM.setIdea(Math.min(3, Math.floor(f))); }
+    var sec = $('#idea'); if (!sec || !RM.ideaScrub) return;
+    function update(s) { RM.ideaScrub(s.progress * 4); }
     gsap.matchMedia().add({ desk: '(min-width: 901px)', mob: '(max-width: 900px)' }, function (c) {
       if (c.conditions.desk) {
         sec.classList.add('is-pinned');
         ScrollTrigger.create({ trigger: sec, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * 2.6); },
-          pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 1, onUpdate: update });
+          pin: true, scrub: .6, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 1, onUpdate: update });
         return function () { sec.classList.remove('is-pinned'); };
       }
-      ScrollTrigger.create({ trigger: '#ideaWord', start: 'top 80%', end: 'top 15%', scrub: true, onUpdate: update });
+      ScrollTrigger.create({ trigger: '#ideaWord', start: 'top 80%', end: 'top 15%', scrub: .6, onUpdate: update });
     });
   })();
 
