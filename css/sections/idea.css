@@ -4,7 +4,7 @@
 .idea-dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
 .idea-h{margin-top:18px;font-size:var(--t-h2);max-width:14ch}
 /* the word: two stacked layers (solid current word, outlined next word) crossfaded by scroll */
-.idea-word{display:grid;margin-top:clamp(36px,4.5vw,72px);font-family:var(--disp);font-size:clamp(72px,10.5vw,168px);
+.idea-word{display:grid;margin-top:clamp(36px,4.5vw,72px);font-family:var(--disp);font-size:min(var(--t-display),9.5vw);   /* same size as the hero headline */
   line-height:.8;letter-spacing:-.045em;padding-bottom:.04em;white-space:nowrap}
 .idea-l{grid-area:1/1;display:flex;align-items:flex-end;transform-origin:left bottom;will-change:opacity,transform}
 .idea-a{color:var(--ink)}
