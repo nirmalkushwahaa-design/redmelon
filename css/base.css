@@ -55,6 +55,9 @@ input,select,textarea{font:inherit;color:inherit}
 .btn-s{min-height:44px;padding:10px 18px}
 .arrow{display:inline-block;transition:transform var(--d-ui) var(--ease)}
 .btn:hover .arrow,a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
+/* arrows are Hugeicons (stroke rounded) SVGs, sized to the text they sit in */
+svg.arrow{width:1.15em;height:1.15em;flex:none;vertical-align:-.22em}
+button:hover .arrow-back{transform:translateX(-4px)}
 .text-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
   text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2)}
 .text-link:hover{text-decoration-color:var(--ink)}

@@ -48,7 +48,7 @@
 /* actions, preview note, result */
 .brief-actions{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:26px}
 .brief-actions .btn{margin-left:auto;min-width:160px}
-.brief-back{min-height:48px;color:var(--ink2)}
+.brief-back{display:inline-flex;align-items:center;gap:8px;min-height:48px;color:var(--ink2)}
 .brief-preview{font-size:var(--t-xs);color:var(--ink3);margin-top:24px;line-height:1.6}
 #brief-error{font-size:var(--t-sm);color:var(--text-red);margin-top:16px}
 #brief-error:empty{display:none}

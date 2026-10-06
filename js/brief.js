@@ -17,7 +17,7 @@
       if(i===step)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');
       el.classList.toggle('is-complete',i<step);
     });
-    back.hidden=step===0;next.textContent=step===2?'Review brief ↗':'Continue ↗';
+    back.hidden=step===0;next.innerHTML=(step===2?'Review brief ':'Continue ')+RM.icon('arrowUpRight','arrow');
     if(focus){steps[step].querySelector('h3').focus({preventScroll:true});RM.scrollTo(document.querySelector('.brief-shell'));}
     if(focus&&!RM.flags.rm)
       steps[step].animate([{opacity:.4,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:250});

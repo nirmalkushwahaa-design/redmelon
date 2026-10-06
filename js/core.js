@@ -93,7 +93,7 @@
         : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
       return '<article class="work-card"><div class="work-img">' + img + '</div>' +
         '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
-        '<a class="text-link" href="#contact" data-cta="work-' + (i + 1) + '">Get a call back about a project like this <span class="arrow" aria-hidden="true">→</span></a></div></article>';
+        '<a class="text-link" href="#contact" data-cta="work-' + (i + 1) + '">Get a call back about a project like this ' + RM.icon('arrowRight', 'arrow') + '</a></div></article>';
     }).join('');
   })();
 
@@ -105,7 +105,7 @@
         RM.icon(t.glyph, 'card-glyph') +
         '<span class="card-num" aria-hidden="true">' + t.n + '</span>' +
         '<div class="card-body"><h3>' + RM.esc(t.title) + '</h3><p>' + RM.esc(t.line) + '</p>' +
-        '<a class="card-go" href="' + t.href + '">See details <span class="arrow" aria-hidden="true">→</span><span class="sr-only"> about ' + RM.esc(t.title) + '</span></a></div></li>';
+        '<a class="card-go" href="' + t.href + '">See details ' + RM.icon('arrowRight', 'arrow') + '<span class="sr-only"> about ' + RM.esc(t.title) + '</span></a></div></li>';
     }).join('');
   })();
 
@@ -178,7 +178,7 @@
         '<p class="body">' + RM.esc(s.body) + '</p>' +
         (s.motif === 'loop' ? '<p class="sr-only">The agent loop: knowledge, reason, plan, then a person approves, then the agent acts and learns.</p>' : '') +
         '<ul class="tags">' + s.tags.map(function (t) { return '<li class="tag">' + RM.esc(t) + '</li>'; }).join('') + '</ul>' +
-        '<a class="btn btn-ghost" href="#contact" data-cta="service-' + s.n + '">Get a call back <span class="arrow" aria-hidden="true">→</span></a></article>';
+        '<a class="btn btn-ghost" href="#contact" data-cta="service-' + s.n + '">Get a call back ' + RM.icon('arrowRight', 'arrow') + '</a></article>';
     }).join('');
     dots.innerHTML = RM.SERVICES.map(function (s, i) {
       return '<button type="button" role="tab" class="dot' + (i === 0 ? ' on' : '') + '" data-i="' + i + '" aria-label="' + RM.esc(s.name) + '" aria-selected="' + (i === 0) + '"></button>';
@@ -276,7 +276,7 @@
           '<span class="tile-n">0' + (i + 1) + '</span><span class="tile-t">' + RM.esc(t.title) + '</span><span class="tile-plus" aria-hidden="true">+</span></button>' +
         '<div class="tile-body" id="tile-' + t.id + '" role="region" aria-labelledby="tile-b-' + t.id + '"><div class="tile-inner">' +
           '<p>' + RM.txt(t.line) + '</p>' +
-          '<a class="btn btn-1 btn-s" href="#contact" data-cta="tile-' + t.id + '" data-stage="' + RM.esc(t.stage) + '" data-tile="' + RM.esc(t.title) + '"' + (open ? '' : ' tabindex="-1"') + '><span class="sheen"></span>Get a call back <span class="arrow" aria-hidden="true">→</span></a>' +
+          '<a class="btn btn-1 btn-s" href="#contact" data-cta="tile-' + t.id + '" data-stage="' + RM.esc(t.stage) + '" data-tile="' + RM.esc(t.title) + '"' + (open ? '' : ' tabindex="-1"') + '><span class="sheen"></span>Get a call back ' + RM.icon('arrowRight', 'arrow') + '</a>' +
         '</div></div></div>';
     }).join('');
   })();

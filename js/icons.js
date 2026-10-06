@@ -7,6 +7,14 @@
    ===================================================================== */
 var RM = window.RM = window.RM || {};
 RM.ICONS = {
+  /* ArrowRight02Icon */
+  arrowRight: '<path d="M18.5 12L4.99997 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>',
+  /* ArrowDown02Icon */
+  arrowDown: '<path d="M12 18.502V5.00195" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M18 13.002C18 13.002 13.5811 19.0019 12 19.002C10.4188 19.002 6 13.002 6 13.002" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>',
+  /* ArrowUpRight01Icon */
+  arrowUpRight: '<path d="M9 6.65032C9 6.65032 15.9383 6.10759 16.9154 7.08463C17.8924 8.06167 17.3496 15 17.3496 15M16.5 7.5L6.5 17.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>',
+  /* ArrowLeft02Icon */
+  arrowLeft: '<path d="M5.5 12.002H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M10.9999 18.002C10.9999 18.002 4.99998 13.583 4.99997 12.0019C4.99996 10.4208 11 6.00195 11 6.00195" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>',
   /* Target02Icon */
   strategy: '<path d="M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M14 2.20004C13.3538 2.06886 12.6849 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 11.3151 21.9311 10.6462 21.8 10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12.0303 11.9625L16.5832 7.4096M19.7404 4.34462L19.1872 2.35748C19.0853 2.03011 18.6914 1.89965 18.4259 2.11662C16.9898 3.29018 15.4254 4.87091 16.703 7.36419C19.2771 8.56455 20.7466 6.94584 21.8733 5.5853C22.0975 5.3146 21.9623 4.90767 21.6247 4.81005L19.7404 4.34462Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>',
   /* UserAiIcon */
@@ -33,3 +41,9 @@ RM.ICONS = {
 RM.icon = function (name, cls) {
   return '<svg class="' + (cls || '') + '" viewBox="0 0 24 24" fill="none" aria-hidden="true">' + (RM.ICONS[name] || '') + '</svg>';
 };
+
+/* static markup: <span class="arrow" data-icon="arrowRight"></span> becomes the Hugeicons arrow */
+document.querySelectorAll('[data-icon]').forEach(function (el) {
+  var svg = RM.icon(el.getAttribute('data-icon'), el.className);
+  el.outerHTML = svg;
+});
