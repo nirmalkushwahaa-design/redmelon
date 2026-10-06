@@ -110,10 +110,8 @@
 
   /* service motifs: one red stroke each (.m-red) */
   function motif(kind) {
-    /* shared grid panel (05 conveyor, 03 graph): id keeps patterns unique per drawing */
-    var panel = function (id) { return '<defs><pattern id="' + id + 'G" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" class="cv-gl"/></pattern>' +
-      '<clipPath id="' + id + 'C"><rect x="6" y="6" width="388" height="388" rx="10"/></clipPath></defs>' +
-      '<rect class="cv-panel" x="6" y="6" width="388" height="388" rx="10"/><rect x="6" y="6" width="388" height="388" rx="10" fill="url(#' + id + 'G)"/>'; };
+    /* no background panel; only a clip area so the conveyor items stay inside the drawing */
+    var panel = function (id) { return '<defs><clipPath id="' + id + 'C"><rect x="6" y="6" width="388" height="388"/></clipPath></defs>'; };
     var t = function (x, y, s, a) { return '<text class="m-txt" x="' + x + '" y="' + y + '"' + (a ? ' text-anchor="' + a + '"' : '') + '>' + s + '</text>'; };
     switch (kind) {
       case 'roadmap': var rp = 'M40 320 C 110 320, 100 240, 160 230 S 250 180, 270 135 S 320 70, 360 60';
