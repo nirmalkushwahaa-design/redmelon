@@ -211,7 +211,7 @@
     });
     /* about photos drift at different speeds */
     $$('.about-photo').forEach(function (f, i) {
-      var amt = [40, -30, 60][i] || 30;
+      var amt = [40, -40][i] || 30;
       gsap.fromTo(f, { y: amt }, { y: -amt, ease: 'none', scrollTrigger: { trigger: '.about-strip', start: 'top bottom', end: 'bottom top', scrub: true } });
     });
     /* studio showreel grows to full size as it scrolls in */

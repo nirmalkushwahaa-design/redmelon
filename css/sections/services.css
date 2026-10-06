@@ -113,15 +113,18 @@ html:not(.motion) .card{scroll-snap-align:start}
   animation:glassFloat 9s ease-in-out infinite}
 @keyframes glassFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(8deg)}}
 .rm .track-glass{animation:none}
-.card,.card-studio{background:var(--glass);border-color:var(--glass-line);
+.card{background:var(--glass);border-color:var(--glass-line);
   -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
   transition:border-color var(--d-ui) var(--ease),transform var(--d-ui) var(--ease),background-color var(--d-ui) var(--ease)}
-:root[data-ui="light"] .card,:root[data-ui="light"] .card-studio{--glass:rgba(255,255,255,.45);--glass-line:rgba(16,16,45,.10)}
+:root[data-ui="light"] .card{--glass:rgba(255,255,255,.45);--glass-line:rgba(16,16,45,.10)}
 /* hover: the card turns white; number, icon and See details go orange */
 @media (hover:hover){
   .card:hover,.card:focus-within{background:var(--on-brand);border-color:var(--on-brand);box-shadow:var(--shadow);--ink:var(--glass-ink);--ink2:var(--glass-ink2);--line2:var(--glass-ink2)}
   .card:hover .card-go,.card:focus-within .card-go{color:var(--red);text-decoration-color:var(--red)}
   /* Studio card stays dark on hover (white text, orange accents) */
-  .card-studio:hover,.card-studio:focus-within{background:var(--midnight);border-color:var(--midnight);--ink:var(--dk-ink);--ink2:var(--dk-ink2);--line2:var(--dk-line2)}
+  .card.card-studio:hover,.card.card-studio:focus-within{background:var(--midnight);border-color:var(--midnight);--ink:var(--dk-ink);--ink2:var(--dk-ink2);--line2:var(--dk-line2)}
 }
 @media (max-width:900px){.track-glass{bottom:auto;top:46%;right:-40px;width:220px}}
+
+/* Studio card: always dark navy (frosted, but solid enough to read in light mode) */
+.card.card-studio{background:color-mix(in srgb,var(--midnight) 92%,transparent);border-color:var(--midnight)}
