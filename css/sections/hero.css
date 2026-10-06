@@ -27,3 +27,10 @@
   .hero-row{grid-template-columns:1fr}
   .hero-art{max-width:300px;justify-self:start;margin-top:24px}
 }
+
+/* real hero image: transparent render, gentle float (tilt toward the pointer comes from motion.js) */
+.hero-art.has-media{aspect-ratio:1000/797;width:130%;max-width:620px;margin-left:-30%;justify-self:end;align-self:center}
+@media (max-width:900px){.hero-art.has-media{width:100%;max-width:420px;margin-left:0;justify-self:center}}
+.hero-art.has-media img{object-fit:contain;animation:ideaDrift 7s ease-in-out infinite}
+.rm .hero-art.has-media img{animation:none}
+@keyframes ideaDrift{0%,100%{transform:translateY(-10px)}50%{transform:translateY(12px)}}
