@@ -42,7 +42,7 @@ html:not(.motion) .track-view{overflow-x:auto;scroll-snap-type:x mandatory;scrol
 html:not(.motion) .card{scroll-snap-align:start}
 
 /* ---------- part 2 · service switcher (PIN 2 on desktop) ---------- */
-.switch{position:relative;border-top:1px solid var(--line)}
+.switch{position:relative;border-top:1px solid var(--line);background:var(--bg2)}   /* grey band, as How we work used */
 .switch-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);padding-block:var(--sec-pad)}
 .switch-art{position:sticky;top:calc(var(--nav-h) + 32px);align-self:start}
 .switch-stage{position:relative;aspect-ratio:1/1;overflow:hidden}
