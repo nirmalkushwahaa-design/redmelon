@@ -19,8 +19,9 @@
 .idea-body strong{color:var(--ink);font-weight:500}
 
 /* two columns: copy left, the picture for the current word right */
-.idea-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,4vw,64px);align-items:center}
-.idea-art{position:relative;aspect-ratio:1.15}
+.idea-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:stretch}
+/* desktop: the picture column is as tall as the copy, and the picture fills it */
+.idea-art{position:relative;min-height:clamp(420px,42vw,720px)}
 .idea-pic{position:absolute;inset:0;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .6s var(--ease),transform .8s var(--ease)}
 .idea-pic.on{opacity:1;transform:none}
 .idea-pic.has-media img{object-fit:contain}
@@ -35,6 +36,6 @@
 .idea.is-pinned{min-height:100vh;display:flex;align-items:flex-start;padding-block:calc(var(--nav-h) + 32px) 32px}   /* content starts at the top: no empty band above it */
 @media (max-width:900px){
   .idea-grid{grid-template-columns:1fr}
-  .idea-art{order:-1;max-width:420px;width:100%}
+  .idea-art{order:-1;max-width:420px;width:100%;min-height:0;aspect-ratio:1.15}
   .idea-word{font-size:clamp(64px,19vw,140px)}
 }
