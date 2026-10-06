@@ -7,7 +7,7 @@
   background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 70%,transparent) 0,transparent 160px,transparent 88%,var(--bg) 100%)}
 .hero-in{position:relative;z-index:2;pointer-events:none}
 .hero-in a,.hero-in button{pointer-events:auto}
-.hero-h{margin-top:22px;font-size:min(var(--t-display),5.2vw);line-height:.98;letter-spacing:-.03em}
+.hero-h{margin-top:22px;font-size:min(81px,7vw);   /* 81px on desktop, scales down on smaller laptops */line-height:.98;letter-spacing:-.03em}
 .hero-h .hl{color:var(--accent);white-space:nowrap}
 .hero .lede{margin-top:28px}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:34px}
