@@ -89,11 +89,10 @@
     if (!C.REVIEW_MODE) RM.$$('.work-need').forEach(function (n) { n.hidden = true; });
     grid.innerHTML = RM.WORK.map(function (w, i) {
       var img = w.img
-        ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ' project" width="1000" height="800" loading="lazy">'
+        ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ': ' + RM.esc(w.line) + '" width="756" height="500" loading="lazy" decoding="async">'
         : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
       return '<article class="work-card"><div class="work-img">' + img + '</div>' +
-        '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
-        '<a class="text-link" href="#contact" data-cta="work-' + (i + 1) + '">Get a call back about a project like this ' + RM.icon('arrowRight', 'arrow') + '</a></div></article>';
+        '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p></div></article>';
     }).join('');
   })();
 

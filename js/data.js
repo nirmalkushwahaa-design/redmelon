@@ -9,7 +9,7 @@ RM.CONFIG = {
   /* Review build: shows Selected work, Voices and the WhatsApp widget with
      placeholders. Set to false for production; empty blocks then hide. */
   REVIEW_MODE: true,
-  SHOW_WORK: false,      /* production: true once 3-4 real projects are in WORK */
+  SHOW_WORK: true,       /* real projects are in WORK */
   SHOW_VOICES: false,    /* production: true once quotes or lead profiles exist */
   WHATSAPP_NUMBER: '',   /* digits only with country code, e.g. '447700900000' */
   FORM_ENDPOINT: '',     /* email service, CRM or Google Sheet. Empty = simulate */
@@ -38,11 +38,10 @@ RM.LOGOS = [
 
 /* 12.3 · selected work. Image, client name, one plain line. */
 RM.WORK = [
-  /* PLACEHOLDER projects (sector names, not real clients). Replace with real work + images. */
-  { client: 'Fintech scale-up',      line: 'An AI agent that checks onboarding documents and flags the risky ones for a person.', img: '', art: 1 },
-  { client: 'Global FMCG brand',     line: 'Review screens where the brand team approves AI-made campaign assets in minutes.',   img: '', art: 2 },
-  { client: 'Energy utility',        line: 'An LLM support assistant connected to live smart-meter data.',                        img: '', art: 3 },
-  { client: 'B2B SaaS startup',      line: 'A first AI product taken from idea to launch in one engagement.',                     img: '', art: 4 }
+  { client: 'IIT Mumbai',           line: 'A digital experience for a premier institute, showcasing its innovation, research and impact.', img: 'assets/img/work-iit.webp' },
+  { client: 'Spaces.in',            line: 'A modern, inspiring e-commerce experience for contemporary homes.',                            img: 'assets/img/work-spaces.webp' },
+  { client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp' },
+  { client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp' }
 ];
 
 /* 12.5 part 1 · card track */
