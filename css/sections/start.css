@@ -1,5 +1,5 @@
 /* ===== 12.9 START HERE · expanding tiles (tone --bg2) ===== */
-.start{background:var(--bg2)}
+.start{background:var(--bg)}   /* white band */
 .tiles{display:flex;gap:12px;margin-top:48px;height:440px}
 .tile{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
   color:var(--ink);overflow:hidden;transition:flex var(--d-reveal) var(--ease),background-color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}

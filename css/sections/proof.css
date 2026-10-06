@@ -33,7 +33,7 @@
 .rm .marquee-name,.rm .marquee-stat{transition:none}
 
 /* selected work */
-.work{background:var(--bg2)}
+.work{background:var(--bg)}   /* white band */
 .work-need{margin-top:12px;font-size:var(--t-sm)}
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
 .work-card{display:flex;flex-direction:column}

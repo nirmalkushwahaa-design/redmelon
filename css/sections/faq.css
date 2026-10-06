@@ -1,4 +1,5 @@
 /* ===== 12.10 FAQ (tone --bg) ===== */
+.faq{background:var(--bg2)}   /* grey band */
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px);align-items:start}
 .faq-side{position:sticky;top:calc(var(--nav-h) + 32px)}
 .faq-side h2{max-width:12ch}
