@@ -57,7 +57,7 @@ html:not(.motion) .card{scroll-snap-align:start}
 .panel-idx{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
 .panel-idx span{color:var(--ink3);margin-right:6px}
 .panel.on .panel-idx span{color:var(--text-red)}
-.panel h3{margin-top:14px;max-width:18ch}
+.panel h3{margin-top:14px;max-width:18ch;font-size:var(--t-h2)}    /* same 52px as the How we work step titles */
 .panel .body{margin-top:16px}
 .panel .tags{margin-top:24px}
 .panel .btn{margin-top:28px}
