@@ -184,7 +184,7 @@
         '<p class="body">' + RM.esc(s.body) + '</p>' +
         (s.motif === 'loop' ? '<p class="sr-only">The agent loop: knowledge, reason, plan, then a person approves, then the agent acts and learns.</p>' : '') +
         '<ul class="tags">' + s.tags.map(function (t) { return '<li class="tag">' + RM.esc(t) + '</li>'; }).join('') + '</ul>' +
-        '<a class="btn btn-ghost" href="#contact" data-cta="service-' + s.n + '">Get a call back ' + RM.icon('arrowRight', 'arrow') + '</a></article>';
+        '<a class="btn btn-ghost" href="#contact" data-cta="service-' + s.n + '">Explore ' + RM.esc(s.name) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></article>';
     }).join('');
     dots.innerHTML = RM.SERVICES.map(function (s, i) {
       return '<button type="button" role="tab" class="dot' + (i === 0 ? ' on' : '') + '" data-i="' + i + '" aria-label="' + RM.esc(s.name) + '" aria-selected="' + (i === 0) + '"></button>';
