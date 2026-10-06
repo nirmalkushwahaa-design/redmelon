@@ -119,9 +119,9 @@
       for (var i = 1; i < N; i++) if (panels[i].getBoundingClientRect().top <= mid) k = i;
       RM.setService(k);
       var t3 = panels[3].getBoundingClientRect().top;
-      /* the ring fills slowly across the whole time 04 is on screen: from its switch-in until just before 05 takes over */
+      /* the ring fills slowly across the whole time 04 is on screen: from its switch-in, finishing with time to spare before 05 comes up */
       var gap = panels[4].offsetTop - panels[3].offsetTop;
-      RM.setLoop(Math.max(0, Math.min(1, (mid - t3) / Math.max(1, gap * .92))));
+      RM.setLoop(Math.max(0, Math.min(1, (mid - t3) / Math.max(1, gap * .62))));
     }
     /* once 05 is in place, How we work comes straight up under it: the empty band below 05
        is covered by pulling the next section up (it paints over the end of the pinned frame) */
