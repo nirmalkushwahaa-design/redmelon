@@ -30,7 +30,16 @@
 .split-ai i b{color:var(--ink)}
 .split-lead i b{color:var(--on-brand)}  /* white on --red = 4.1:1 */
 
+/* step with an illustration: text + split bar on the left, picture on the right */
+.step.has-art .step-in{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:"title art" "rows art" "split art";grid-template-rows:auto auto 1fr;row-gap:28px}
+.step.has-art .step-title{grid-area:title}
+.step.has-art .step-rows{grid-area:rows}
+.step.has-art .split{grid-area:split;align-self:end}
+.step-art{grid-area:art;margin:0;display:flex;justify-content:center;align-items:center;min-height:0}
+.step-art img{width:auto;height:clamp(320px,34vw,500px);max-width:100%;object-fit:contain;mix-blend-mode:multiply}  /* drops the picture's off-white backdrop onto the card */
 @media (max-width:980px){
+  .step.has-art .step-in{grid-template-columns:1fr;grid-template-areas:"title" "rows" "split" "art"}
+  .step-art img{height:auto;width:min(100%,220px)}
   .step-in{grid-template-columns:1fr}
   .split{align-self:stretch}
 }

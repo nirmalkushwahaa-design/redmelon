@@ -189,7 +189,7 @@
   (function () {
     var ol = $('#steps'); if (!ol) return;
     ol.innerHTML = RM.STEPS.map(function (s, i) {
-      return '<li class="step" data-i="' + i + '"><div class="step-in">' +
+      return '<li class="step' + (s.img ? ' has-art' : '') + '" data-i="' + i + '"><div class="step-in">' +
         '<div class="step-title"><span class="step-n">' + s.n + '</span><h3>' + s.title + '</h3></div>' +
         '<div class="step-rows">' +
           '<div class="step-row"><p class="step-who">AI does</p><p>' + RM.esc(s.ai) + '</p></div>' +
@@ -197,6 +197,7 @@
         '</div>' +
         '<div class="split" aria-hidden="true"><span class="split-ai"><b>AI</b><i><b>AI</b></i></span><span class="split-lead"><b>Human expert</b><i><b>Human expert</b></i></span></div>' +
         '<p class="sr-only">In this step AI does the volume and the human expert makes the decision.</p>' +
+        (s.img ? '<figure class="step-art"><img src="' + s.img + '" alt="' + RM.esc(s.alt || '') + '" width="640" height="1280" loading="lazy" decoding="async"></figure>' : '') +
         '</div></li>';
     }).join('');
   })();

@@ -84,7 +84,8 @@ RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Approve', 'Act', 'Learn'];
 
 /* 12.6 · how we work */
 RM.STEPS = [
-  { n: '01', title: 'Think',
+  { n: '01', title: 'Think', img: 'assets/img/step-think.webp',
+    alt: 'Documents, data, support history and a database feed one AI core, which ranks the options and picks one',
     ai: 'Reads your documents, data and support history to show where time and money leak.',
     lead: 'Which problem is worth solving first, agreed with you.' },
   { n: '02', title: 'Design',
