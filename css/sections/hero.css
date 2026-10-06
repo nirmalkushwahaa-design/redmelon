@@ -29,9 +29,9 @@
 }
 
 /* real hero image: transparent render, gentle float (tilt toward the pointer comes from motion.js) */
-.hero-art.has-media{aspect-ratio:auto;height:auto;width:calc(100% + var(--edge) - 24px);max-width:none;margin:0 calc((var(--edge) - 24px) * -1) 0 0;justify-self:end;align-self:stretch}   /* picture is exactly as tall as the text beside it */   /* copy: 6 of 12 columns; picture breaks out of the container to the screen edge */
+.hero-art.has-media{aspect-ratio:auto;height:auto;width:100%;max-width:none;margin:0;justify-self:stretch;align-self:stretch}   /* fills the right half, inside the container */   /* picture is exactly as tall as the text beside it */   /* copy: 6 of 12 columns; picture breaks out of the container to the screen edge */
 @media (max-width:900px){.hero-art.has-media{width:100%;max-width:520px;margin:0;justify-self:center;aspect-ratio:1400/834;align-self:auto}}
 .hero-art.has-media{overflow:visible}                          /* the float never gets cut off */
-.hero-art.has-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:8% 4%;box-sizing:border-box;animation:ideaDrift 7s ease-in-out infinite}
+.hero-art.has-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:0;box-sizing:border-box;animation:ideaDrift 7s ease-in-out infinite}
 .rm .hero-art.has-media img{animation:none}
 @keyframes ideaDrift{0%,100%{transform:translateY(-10px)}50%{transform:translateY(12px)}}
