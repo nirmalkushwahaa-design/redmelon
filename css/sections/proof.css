@@ -1,5 +1,5 @@
 /* ===== 12.3 PROOF · logo wall + selected work (tone --bg2) ===== */
-.proof{padding-block:clamp(36px,4vw,56px);background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}   /* compact band with a divider, like the reference */        /* same plain background as the Problem section */
+.proof{padding-block:clamp(24px,3vw,40px) clamp(36px,4vw,56px);background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}   /* compact band with a divider, like the reference */        /* same plain background as the Problem section */
 .proof-need{margin-top:14px;font-size:var(--t-xs)}
 .proof-head{display:flex;justify-content:center;text-align:center}
 
