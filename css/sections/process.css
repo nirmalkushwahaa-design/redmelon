@@ -36,7 +36,7 @@
 .step.has-art .step-rows{grid-area:rows}
 .step.has-art .split{grid-area:split;align-self:end}
 .step-art{grid-area:art;margin:0;align-self:start}     /* top of the picture = top of '01'; its height sets the card, so the bar's bottom = picture's bottom */
-.step-art img{display:block;width:100%;height:auto;margin-bottom:-1.8%}  /* transparent PNG; the soft glow under the cards hangs below the line */
+.step-art img{display:block;width:100%;height:auto}
 @media (max-width:980px){
   .step.has-art .step-in{grid-template-columns:1fr;grid-template-areas:"title" "rows" "split" "art"}
   .step-art img{height:auto;width:min(100%,320px)}

@@ -197,7 +197,9 @@
         '</div>' +
         '<div class="split" aria-hidden="true"><span class="split-ai"><b>AI</b><i><b>AI</b></i></span><span class="split-lead"><b>Human expert</b><i><b>Human expert</b></i></span></div>' +
         '<p class="sr-only">In this step AI does the volume and the human expert makes the decision.</p>' +
-        (s.img ? '<figure class="step-art"><img src="' + s.img + '" alt="' + RM.esc(s.alt || '') + '" width="900" height="813" loading="lazy" decoding="async"></figure>' : '') +
+        (s.img ? '<figure class="step-art"><img src="' + s.img + '" alt="' + RM.esc(s.alt || '') + '" width="' + s.imgW + '" height="' + s.imgH + '"' +
+          /* glow: % of the picture's width its soft glow hangs below the cards' edge, so the edge (not the glow) lines up with the bar */
+          (s.glow ? ' style="margin-bottom:-' + s.glow + '%"' : '') + ' loading="lazy" decoding="async"></figure>' : '') +
         '</div></li>';
     }).join('');
   })();

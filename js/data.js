@@ -84,17 +84,20 @@ RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Approve', 'Act', 'Learn'];
 
 /* 12.6 · how we work */
 RM.STEPS = [
-  { n: '01', title: 'Think', img: 'assets/img/step-think.webp',
+  { n: '01', title: 'Think', img: 'assets/img/step-think.webp', imgW: 900, imgH: 813, glow: 1.8,
     alt: 'Documents, data, support history and a database feed one AI core, which ranks the options and picks one',
     ai: 'Reads your documents, data and support history to show where time and money leak.',
     lead: 'Which problem is worth solving first, agreed with you.' },
-  { n: '02', title: 'Design',
+  { n: '02', title: 'Design', img: 'assets/img/step-design.webp', imgW: 800, imgH: 866,
+    alt: 'Code, components, a checklist and tests feed a build engine; a person approves the result before it ships',
     ai: 'Produces several working prototypes so you can react to something real.',
     lead: 'Which direction goes forward.' },
-  { n: '03', title: 'Build',
+  { n: '03', title: 'Build', img: 'assets/img/step-build.webp', imgW: 800, imgH: 680,
+    alt: 'Several screen layouts branch from an AI core; one is picked and approved',
     ai: 'Writes the repetitive code, variations and tests.',
     lead: "The architecture, and every change that carries risk. Nothing ships without their sign-off." },
-  { n: '04', title: 'Move',
+  { n: '04', title: 'Move', img: 'assets/img/step-move.webp', imgW: 800, imgH: 806, glow: 2.1,
+    alt: 'Live performance charts feed an AI core, which leads either to another round or to launch',
     ai: "Tracks how the system performs once it's live.",
     lead: 'Whether it worked, and with you, what happens next: another round, or a full handover.' }
 ];
