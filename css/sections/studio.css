@@ -10,6 +10,8 @@
 .studio-sub{margin-top:22px;font-family:var(--disp);font-size:var(--t-2xl);line-height:1.25;max-width:26ch}
 .studio .lede{margin-top:18px;color:var(--ink2)}
 .melon{width:100%;max-width:360px;justify-self:center;overflow:visible}
+/* showreel slot: full row under the copy and the melon */
+.studio-reel{grid-column:1/-1;width:100%;aspect-ratio:16/9;margin-top:24px;border-color:var(--dk-line)}
 .melon-flesh{fill:var(--red)}
 .melon-pith{fill:none;stroke:var(--dk-ink);stroke-width:10;opacity:.9}
 .melon-rind{fill:none;stroke:var(--rind);stroke-width:12}
@@ -27,5 +29,6 @@
 @media (max-width:900px){
   .studio-in{grid-template-columns:1fr;padding-block:120px 140px}
   .melon{max-width:200px;justify-self:start;order:-1}
+  .studio-reel{margin-top:8px}
   .studio-shade{background:linear-gradient(180deg,var(--scrim-mid) 0,var(--scrim) 60%)}
 }

@@ -169,6 +169,41 @@
   gsap.fromTo('#melonSlice', { rotate: -12 }, { rotate: 10, ease: 'none',
     scrollTrigger: { trigger: '#studio', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+  /* ---------- A · image slots (placeholders now, real files later; same motion either way) ---------- */
+  (function () {
+    /* hero render: rises in with the copy, then tilts a little toward the pointer */
+    var hero = $('.hero-art');
+    if (hero) {
+      gsap.set(hero, { opacity: 0, y: 30, scale: .96 });
+      RM.afterPreload(function () { gsap.to(hero, { opacity: 1, y: 0, scale: 1, duration: 1.2, delay: .55 }); });
+      var inner = hero.firstElementChild;
+      if (RM.flags.fine && inner) {
+        var rx = gsap.quickTo(inner, 'rotationX', { duration: .8 }), ry = gsap.quickTo(inner, 'rotationY', { duration: .8 });
+        $('#top').addEventListener('pointermove', function (e) {
+          var b = hero.getBoundingClientRect();
+          ry(gsap.utils.clamp(-10, 10, (e.clientX - (b.left + b.width / 2)) / 40));
+          rx(gsap.utils.clamp(-8, 8, -(e.clientY - (b.top + b.height / 2)) / 50));
+        });
+        $('#top').addEventListener('pointerleave', function () { rx(0); ry(0); });
+      }
+    }
+    /* problem visual and about photos: wipe up from the bottom while the picture settles from 110% */
+    $$('.problem-art, .about-photo').forEach(function (f) {
+      var tl = gsap.timeline({ scrollTrigger: { trigger: f, start: START, once: true } });
+      tl.fromTo(f, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: D.wipe })
+        .fromTo(f.firstElementChild, { scale: 1.1 }, { scale: 1, duration: D.wipe * 1.3 }, 0);
+    });
+    /* about photos drift at different speeds */
+    $$('.about-photo').forEach(function (f, i) {
+      var amt = [40, -30, 60][i] || 30;
+      gsap.fromTo(f, { y: amt }, { y: -amt, ease: 'none', scrollTrigger: { trigger: '.about-strip', start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    /* studio showreel grows to full size as it scrolls in */
+    var reel = $('.studio-reel');
+    if (reel) gsap.fromTo(reel, { scale: .84, borderRadius: 28 }, { scale: 1, borderRadius: 8, ease: 'none',
+      scrollTrigger: { trigger: reel, start: 'top 95%', end: 'top 45%', scrub: true } });
+  })();
+
   /* ---------- B · logo marquee skews with scroll velocity (max ±8deg) ---------- */
   (function () {
     var tr = $('#marquee'); if (!tr) return;   /* skew the frame; the track's own transform runs the CSS loop */

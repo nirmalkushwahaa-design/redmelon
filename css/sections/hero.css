@@ -17,3 +17,12 @@
 .cue-line::after{content:"";position:absolute;inset:0;background:var(--ink3);transform:translateX(-100%);animation:cue 2.4s var(--ease) infinite}
 @keyframes cue{60%,100%{transform:translateX(100%)}}
 @media (max-height:760px) and (min-width:901px){.cue{display:none}}
+
+/* hero: copy left, render right (under the full-width H1) */
+.hero-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center}
+.hero-art{width:100%;max-width:420px;aspect-ratio:1;justify-self:end;margin-top:28px;perspective:900px;pointer-events:auto}
+.hero-art .ph-art{transform-style:preserve-3d}
+@media (max-width:900px){
+  .hero-row{grid-template-columns:1fr}
+  .hero-art{max-width:300px;justify-self:start;margin-top:24px}
+}

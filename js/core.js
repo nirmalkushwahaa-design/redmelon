@@ -90,7 +90,7 @@
     grid.innerHTML = RM.WORK.map(function (w, i) {
       var img = w.img
         ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ' project" width="1000" height="800" loading="lazy">'
-        : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span>';
+        : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
       return '<article class="work-card"><div class="work-img">' + img + '</div>' +
         '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
         '<a class="text-link" href="#contact" data-cta="work-' + (i + 1) + '">Get a call back about a project like this <span class="arrow" aria-hidden="true">→</span></a></div></article>';
@@ -183,6 +183,38 @@
     dots.innerHTML = RM.SERVICES.map(function (s, i) {
       return '<button type="button" role="tab" class="dot' + (i === 0 ? ' on' : '') + '" data-i="' + i + '" aria-label="' + RM.esc(s.name) + '" aria-selected="' + (i === 0) + '"></button>';
     }).join('');
+  })();
+
+  /* image slots: <figure class="ph" data-ph="render|photo|video|screen" data-ph-label data-ph-size [data-src data-alt data-poster]>.
+     With data-src the real file shows; without it a designed placeholder shows with a tag saying what goes there. */
+  (function () {
+    var STAR = 'M100 62 C104 92 110 98 140 102 C110 106 104 112 100 142 C96 112 90 106 60 102 C90 98 96 92 100 62Z';
+    var ART = {
+      render: '<span class="ph-glow"></span><span class="ph-float"><svg class="ph-svg" viewBox="0 0 200 200">' +
+        '<rect class="ph-chip c1" x="0" y="20" width="44" height="32" rx="9"/><rect class="ph-chip c2" x="164" y="30" width="36" height="36" rx="9"/>' +
+        '<rect class="ph-chip c3" x="166" y="138" width="34" height="26" rx="7"/>' +
+        '<path class="ph-wire" d="M44 36 C72 36 82 54 90 62 M164 48 C134 48 118 56 110 62 M166 151 C162 151 160 151 158 151"/>' +
+        '<circle class="ph-dome" cx="100" cy="66" r="18"/><rect class="ph-body" x="44" y="66" width="112" height="104" rx="28"/><path class="ph-star" d="' + STAR + '" transform="translate(0 16)"/></svg></span>',
+      photo: '<svg class="ph-svg ph-icon" viewBox="0 0 64 64"><rect class="ph-line" x="6" y="12" width="52" height="40" rx="6"/><circle class="ph-dot" cx="44" cy="24" r="5"/><path class="ph-line" d="M8 46 L24 30 L36 42 L44 34 L56 46"/></svg>',
+      video: '<span class="ph-glow"></span><span class="ph-play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>',
+      screen: '<span class="ph-browser"><span class="ph-bar"><i></i><i></i><i></i></span><span class="ph-page">' +
+        '<span class="ph-block w60"></span><span class="ph-block w40"></span><span class="ph-cols"><span></span><span></span><span class="is-off"></span></span>' +
+        '<span class="ph-flag">Stalled at pilot</span></span></span>'
+    };
+    RM.$$('[data-ph]').forEach(function (f) {
+      var kind = f.dataset.ph, src = f.dataset.src, alt = RM.esc(f.dataset.alt || '');
+      f.classList.add('ph-' + kind);
+      if (src) {
+        f.classList.add('has-media');
+        f.innerHTML = kind === 'video'
+          ? '<video src="' + RM.esc(src) + '"' + (f.dataset.poster ? ' poster="' + RM.esc(f.dataset.poster) + '"' : '') + ' muted loop playsinline autoplay preload="metadata" aria-label="' + alt + '"></video>'
+          : '<img src="' + RM.esc(src) + '" alt="' + alt + '" loading="lazy" decoding="async">';
+        return;
+      }
+      f.setAttribute('aria-hidden', 'true');
+      f.innerHTML = '<span class="ph-art">' + (ART[kind] || '') + '</span>' +
+        '<figcaption class="ph-tag"><b>Image slot</b> ' + RM.esc(f.dataset.phLabel || '') + ' · ' + RM.esc(f.dataset.phSize || '') + '</figcaption>';
+    });
   })();
 
   /* how we work steps */

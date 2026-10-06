@@ -5,3 +5,7 @@
 /* paragraph spans the full 12 columns so it sits in about three lines on desktop */
 @media (min-width:901px){.problem-body{width:100%;text-wrap:balance}}
 .fx-w{display:inline-block;will-change:transform,opacity,filter}
+
+/* stalled-pilot visual under the paragraph */
+.problem-art{width:100%;aspect-ratio:16/7;margin-top:16px}
+@media (max-width:700px){.problem-art{aspect-ratio:4/3}}

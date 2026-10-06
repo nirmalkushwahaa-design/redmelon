@@ -40,7 +40,9 @@
 .work-card{display:flex;flex-direction:column}
 .work-card:nth-child(even){margin-top:80px}
 .work-img{position:relative;aspect-ratio:5/4;overflow:hidden;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line)}
+.work-img img,.work-ph{transition:transform .9s var(--ease)}
 .work-img img{width:100%;height:100%;object-fit:cover}
+.work-card:hover .work-img img,.work-card:hover .work-ph{transform:scale(1.05)}      /* slow zoom on hover */
 .work-ph{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-size:var(--t-sm);
   background-image:linear-gradient(var(--hairline) 1px,transparent 1px),linear-gradient(90deg,var(--hairline) 1px,transparent 1px);background-size:40px 40px}
 .work-ph-1{background:radial-gradient(circle at 70% 35%,var(--art-3) 0 7%,transparent 7.5%),repeating-radial-gradient(circle at 70% 35%,transparent 0 22px,var(--hairline) 22px 23px),linear-gradient(135deg,var(--art-2),var(--art-1))}

@@ -145,3 +145,66 @@
 
 /* ---------- theme view transition ---------- */
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+
+/* =====================================================================
+   IMAGE SLOTS (.ph) · designed placeholders until the real files land.
+   Swap: add data-src (and data-alt) on the <figure>; the art and tag disappear.
+   ===================================================================== */
+.ph{position:relative;margin:0;overflow:hidden;border-radius:var(--r-md);border:1px solid var(--line);
+  background:radial-gradient(60% 60% at 50% 45%,var(--redSoft),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg2))}
+.ph::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.8;
+  background-image:linear-gradient(var(--hairline) 1px,transparent 1px),linear-gradient(90deg,var(--hairline) 1px,transparent 1px);background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,black,transparent 75%);mask-image:radial-gradient(circle at 50% 50%,black,transparent 75%)}
+.ph.has-media{background:none;border:0}
+.ph.has-media::before{display:none}
+.ph>img,.ph>video{display:block;width:100%;height:100%;object-fit:cover}
+.ph-art{position:absolute;inset:0;display:grid;place-items:center}
+.ph-tag{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);padding:6px 10px;border-radius:var(--r-pill);
+  font-size:11px;line-height:1.3;letter-spacing:.02em;color:var(--ink2);background:color-mix(in srgb,var(--surface) 86%,transparent);border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ph-tag b{color:var(--text-red);font-weight:600;margin-right:4px}
+
+/* render: AI core cube with chips, floating */
+.ph-render{border-style:dashed;background:radial-gradient(50% 50% at 50% 55%,var(--redSoft),transparent 72%)}
+.ph-render::before{opacity:.5}
+.ph-glow{position:absolute;left:50%;top:55%;width:46%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,var(--glow),transparent 65%);filter:blur(24px);opacity:.55;animation:phPulse 4.8s ease-in-out infinite}
+.ph-float{display:block;width:74%;animation:phFloat 6s ease-in-out infinite}
+.ph-svg{display:block;width:100%;height:auto;overflow:visible}
+.ph-body{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.ph-dome{fill:var(--red)}
+.ph-star{fill:var(--red)}
+.ph-chip{fill:var(--surface);stroke:var(--line);stroke-width:1.5;animation:phFloat 5s ease-in-out infinite}
+.ph-chip.c2{animation-delay:-1.6s}.ph-chip.c3{animation-delay:-3.2s}
+.ph-wire{fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:4 5;animation:phWire 1.6s linear infinite;opacity:.7}
+
+/* photo: quiet frame with an image icon */
+.ph-photo .ph-icon{width:56px}
+.ph-line{fill:none;stroke:var(--line2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ph-dot{fill:var(--red)}
+
+/* video: play button with a slow pulse */
+.ph-video{background:radial-gradient(40% 50% at 50% 50%,var(--redSoft),transparent 70%),linear-gradient(160deg,var(--surface2),var(--bg))}
+.ph-play{position:relative;z-index:1;display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--red);color:var(--on-brand);
+  box-shadow:0 0 0 0 var(--glow);animation:phRing 2.6s var(--ease) infinite}
+.ph-play svg{width:30px;height:30px;fill:currentColor;margin-left:4px}
+
+/* screen: a half-built dashboard with a warning flag */
+.ph-browser{position:relative;width:min(78%,760px);border-radius:10px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;animation:phFloat 7s ease-in-out infinite}
+.ph-bar{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.ph-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.ph-page{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px}
+.ph-block{display:block;height:12px;border-radius:6px;background:var(--line)}
+.ph-block.w60{width:60%}.ph-block.w40{width:40%;opacity:.7}
+.ph-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.ph-cols span{height:clamp(54px,8vw,110px);border-radius:8px;background:var(--bg2);border:1px solid var(--line)}
+.ph-cols .is-off{border-style:dashed;background:none}
+.ph-flag{position:absolute;right:22px;top:18px;padding:5px 10px;border-radius:var(--r-pill);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--on-brand);background:var(--red);animation:phBlink 2.4s ease-in-out infinite}
+
+@keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes phPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(.92)}50%{opacity:.7;transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes phWire{to{stroke-dashoffset:-18}}
+@keyframes phRing{0%{box-shadow:0 0 0 0 var(--glow)}70%,100%{box-shadow:0 0 0 22px transparent}}
+@keyframes phBlink{0%,100%{opacity:1}50%{opacity:.55}}
+.rm .ph *{animation:none!important}
