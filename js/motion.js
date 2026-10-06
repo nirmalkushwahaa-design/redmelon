@@ -112,14 +112,16 @@
       animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
       onUpdate: function (s) { if (s.progress > 0) pick(); } });   /* at 0 the early trigger decides */
     /* the illustration switches as soon as the next service's top reaches the middle of the illustration,
-       not when it has fully settled; the agent-loop ring fills from that moment until 04 settles */
-    var stage = $('#switchStage'), rest = 0;
+       not when it has fully settled */
+    var stage = $('#switchStage');
     function pick() {
       var sr = stage.getBoundingClientRect(), mid = sr.top + sr.height / 2, k = 0;
       for (var i = 1; i < N; i++) if (panels[i].getBoundingClientRect().top <= mid) k = i;
       RM.setService(k);
       var t3 = panels[3].getBoundingClientRect().top;
-      RM.setLoop(Math.max(0, Math.min(1, (mid - t3) / Math.max(1, mid - rest))));
+      /* the ring fills slowly across the whole time 04 is on screen: from its switch-in until just before 05 takes over */
+      var gap = panels[4].offsetTop - panels[3].offsetTop;
+      RM.setLoop(Math.max(0, Math.min(1, (mid - t3) / Math.max(1, gap * .92))));
     }
     /* once 05 is in place, How we work comes straight up under it: the empty band below 05
        is covered by pulling the next section up (it paints over the end of the pinned frame) */
@@ -129,7 +131,6 @@
       var bottom05 = panels[0].getBoundingClientRect().top - y - top + panels[N - 1].offsetHeight;
       var gap = Math.max(0, Math.round(innerHeight - bottom05 - 64));
       if (next) next.style.marginTop = -gap + 'px';
-      rest = panels[0].getBoundingClientRect().top - y - top;          /* where each service settles (viewport y while pinned) */
       /* illustration sits level with the service text: its centre lines up with 01's centre */
       art.style.top = '0px';
       var a = art.getBoundingClientRect(), p0 = panels[0].getBoundingClientRect();
