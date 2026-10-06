@@ -110,13 +110,17 @@
     var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N); },
       pin: true, scrub: true, invalidateOnRefresh: true,
       animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
-      /* the 01 illustration appears only once 01 is in place, and hides again on the way back up */
-      onUpdate: function (s) {
-        var f = s.progress * (N - 1);
-        /* the illustration changes only once the next title has reached its resting spot */
-        if (s.progress > 0) RM.setService(Math.floor(f + .04));   /* at 0 the early trigger decides */
-        RM.setLoop(Math.max(0, Math.min(1, (f - 2.96) / .6)));  /* ring fills once panel 04 is in place */
-      } });
+      onUpdate: function (s) { if (s.progress > 0) pick(); } });   /* at 0 the early trigger decides */
+    /* the illustration switches as soon as the next service's top reaches the middle of the illustration,
+       not when it has fully settled; the agent-loop ring fills from that moment until 04 settles */
+    var stage = $('#switchStage'), rest = 0;
+    function pick() {
+      var sr = stage.getBoundingClientRect(), mid = sr.top + sr.height / 2, k = 0;
+      for (var i = 1; i < N; i++) if (panels[i].getBoundingClientRect().top <= mid) k = i;
+      RM.setService(k);
+      var t3 = panels[3].getBoundingClientRect().top;
+      RM.setLoop(Math.max(0, Math.min(1, (mid - t3) / Math.max(1, mid - rest))));
+    }
     /* once 05 is in place, How we work comes straight up under it: the empty band below 05
        is covered by pulling the next section up (it paints over the end of the pinned frame) */
     var next = sw.closest('section').nextElementSibling, art = $('.switch-art', sw);
@@ -125,6 +129,7 @@
       var bottom05 = panels[0].getBoundingClientRect().top - y - top + panels[N - 1].offsetHeight;
       var gap = Math.max(0, Math.round(innerHeight - bottom05 - 64));
       if (next) next.style.marginTop = -gap + 'px';
+      rest = panels[0].getBoundingClientRect().top - y - top;          /* where each service settles (viewport y while pinned) */
       /* illustration sits level with the service text: its centre lines up with 01's centre */
       art.style.top = '0px';
       var a = art.getBoundingClientRect(), p0 = panels[0].getBoundingClientRect();
@@ -134,7 +139,7 @@
     /* the 01 illustration appears (and draws in) as soon as the section comes into view, before 01 arrives;
        it hides again on the way back up */
     var early = ScrollTrigger.create({ trigger: sw, start: 'top 60%', end: function () { return st.end; },
-      onEnter: function () { RM.setService(Math.max(0, Math.floor(st.progress * (N - 1) + .04))); },
+      onEnter: function () { if (st.progress > 0) pick(); else RM.setService(0); },
       onLeaveBack: function () { RM.hideServiceArt(); } });
     if (scrollY < early.start) RM.hideServiceArt();
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
