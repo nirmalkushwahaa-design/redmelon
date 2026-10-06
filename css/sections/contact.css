@@ -62,3 +62,25 @@
 @media(max-width:880px){.brief-layout{grid-template-columns:1fr}.brief-intro h2{max-width:none}.brief-lede{max-width:48ch}.brief-orbit{padding:20px 0}.brief-expect{max-width:none}.brief-shell{padding:28px}}
 @media(max-width:520px){.brief-shell{padding:22px}.brief-progress{gap:8px;font-size:var(--t-xs)}.brief-progress li{display:block}.brief-progress span{display:block;margin-bottom:4px}.service-options{grid-template-columns:1fr}.service-options label{min-height:80px}.brief-lede{font-size:var(--t-base)}}
 .rm .brief-orbit i{animation:none}
+
+/* ---------- orange brief card (reversed colours): orange card, white text and lines;
+   chosen options and the main button flip to white with orange text ---------- */
+.brief-shell{--ink:var(--on-brand);--ink2:var(--on-brand-2);--ink3:var(--on-brand-2);--line:var(--on-brand-line);--line2:var(--on-brand-line2);
+  --text-red:var(--on-brand);--text-ok:var(--on-brand);--focus:var(--on-brand);
+  background:radial-gradient(ellipse at top right,var(--on-brand-soft),transparent 60%),var(--red);border-color:var(--red);color:var(--ink)}
+.brief-progress [aria-current]{color:var(--on-brand)}
+.service-options label{background:transparent;color:var(--on-brand)}
+.service-options label:hover{background:var(--on-brand-soft)}
+.service-options label:has(:checked){background:var(--on-brand);border-color:var(--on-brand);color:var(--red)}
+.service-options label:has(:checked) small,.service-options :has(:checked) b{color:var(--red)}
+/* inputs stay white with dark text so typing is easy to read */
+.brief-shell .field :is(input,textarea,select){background-color:var(--on-brand);border-color:var(--on-brand);color:var(--midnight)}
+.brief-shell .field :is(input,textarea)::placeholder{color:color-mix(in srgb,var(--midnight) 50%,transparent)}
+.brief-shell .field :is(input,textarea,select):focus{border-color:var(--midnight)}
+.brief-shell .btn-1{background:var(--on-brand);color:var(--red)}
+.brief-shell .btn-1 .sheen{display:none}
+.brief-shell .btn-1:hover{background:var(--midnight);color:var(--on-brand)}
+.brief-shell .btn-2{border-color:var(--on-brand);color:var(--on-brand)}
+.brief-shell .btn-2:hover{background:var(--on-brand);color:var(--red)}
+.brief-back{color:var(--on-brand)}
+#brief-error{font-weight:600}
