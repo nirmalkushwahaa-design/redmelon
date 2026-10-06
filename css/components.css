@@ -140,6 +140,9 @@
 .foot-giant{margin:clamp(56px,7vw,110px) 0 0;font-family:var(--disp);font-size:clamp(72px,17vw,250px);line-height:.8;letter-spacing:-.04em;
   text-align:center;white-space:nowrap;user-select:none;pointer-events:none;padding-bottom:.06em;
   background:linear-gradient(180deg,var(--line) 0%,var(--line) 35%,transparent 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* letters rise from below as the footer arrives, then drift slowly with the pointer (motion.js) */
+.foot-giant{overflow:hidden}
+.foot-giant .fg-l{display:inline-block;background:inherit;-webkit-background-clip:text;background-clip:text;will-change:transform}
 @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
 @media (max-width:340px){.foot-grid{grid-template-columns:1fr}}
 

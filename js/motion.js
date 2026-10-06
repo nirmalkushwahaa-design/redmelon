@@ -220,6 +220,29 @@
       scrollTrigger: { trigger: reel, start: 'top 95%', end: 'top 45%', scrub: true } });
   })();
 
+  /* ---------- A · footer wordmark: letters rise from the bottom, then follow the pointer slowly ---------- */
+  (function () {
+    var g = $('.foot-giant'); if (!g) return;
+    var txt = g.textContent;
+    g.innerHTML = txt.split('').map(function (c) { return '<span class="fg-l">' + c + '</span>'; }).join('');
+    var ls = $$('.fg-l', g);
+    gsap.fromTo(ls, { yPercent: 110 }, { yPercent: 0, duration: 1.2, stagger: .06, ease: E,
+      scrollTrigger: { trigger: g, start: 'top 95%', toggleActions: 'play none none reverse' } });
+    if (!RM.flags.fine) return;
+    /* each letter leans a little toward the pointer; outer letters move more */
+    var to = ls.map(function (l) { return { x: gsap.quickTo(l, 'x', { duration: 1.6, ease: 'power3' }), y: gsap.quickTo(l, 'y', { duration: 1.6, ease: 'power3' }) }; });
+    var mid = (ls.length - 1) / 2, raf = 0, px = 0, py = 0;
+    addEventListener('pointermove', function (e) {
+      px = e.clientX / innerWidth - .5; py = e.clientY / innerHeight - .5;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        var r = g.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+        to.forEach(function (t, i) { var k = 1 + Math.abs(i - mid) / mid * .8; t.x(px * 22 * k); t.y(py * 14 * k * (i % 2 ? 1 : -1)); });
+      });
+    }, { passive: true });
+  })();
+
   /* ---------- B · logo marquee skews with scroll velocity (max ±8deg) ---------- */
   (function () {
     var tr = $('#marquee'); if (!tr) return;   /* skew the frame; the track's own transform runs the CSS loop */
