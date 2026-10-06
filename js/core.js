@@ -110,29 +110,35 @@
 
   /* service motifs: one red stroke each (.m-red) */
   function motif(kind) {
+    /* shared grid panel (05 conveyor, 03 graph): id keeps patterns unique per drawing */
+    var panel = function (id) { return '<defs><pattern id="' + id + 'G" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" class="cv-gl"/></pattern>' +
+      '<clipPath id="' + id + 'C"><rect x="6" y="6" width="388" height="388" rx="10"/></clipPath></defs>' +
+      '<rect class="cv-panel" x="6" y="6" width="388" height="388" rx="10"/><rect x="6" y="6" width="388" height="388" rx="10" fill="url(#' + id + 'G)"/>'; };
     var t = function (x, y, s, a) { return '<text class="m-txt" x="' + x + '" y="' + y + '"' + (a ? ' text-anchor="' + a + '"' : '') + '>' + s + '</text>'; };
     switch (kind) {
-      case 'roadmap': return '<svg viewBox="0 0 400 400" class="motif motif-road">' +
-        '<path class="m-line" stroke-dasharray="4 6" d="M40 330 C 120 330, 110 250, 180 240 S 260 170, 280 130 S 330 70, 360 60"/>' +
-        '<path class="m-red draw" d="M40 330 C 120 330, 110 250, 180 240 S 260 170, 280 130 S 330 70, 360 60"/>' +
-        '<g class="pop"><circle class="m-node" cx="40" cy="330" r="9"/>' + t(31, 356, 'MAP') + '</g>' +
-        '<g class="pop"><circle class="m-node" cx="180" cy="240" r="9"/>' + t(196, 258, 'RANK') + '</g>' +
-        '<g class="pop"><circle class="m-node" cx="280" cy="130" r="9"/>' + t(264, 134, 'PILOT', 'end') + '</g>' +
-        '<g class="pop"><circle class="m-hot" cx="360" cy="60" r="11"/>' + t(360, 36, 'SCALE', 'middle') + '</g></svg>';
-      case 'panels': return '<svg viewBox="0 0 400 400" class="motif">' +
+      case 'roadmap': var rp = 'M40 320 C 110 320, 100 240, 160 230 S 250 180, 270 135 S 320 70, 360 60';
+        return '<svg viewBox="0 0 400 400" class="motif motif-road">' + panel('rm' + (motif.n = (motif.n || 0) + 1)) +
+        '<path class="m-line" stroke-dasharray="4 6" d="' + rp + '"/><path class="m-red draw" d="' + rp + '"/>' +
+        '<g class="pop"><circle class="rd-node" cx="40" cy="320" r="9"/>' + t(56, 346, 'EXPERIMENT') + '</g>' +
+        '<g class="pop"><circle class="rd-node" cx="160" cy="230" r="9"/>' + t(176, 256, 'PRIORITISE') + '</g>' +
+        '<g class="pop"><circle class="rd-node" cx="270" cy="135" r="9"/>' + t(248, 128, 'PILOT', 'end') + '</g>' +
+        '<g class="pop"><circle class="m-hot" cx="360" cy="60" r="12"/>' + t(330, 44, 'SCALE', 'middle') + '</g>' +
+        '<text class="m-txt cv-cap" x="22" y="378">ROADMAP \u00b7 EXPERIMENT TO SCALE</text></svg>';
+      case 'panels': return '<svg viewBox="0 0 400 400" class="motif">' + panel('px' + (motif.n = (motif.n || 0) + 1)) +
         '<g class="pop"><rect class="m-panel" x="40" y="50" width="220" height="150" rx="8"/><rect class="m-soft" x="58" y="70" width="90" height="10" rx="5"/><rect class="m-soft" x="58" y="92" width="160" height="8" rx="4"/><rect class="m-soft" x="58" y="108" width="130" height="8" rx="4"/><rect class="m-btn" x="58" y="150" width="70" height="28" rx="4"/></g>' +
         '<g class="pop"><rect class="m-panel" x="150" y="170" width="210" height="180" rx="8"/><circle class="m-node" cx="176" cy="200" r="10"/><rect class="m-soft" x="196" y="194" width="120" height="12" rx="6"/><rect class="m-panel2" x="230" y="226" width="110" height="34" rx="12"/><rect class="m-soft" x="168" y="276" width="140" height="34" rx="12"/>' + t(176, 337, 'APPROVE · EDIT · REJECT') + '</g>' +
-        '<g class="pop"><rect class="m-panel" x="40" y="250" width="120" height="100" rx="8"/><path class="m-red draw" d="M56 320 L80 300 L100 310 L140 272"/></g></svg>';
-      case 'graph': return '<svg viewBox="0 0 400 400" class="motif">' +
-        '<path class="m-line draw" d="M110 100 L166 200"/><path class="m-line draw" d="M110 200 L166 200"/><path class="m-line draw" d="M110 300 L166 200"/>' +
-        '<path class="m-red draw" d="M234 200 L290 120"/><path class="m-red draw" d="M234 200 L290 200"/><path class="m-red draw" d="M234 200 L290 280"/>' +
-        '<g class="pop"><rect class="m-node" x="30" y="84" width="80" height="32" rx="4"/>' + t(70, 105, 'DOCS', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-node" x="30" y="184" width="80" height="32" rx="4"/>' + t(70, 205, 'DATA', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-node" x="30" y="284" width="80" height="32" rx="4"/>' + t(70, 305, 'APIS', 'middle') + '</g>' +
-        '<g class="pop"><circle class="m-core" cx="200" cy="200" r="34"/>' + t(200, 205, 'LLM', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-node" x="290" y="104" width="84" height="32" rx="4"/>' + t(332, 125, 'AGENTS', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-node" x="290" y="184" width="84" height="32" rx="4"/>' + t(332, 205, 'APPS', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-node" x="290" y="264" width="84" height="32" rx="4"/>' + t(332, 285, 'SYSTEMS', 'middle') + '</g></svg>';
+        '<g class="pop"><rect class="m-panel" x="40" y="250" width="120" height="100" rx="8"/><path class="m-red draw" d="M56 320 L80 300 L100 310 L140 272"/></g><text class="m-txt cv-cap" x="22" y="378">PEOPLE + INTELLIGENT SYSTEMS</text></svg>';
+      case 'graph': return '<svg viewBox="0 0 400 400" class="motif motif-graph">' + panel('gr' + (motif.n = (motif.n || 0) + 1)) +
+        '<path class="m-line draw" d="M110 100 L174 184"/><path class="m-line draw" d="M110 200 L166 200"/><path class="m-line draw" d="M110 300 L174 216"/>' +
+        '<path class="m-red draw" d="M228 186 L290 136"/><path class="m-red draw" d="M234 200 L290 200"/><path class="m-red draw" d="M228 214 L290 264"/>' +
+        '<g class="pop"><rect class="gr-node" x="30" y="84" width="80" height="32" rx="4"/>' + t(44, 105, 'DOCS') + '</g>' +
+        '<g class="pop"><rect class="gr-node" x="30" y="184" width="80" height="32" rx="4"/>' + t(44, 205, 'DATA') + '</g>' +
+        '<g class="pop"><rect class="gr-node" x="30" y="284" width="80" height="32" rx="4"/>' + t(44, 305, 'APIS') + '</g>' +
+        '<g class="pop"><circle class="gr-core" cx="200" cy="200" r="34"/><text class="m-txt gr-core-t" x="200" y="205" text-anchor="middle">LLM</text></g>' +
+        '<g class="pop"><rect class="gr-node" x="290" y="120" width="88" height="32" rx="4"/>' + t(302, 141, 'AGENTS') + '</g>' +
+        '<g class="pop"><rect class="gr-node" x="290" y="184" width="88" height="32" rx="4"/>' + t(302, 205, 'APPS') + '</g>' +
+        '<g class="pop"><rect class="gr-node" x="290" y="248" width="88" height="32" rx="4"/>' + t(302, 269, 'SYSTEMS') + '</g>' +
+        '<text class="m-txt cv-cap" x="22" y="372">ORCHESTRATED, OBSERVABLE, IN PRODUCTION</text></svg>';
       case 'loop':
         var R = 130, C0 = 2 * Math.PI * R, nodes = RM.LOOP.map(function (name, i) {
           var a = (-90 + i * 60) * Math.PI / 180, x = 200 + R * Math.cos(a), y = 200 + R * Math.sin(a);
@@ -147,16 +153,17 @@
           '<circle class="loop-ring" cx="200" cy="200" r="' + R + '"/>' +
           '<circle class="loop-prog m-red" cx="200" cy="200" r="' + R + '" transform="rotate(-90 200 200)" stroke-dasharray="' + C0.toFixed(1) + '" stroke-dashoffset="' + C0.toFixed(1) + '" data-len="' + C0.toFixed(1) + '"/>' +
           nodes + '<text class="m-txt loop-cap" x="200" y="196" text-anchor="middle">AGENT LOOP</text><text class="loop-center" x="200" y="226" text-anchor="middle">Knowledge</text></svg>';
-      case 'conveyor': return '<svg viewBox="0 0 400 400" class="motif">' +
-        '<line class="m-line" x1="0" y1="250" x2="400" y2="250"/>' +
-        '<g class="pop"><rect class="m-panel" x="40" y="150" width="80" height="100" rx="6"/>' + t(80, 140, 'INTAKE', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-panel" x="160" y="150" width="80" height="100" rx="6"/>' + t(200, 140, 'AI', 'middle') + '</g>' +
-        '<g class="pop"><rect class="m-panel" x="280" y="150" width="80" height="100" rx="6"/>' + t(320, 140, 'PEOPLE', 'middle') + '</g>' +
-        '<rect class="m-item" x="66" y="226" width="20" height="20" rx="3"/><rect class="m-item" x="190" y="226" width="20" height="20" rx="3"/><rect class="m-item" x="214" y="226" width="20" height="20" rx="3"/>' +
-        '<path class="m-red draw" d="M120 200 C 142 200, 142 180, 160 180"/>' +
-        '<path class="m-red draw" d="M240 200 C 262 200, 262 180, 280 180"/>' +
-        /* captions stacked and centred so both fit inside the frame */
-        t(200, 300, 'AI TAKES THE VOLUME', 'middle') + t(200, 324, 'PEOPLE TAKE THE EXCEPTIONS', 'middle') + '</svg>';
+      case 'conveyor': var cid = 'cv' + (motif.n = (motif.n || 0) + 1); return '<svg viewBox="0 0 400 400" class="motif motif-conv">' + panel(cid) +
+        /* three stations on one belt */
+        t(80, 142, 'INTAKE', 'middle') + t(200, 142, 'DECIDE', 'middle') + t(320, 142, 'ACT', 'middle') +
+        '<rect class="cv-box" x="40" y="154" width="80" height="98" rx="8"/><rect class="cv-box" x="160" y="154" width="80" height="98" rx="8"/><rect class="cv-box" x="280" y="154" width="80" height="98" rx="8"/>' +
+        '<line class="cv-belt" x1="6" y1="252" x2="394" y2="252"/>' +
+        /* AI is thinking inside Decide */
+        '<path class="cv-spin" d="M215 196 A15 15 0 0 1 200 211"/>' +
+        /* work items travel the belt and lighten as they are handled */
+        '<g clip-path="url(#' + cid + 'C)"><rect class="cv-item cv-i1" x="-24" y="234" width="18" height="18" rx="3"/><rect class="cv-item cv-i2" x="-24" y="234" width="18" height="18" rx="3"/><rect class="cv-item cv-i3" x="-24" y="234" width="18" height="18" rx="3"/></g>' +
+        t(110, 310, 'FRICTION \u2193', 'middle') + t(290, 310, 'CAPACITY \u2191', 'middle') +
+        '<text class="m-txt cv-cap" x="22" y="372">WORKFLOWS, REDESIGNED AROUND AI</text></svg>';
     }
     return '';
   }

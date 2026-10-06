@@ -185,6 +185,22 @@
     });
   })();
 
+  /* ---------- B · how we work: the orange line fills down to Evolve; each step lights as the line reaches its dot ---------- */
+  (function () {
+    var list = $('.how-list'), fill = $('#hwFill'); if (!list || !fill) return;
+    var steps = $$('.hw-step', list), line = fill.parentNode, len = 0;
+    /* the track runs from the top of the list to the centre of Evolve's dot, so the fill stops there */
+    function size() { var d = $('.hw-dot', steps[steps.length - 1]); len = d.getBoundingClientRect().top + d.offsetHeight / 2 - list.getBoundingClientRect().top; line.style.bottom = 'auto'; line.style.height = len + 'px'; }
+    size(); ScrollTrigger.addEventListener('refreshInit', size);
+    fill.style.setProperty('--hw', 0);
+    ScrollTrigger.create({ trigger: list, start: 'top 60%', end: function () { return 'top+=' + Math.round(len) + ' 60%'; }, scrub: .4, invalidateOnRefresh: true,
+      onUpdate: function (s) {
+        fill.style.setProperty('--hw', s.progress.toFixed(4));
+        var y = list.getBoundingClientRect().top + s.progress * len;
+        steps.forEach(function (st) { st.classList.toggle('on', $('.hw-dot', st).getBoundingClientRect().top <= y + 2); });
+      } });
+  })();
+
   /* ---------- A · image slots (placeholders now, real files later; same motion either way) ---------- */
   (function () {
     /* hero render: rises in with the copy, then tilts a little toward the pointer */

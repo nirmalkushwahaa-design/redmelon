@@ -128,3 +128,24 @@ html:not(.motion) .card{scroll-snap-align:start}
 
 /* Studio card: always dark navy (frosted, but solid enough to read in light mode) */
 .card.card-studio{background:color-mix(in srgb,var(--midnight) 92%,transparent);border-color:var(--midnight)}
+
+/* ---------- 05 AI automation: belt with moving work items ---------- */
+.cv-panel{fill:var(--bg2);stroke:var(--line)}
+.cv-gl{fill:none;stroke:var(--line);stroke-width:.8;opacity:.7}
+.cv-box{fill:var(--surface);stroke:var(--line2);stroke-width:1.5}
+.cv-belt{stroke:var(--line2);stroke-width:2}
+.cv-spin{fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;transform-box:view-box;transform-origin:200px 196px;animation:cvSpin 1.4s linear infinite}
+.cv-item{fill:var(--red);animation:cvMove 7.5s linear infinite}
+.cv-i2{animation-delay:-2.5s}
+.cv-i3{animation-delay:-5s}
+.cv-cap{font-size:11px;letter-spacing:.12em;fill:var(--ink3)}
+@keyframes cvSpin{to{transform:rotate(360deg)}}
+@keyframes cvMove{0%{transform:translateX(0);opacity:1}55%{opacity:.75}100%{transform:translateX(424px);opacity:.3}}
+.rm .cv-spin,.rm .cv-item{animation:none}
+.rm .cv-i1{transform:translateX(40px)}.rm .cv-i2{transform:translateX(220px);opacity:.7}.rm .cv-i3{transform:translateX(330px);opacity:.4}
+
+/* ---------- 03 AI engineering: grid panel, white nodes, solid orange LLM ---------- */
+.gr-node{fill:var(--surface);stroke:var(--line2);stroke-width:1.5}
+.gr-core{fill:var(--red)}
+.gr-core-t{fill:var(--on-brand)}
+.rd-node{fill:var(--surface);stroke:var(--line2);stroke-width:1.5}

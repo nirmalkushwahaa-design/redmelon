@@ -71,11 +71,11 @@ RM.SERVICES = [
   { id: 'svc-04', n: '04', name: 'Agentic AI', motif: 'loop',
     heading: 'Agents that do the task and ask before risky steps.',
     body: "Agents can read context, use your tools and complete work on their own. We set the points where an agent has to stop and get a person's approval, and we decide those points with you.",
-    tags: ['AI agents', 'Multi-agent workflows', 'Tool use', 'Human approval steps'] },
+    tags: ['AI Agents', 'Agentic Workflows', 'Multi-Agent Systems', 'Tool Use', 'Human-in-the-loop'] },
   { id: 'svc-05', n: '05', name: 'AI automation', motif: 'conveyor',
     heading: 'Manual workflows rebuilt around AI.',
-    body: 'Pick a process your team repeats every day. We rebuild it so AI handles the volume and your people handle the exceptions.',
-    tags: ['Document processing', 'Workflow automation', 'Copilots', 'Decision support'] }
+    body: 'We redesign repetitive and complex workflows around AI, connecting people, systems and intelligent agents to reduce friction and increase operational capacity.',
+    tags: ['AI Operations', 'Document Intelligence', 'Workflow Automation', 'AI Copilots', 'Decision Automation', 'AI Assistants'] }
 ];
 
 /* panel 04 agent loop labels; 'Approve' is the green node (centre reads 'Human approve' at that step) */
