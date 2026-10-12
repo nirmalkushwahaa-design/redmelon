@@ -271,7 +271,7 @@
       if (narrow()) rows[cur].insertAdjacentElement('afterend', stage); else if (stage.parentNode !== ex) ex.appendChild(stage);
     }
     function set(i, focus) {
-      if (i === cur) return; cur = i; if (RM.sfx) RM.sfx('note', i);
+      if (i === cur) return; cur = i; if (RM.sfx) RM.sfx('tick');
       rows.forEach(function (r, k) { r.classList.toggle('on', k === i); r.setAttribute('aria-selected', k === i); r.tabIndex = k === i ? 0 : -1; });
       panes.forEach(function (p, k) { p.classList.toggle('on', k === i); });
       place(); if (focus) rows[i].focus();
