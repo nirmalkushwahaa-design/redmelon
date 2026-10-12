@@ -117,9 +117,11 @@
     var sw = $('#switch'), list = $('#switchPanels'), panels = $$('.panel', sw), N = panels.length;
     sw.classList.add('is-pinned');
     function span() { return panels[N - 1].offsetTop - panels[0].offsetTop; }
-    var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N); },
+    /* HOLD: extra pinned scroll after 05 is in place, so its animation has room to play (share of the list's scroll) */
+    var HOLD = .16;
+    var st = ScrollTrigger.create({ trigger: sw, start: 'top top', end: function () { return '+=' + Math.round(innerHeight * .7 * N * (1 + HOLD)); },
       pin: true, scrub: true, invalidateOnRefresh: true,
-      animation: gsap.fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none' }),
+      animation: gsap.timeline().fromTo(list, { y: 0 }, { y: function () { return -span(); }, ease: 'none', duration: 1 }).to({}, { duration: HOLD }),
       onUpdate: function (s) { if (s.progress > 0) pick(); } });   /* at 0 the early trigger decides */
     /* the illustration switches as soon as the next service's top reaches the middle of the illustration,
        not when it has fully settled */
@@ -157,10 +159,11 @@
     /* ...and ends as 02 AI experience starts to show at the bottom of the text column */
     var col = $('#switchCol');
     /* scroll position at which panel k's top sits at `edge` px below the section top (list moving up) */
+    function listLen() { return (st.end - st.start) / (1 + HOLD); }   /* scroll over which the list moves */
     function scrollFor(k, edge) {
       var sr = sw.getBoundingClientRect(), y = gsap.getProperty(list, 'y') || 0;
       var pk = panels[k].getBoundingClientRect().top - sr.top - y;
-      return st.start + Math.max(0, pk - edge) / Math.max(1, span()) * (st.end - st.start);
+      return st.start + Math.max(0, pk - edge) / Math.max(1, span()) * listLen();
     }
     function colEdge() { return col.getBoundingClientRect().top - sw.getBoundingClientRect().top + col.clientHeight * .95; }
     function stageMid() { var r = stage.getBoundingClientRect(); return r.top - sw.getBoundingClientRect().top + r.height / 2; }
@@ -172,8 +175,12 @@
     var ckpt = RM.setCheckpoint ? ScrollTrigger.create({ trigger: sw,
       start: function () { return scrollFor(1, stageMid()); }, end: function () { return scrollFor(2, stageMid()) - 60; },   /* runs right up to 03 switching in (slower scrub) */
       scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setCheckpoint(s.progress); } }) : null;
-    RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
-    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    /* 05 AI automation: from its illustration switching in until the pin releases */
+    var auto = RM.setAutomation ? ScrollTrigger.create({ trigger: sw,
+      start: function () { return scrollFor(N - 1, stageMid()); }, end: function () { return st.end - 40; },
+      scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setAutomation(s.progress); } }) : null;
+    RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * listLen() + 2; };
+    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } if (auto) { auto.kill(); RM.setAutomation(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () {
     batch('.track .card');
@@ -183,12 +190,15 @@
     var road = ScrollTrigger.create({ trigger: cv, start: 'top 95%', end: 'center 30%', scrub: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress, cv); } });
     /* 02 checkpoint plays once when its card is swiped into view */
-    var ck = RM.checkpointCanvases && RM.checkpointCanvases.filter(function (c) { return c.closest('.panel-art'); })[0], ob = null;
-    if (ck && 'IntersectionObserver' in window) {
-      ob = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { ob.disconnect(); RM.playCheckpoint(ck); } }, { root: $('#switchPanels'), threshold: .6 });
-      ob.observe(ck.closest('.panel'));
-    }
-    return function () { road.kill(); RM.setRoadmap(1, cv); if (ob) ob.disconnect(); if (ck) RM.setCheckpoint(1, ck); };
+    /* 02 checkpoint and 05 automation play once when their card is swiped into view */
+    var inCard = function (list) { return list && list.filter(function (c) { return c.closest('.panel-art'); })[0]; };
+    var ck = inCard(RM.checkpointCanvases), au = inCard(RM.automationCanvases), obs = [];
+    [[ck, RM.playCheckpoint], [au, RM.playAutomation]].forEach(function (pair) {
+      var c = pair[0]; if (!c || !('IntersectionObserver' in window)) return;
+      var ob = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { ob.disconnect(); pair[1](c); } }, { root: $('#switchPanels'), threshold: .6 });
+      ob.observe(c.closest('.panel')); obs.push(ob);
+    });
+    return function () { road.kill(); RM.setRoadmap(1, cv); obs.forEach(function (o) { o.disconnect(); }); if (ck) RM.setCheckpoint(1, ck); if (au) RM.setAutomation(1, au); };
   });
 
   /* ---------- B · how we work: counter + split bars fill as cards arrive ---------- */

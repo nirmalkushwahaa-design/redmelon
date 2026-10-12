@@ -9,6 +9,7 @@
   var RM = window.RM, btn = document.getElementById('snd');
   var KEY = 'rm-sound', on = false, ctx = null, master = null, last = {};
   try { on = localStorage.getItem(KEY) === 'on'; } catch (e) {}
+  if (btn && btn.hidden) on = false;   /* speaker switch hidden from the nav (Nirmal, 12 Oct): sounds stay off */
   var AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) { if (btn) btn.hidden = true; RM.sfx = function () {}; return; }
 

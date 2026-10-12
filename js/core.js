@@ -143,17 +143,8 @@
           '<circle class="loop-ring" cx="200" cy="200" r="' + R + '"/>' +
           '<circle class="loop-prog m-red" cx="200" cy="200" r="' + R + '" transform="rotate(-90 200 200)" stroke-dasharray="' + C0.toFixed(1) + '" stroke-dashoffset="' + C0.toFixed(1) + '" data-len="' + C0.toFixed(1) + '"/>' +
           nodes + '<text class="m-txt loop-cap" x="200" y="196" text-anchor="middle">AGENT LOOP</text><text class="loop-center" x="200" y="226" text-anchor="middle">Knowledge</text></svg>';
-      case 'conveyor': var cid = 'cv' + (motif.n = (motif.n || 0) + 1); return '<svg viewBox="0 0 400 400" class="motif motif-conv">' + panel(cid) +
-        /* three stations on one belt */
-        t(80, 142, 'INTAKE', 'middle') + t(200, 142, 'DECIDE', 'middle') + t(320, 142, 'ACT', 'middle') +
-        '<rect class="cv-box" x="40" y="154" width="80" height="98" rx="8"/><rect class="cv-box" x="160" y="154" width="80" height="98" rx="8"/><rect class="cv-box" x="280" y="154" width="80" height="98" rx="8"/>' +
-        '<line class="cv-belt" x1="6" y1="252" x2="394" y2="252"/>' +
-        /* AI is thinking inside Decide */
-        '<path class="cv-spin" d="M215 196 A15 15 0 0 1 200 211"/>' +
-        /* work items travel the belt and lighten as they are handled */
-        '<g clip-path="url(#' + cid + 'C)"><rect class="cv-item cv-i1" x="-24" y="234" width="18" height="18" rx="3"/><rect class="cv-item cv-i2" x="-24" y="234" width="18" height="18" rx="3"/><rect class="cv-item cv-i3" x="-24" y="234" width="18" height="18" rx="3"/></g>' +
-        t(110, 310, 'FRICTION \u2193', 'middle') + t(290, 310, 'CAPACITY \u2191', 'middle') +
-        '<text class="m-txt cv-cap" x="22" y="372">WORKFLOWS, REDESIGNED AROUND AI</text></svg>';
+      /* AI automation: canvas drawn by js/automation.js, driven by scroll */
+      case 'conveyor': return '<div class="motif motif-roadmap"><canvas class="auto" role="img" aria-label="Two lanes of Intake, Decide and Act. The manual lane builds queues and finishes few items; the AI lane moves many items and sends exceptions to a person."></canvas></div>';
     }
     return '';
   }

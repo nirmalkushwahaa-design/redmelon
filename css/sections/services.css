@@ -49,7 +49,7 @@ html:not(.motion) .card{scroll-snap-align:start}
 .stage-art{position:absolute;inset:0;opacity:0;transition:opacity var(--d-reveal) var(--ease)}
 .stage-art.on{opacity:1}
 .stage-art svg,.panel-art svg{width:100%;height:100%}
-.motif-roadmap{position:relative;width:100%;height:100%}   /* canvas motifs: 01 roadmap.js, 02 checkpoint.js */
+.motif-roadmap{position:relative;width:100%;height:100%}   /* canvas motifs: 01 roadmap.js, 02 checkpoint.js, 05 automation.js */
 .motif-roadmap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .switch-count{display:none}
 .switch-panels{display:flex;flex-direction:column;gap:clamp(80px,14vh,160px);padding-block:8vh 20vh}
