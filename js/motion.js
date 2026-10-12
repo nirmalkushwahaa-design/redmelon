@@ -168,9 +168,9 @@
     var road = RM.setRoadmap ? ScrollTrigger.create({ trigger: sw, start: 'top 85%',
       end: roadEnd, scrub: true, invalidateOnRefresh: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress); } }) : null;
-    /* 02 AI experience checkpoint: from its illustration switching in until 03 starts to show */
+    /* 02 AI experience checkpoint: from its illustration switching in until just before 03 switches in */
     var ckpt = RM.setCheckpoint ? ScrollTrigger.create({ trigger: sw,
-      start: function () { return scrollFor(1, stageMid()); }, end: function () { return scrollFor(2, colEdge()); },
+      start: function () { return scrollFor(1, stageMid()); }, end: function () { return scrollFor(2, stageMid()) - 60; },   /* runs right up to 03 switching in (slower scrub) */
       scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setCheckpoint(s.progress); } }) : null;
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
     return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
