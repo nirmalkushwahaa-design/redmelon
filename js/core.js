@@ -114,14 +114,8 @@
     var panel = function (id) { return '<defs><clipPath id="' + id + 'C"><rect x="6" y="6" width="388" height="388"/></clipPath></defs>'; };
     var t = function (x, y, s, a) { return '<text class="m-txt" x="' + x + '" y="' + y + '"' + (a ? ' text-anchor="' + a + '"' : '') + '>' + s + '</text>'; };
     switch (kind) {
-      case 'roadmap': var rp = 'M40 320 C 110 320, 100 240, 160 230 S 250 180, 270 135 S 320 70, 360 60';
-        return '<svg viewBox="0 0 400 400" class="motif motif-road">' + panel('rm' + (motif.n = (motif.n || 0) + 1)) +
-        '<path class="m-line" stroke-dasharray="4 6" d="' + rp + '"/><path class="m-red draw" d="' + rp + '"/>' +
-        '<g class="pop"><circle class="rd-node" cx="40" cy="320" r="9"/>' + t(56, 346, 'EXPERIMENT') + '</g>' +
-        '<g class="pop"><circle class="rd-node" cx="160" cy="230" r="9"/>' + t(176, 256, 'PRIORITISE') + '</g>' +
-        '<g class="pop"><circle class="rd-node" cx="270" cy="135" r="9"/>' + t(248, 128, 'PILOT', 'end') + '</g>' +
-        '<g class="pop"><circle class="m-hot" cx="360" cy="60" r="12"/>' + t(330, 44, 'SCALE', 'middle') + '</g>' +
-        '<text class="m-txt cv-cap" x="22" y="378">ROADMAP \u00b7 EXPERIMENT TO SCALE</text></svg>';
+      /* AI strategy: canvas drawn by js/roadmap.js, driven by scroll */
+      case 'roadmap': return '<div class="motif motif-roadmap"><canvas class="rmap" role="img" aria-label="Many messy experiments settle into one clean rising line that passes Experiment, Prioritise and Pilot and ends on Scale"></canvas></div>';
       case 'panels': return '<svg viewBox="0 0 400 400" class="motif">' + panel('px' + (motif.n = (motif.n || 0) + 1)) +
         '<g class="pop"><rect class="m-panel" x="40" y="50" width="220" height="150" rx="8"/><rect class="m-soft" x="58" y="70" width="90" height="10" rx="5"/><rect class="m-soft" x="58" y="92" width="160" height="8" rx="4"/><rect class="m-soft" x="58" y="108" width="130" height="8" rx="4"/><rect class="m-btn" x="58" y="150" width="70" height="28" rx="4"/></g>' +
         '<g class="pop"><rect class="m-panel" x="150" y="170" width="210" height="180" rx="8"/><circle class="m-node" cx="176" cy="200" r="10"/><rect class="m-soft" x="196" y="194" width="120" height="12" rx="6"/><rect class="m-panel2" x="230" y="226" width="110" height="34" rx="12"/><rect class="m-soft" x="168" y="276" width="140" height="34" rx="12"/>' + t(176, 337, 'APPROVE · EDIT · REJECT') + '</g>' +
