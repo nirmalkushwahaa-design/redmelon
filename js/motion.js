@@ -154,8 +154,17 @@
       onLeaveBack: function () { RM.hideServiceArt(); } });
     if (scrollY < early.start) RM.hideServiceArt();
     /* 01 AI strategy roadmap plays with the scroll: from the section coming into view until just before 02 takes over */
+    /* ...and ends as 02 AI experience starts to show at the bottom of the text column */
+    var col = $('#switchCol');
+    function roadEnd() {
+      var sr = sw.getBoundingClientRect(), y = gsap.getProperty(list, 'y') || 0;
+      var p1 = panels[1].getBoundingClientRect().top - sr.top - y;            /* 02's top inside the section, list at rest */
+      var edge = col.getBoundingClientRect().top - sr.top + col.clientHeight * .95;
+      var shift = Math.max(0, p1 - edge);
+      return st.start + shift / Math.max(1, span()) * (st.end - st.start);
+    }
     var road = RM.setRoadmap ? ScrollTrigger.create({ trigger: sw, start: 'top 85%',
-      end: function () { return st.start + (st.end - st.start) / (N - 1) * .15; }, scrub: true, invalidateOnRefresh: true,
+      end: roadEnd, scrub: true, invalidateOnRefresh: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress); } }) : null;
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
     return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
