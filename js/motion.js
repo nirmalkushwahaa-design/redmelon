@@ -149,13 +149,13 @@
     tuck(); ScrollTrigger.addEventListener('refreshInit', tuck);
     /* the 01 illustration appears (and draws in) as soon as the section comes into view, before 01 arrives;
        it hides again on the way back up */
-    var early = ScrollTrigger.create({ trigger: sw, start: 'top 60%', end: function () { return st.end; },
+    var early = ScrollTrigger.create({ trigger: sw, start: 'top 85%', end: function () { return st.end; },
       onEnter: function () { if (st.progress > 0) pick(); else RM.setService(0); },
       onLeaveBack: function () { RM.hideServiceArt(); } });
     if (scrollY < early.start) RM.hideServiceArt();
     /* 01 AI strategy roadmap plays with the scroll: from the section coming into view until just before 02 takes over */
-    var road = RM.setRoadmap ? ScrollTrigger.create({ trigger: sw, start: 'top 60%',
-      end: function () { return st.start + (st.end - st.start) / (N - 1) * .7; }, scrub: true, invalidateOnRefresh: true,
+    var road = RM.setRoadmap ? ScrollTrigger.create({ trigger: sw, start: 'top 85%',
+      end: function () { return st.start + (st.end - st.start) / (N - 1) * .15; }, scrub: true, invalidateOnRefresh: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress); } }) : null;
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
     return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
