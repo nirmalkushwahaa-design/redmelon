@@ -62,6 +62,7 @@
       onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: D.reveal, stagger: D.stagger, overwrite: true }); } });
   }
   batch('.tiles .tile');
+  batch('.ind-card');
   batch('.lead');
   batch('.brief-shell');
   batch('.switch-stage');

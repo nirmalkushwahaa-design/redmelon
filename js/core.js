@@ -244,6 +244,21 @@
     if (!RM.flags.motion) bars.forEach(function (b) { b.style.setProperty('--p', 1); });
   })();
 
+  /* industries grid (RM.INDUSTRIES) + a closing "other industry" card */
+  (function () {
+    var g = $('#indGrid'); if (!g || !RM.INDUSTRIES) return;
+    g.innerHTML = RM.INDUSTRIES.map(function (d) {
+      return '<li class="ind-card"><div class="ind-top">' + RM.icon(d.icon, 'ind-ico') + '<span class="ind-tag">' + RM.esc(d.tag) + '</span></div>' +
+        '<h3>' + RM.esc(d.name) + '</h3><p class="ind-pain">' + RM.esc(d.pain) + '</p>' +
+        '<ul class="ind-build">' + d.build.map(function (b) { return '<li>' + RM.esc(b) + '</li>'; }).join('') + '</ul>' +
+        '<p class="ind-proof"><span>Worked with</span> ' + (d.work ? '<a href="#work">' + RM.esc(d.proof) + '</a>' : RM.esc(d.proof)) + '</p>' +
+        '<a class="ind-go" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></li>';
+    }).join('') +
+      '<li class="ind-card ind-other">' + RM.icon('indMore', 'ind-ico') + '<h3>Another industry?</h3>' +
+      '<p class="ind-pain">If a process is slow, expensive or done by hand, it is usually worth a call.</p>' +
+      '<a class="ind-go" href="#contact" data-cta="industry-other">Tell us about yours ' + RM.icon('arrowRight', 'arrow') + '</a></li>';
+  })();
+
   /* how we work steps */
   (function () {
     var ol = $('#steps'); if (!ol) return;

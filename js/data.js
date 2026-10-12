@@ -81,6 +81,28 @@ RM.SERVICES = [
 /* panel 04 agent loop labels; 'Approve' is the green node (centre reads 'Human approve' at that step) */
 RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Approve', 'Act', 'Learn'];
 
+/* industries: pain line, what we build, proof (real projects only, no unapproved numbers), trust tag */
+RM.INDUSTRIES = [
+  { id: 'finance', cta: 'finance', icon: 'indBank', name: 'Financial services', tag: 'Runs inside your environment',
+    pain: 'Onboarding checks take days and still miss the risky files.',
+    build: ['Document checking agents', 'Risk flagging', 'Analyst copilots'], proof: 'DBS Bank' },
+  { id: 'brands', cta: 'consumer brands', icon: 'indBrand', name: 'Consumer brands & FMCG', tag: 'Brand rules built in',
+    pain: 'Every market needs its own assets, and approvals slow everything down.',
+    build: ['Campaign asset generation', 'Brand review flows', 'Content at scale'], proof: 'Mondelez · Ogilvy' },
+  { id: 'energy', cta: 'energy', icon: 'indEnergy', name: 'Energy & utilities', tag: 'Works with live meter data',
+    pain: 'Field and support teams are buried in meter data and tickets.',
+    build: ['Smart-meter assistants', 'Outage triage', 'Customer copilots'], proof: 'Gridcrest Technology', work: true },
+  { id: 'auto', cta: 'manufacturing', icon: 'indAuto', name: 'Automotive & manufacturing', tag: 'Connects to existing systems',
+    pain: 'Quality checks and service manuals still run on manual effort.',
+    build: ['Visual quality checks', 'Service knowledge search', 'Supply data agents'], proof: 'Ford' },
+  { id: 'edu', cta: 'education', icon: 'indEdu', name: 'Education', tag: 'Privacy first',
+    pain: 'Students and staff wait days for answers that already exist somewhere.',
+    build: ['Student service assistants', 'Research search', 'Admissions support'], proof: 'IIT Mumbai', work: true },
+  { id: 'retail', cta: 'retail', icon: 'indRetail', name: 'Retail & e-commerce', tag: 'Plugs into your catalogue',
+    pain: "Product content and search can't keep up with the catalogue.",
+    build: ['Product content generation', 'Smart search', 'Personalisation'], proof: 'Spaces.in', work: true }
+];
+
 /* 12.6 · how we work */
 RM.STEPS = [
   { n: '01', title: 'Think', img: 'assets/img/step-think.webp', imgW: 900, imgH: 813, glow: 1.8,
