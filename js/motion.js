@@ -62,7 +62,16 @@
       onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: D.reveal, stagger: D.stagger, overwrite: true }); } });
   }
   batch('.tiles .tile');
-  batch('.ind-card');
+  /* industries: index rows slide in, then the spotlight panel rises */
+  (function () {
+    var ex = $('#indExplorer'); if (!ex) return;
+    var rows = $$('.ind-row', ex);
+    gsap.set(rows, { opacity: 0, x: -24 }); gsap.set('#indStage', { opacity: 0, y: 40 });
+    ScrollTrigger.create({ trigger: ex, start: 'top 80%', once: true, onEnter: function () {
+      gsap.to(rows, { opacity: 1, x: 0, duration: .7, stagger: .07, ease: E, clearProps: 'transform' });
+      gsap.to('#indStage', { opacity: 1, y: 0, duration: 1, delay: .15, ease: E, clearProps: 'transform' });
+    } });
+  })();
   batch('.lead');
   batch('.brief-shell');
   batch('.switch-stage');

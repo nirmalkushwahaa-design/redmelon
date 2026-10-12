@@ -1,35 +1,68 @@
-/* ===== INDUSTRIES (grey band) ===== */
+/* ===== INDUSTRIES · editorial index + dark spotlight panel (grey band) ===== */
 .industries{background:var(--bg2)}
-.ind-head{max-width:760px}
-.ind-head h2{margin-top:16px;max-width:16ch}
-.ind-head .lede{margin-top:18px}
-.ind-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(40px,5vw,64px)}
-.ind-card{position:relative;display:flex;flex-direction:column;gap:14px;padding:28px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
-  transition:border-color var(--d-ui) var(--ease),transform var(--d-ui) var(--ease),box-shadow var(--d-ui) var(--ease)}
-.ind-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.ind-ico{width:40px;height:40px;flex:none;color:var(--ink3);transition:color var(--d-ui) var(--ease)}
-.ind-ico [stroke]{stroke-width:1.2px;vector-effect:non-scaling-stroke}
-.ind-tag{padding:5px 10px;border-radius:var(--r-pill);border:1px solid var(--line);font-size:var(--t-xs);color:var(--ink2);white-space:nowrap}
-.ind-card h3{font-size:var(--t-2xl);margin-top:6px}
-.ind-pain{color:var(--ink);font-size:var(--t-lg);line-height:1.45}
-.ind-build{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--line)}
-.ind-build li{position:relative;padding-left:16px;font-size:var(--t-sm);color:var(--ink2)}
-.ind-build li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--red)}
-.ind-proof{margin-top:auto;font-size:var(--t-sm);color:var(--ink)}
-.ind-proof span{display:block;font-size:var(--t-xs);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
-.ind-proof a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line2)}
-.ind-go{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
-  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2);transition:color var(--d-ui) var(--ease)}
-/* the closing card: dashed, invites any other sector */
-.ind-other{grid-column:1/-1;flex-direction:row;align-items:center;gap:20px 28px;flex-wrap:wrap;border-style:dashed;background:transparent;padding-block:24px}   /* full-width closing strip */
-.ind-other h3{margin:0}
-.ind-other .ind-pain{flex:1 1 320px;color:var(--ink2);font-size:var(--t-base)}
-.ind-other .ind-go{margin-left:auto}
-@media (max-width:640px){.ind-other .ind-go{margin-left:0}}
-@media (hover:hover){
-  .ind-card:hover,.ind-card:focus-within{border-color:var(--red);transform:translateY(-4px);box-shadow:var(--shadow)}
-  .ind-card:hover .ind-ico,.ind-card:focus-within .ind-ico{color:var(--red)}
-  .ind-card:hover .ind-go,.ind-card:focus-within .ind-go{color:var(--red);text-decoration-color:var(--red)}
+.ind-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 64px;align-items:end}
+.ind-head h2{margin-top:16px;max-width:15ch}
+.ind-head .lede{max-width:40ch}
+
+.ind-explorer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:start;margin-top:clamp(48px,6vw,88px)}
+
+/* ---- the index: big type rows; the active row turns orange and its line fills ---- */
+.ind-index{border-top:1px solid var(--line)}
+.ind-row{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) 28px;align-items:center;gap:16px;width:100%;padding:22px 0;text-align:left;
+  border-bottom:1px solid var(--line);color:var(--ink3);cursor:pointer;transition:color .45s var(--ease)}
+.ind-row::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.ind-n{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--ink3);transition:color .45s var(--ease)}
+.ind-name{font-family:var(--disp);font-size:clamp(26px,2.6vw,42px);line-height:1.05;letter-spacing:-.02em;transition:transform .5s var(--ease)}
+.ind-arrow{width:24px;height:24px;opacity:0;transform:translateX(-10px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.ind-row:hover{color:var(--ink2)}
+.ind-row.on{color:var(--ink)}
+.ind-row.on::after{transform:scaleX(1)}
+.ind-row.on .ind-n{color:var(--red)}
+.ind-row.on .ind-name{transform:translateX(8px)}
+.ind-row.on .ind-arrow{opacity:1;transform:none;color:var(--red)}
+.ind-row:focus-visible{outline-offset:-2px}
+.ind-row-other{color:var(--ink2)}
+.ind-row-other .ind-name{font-family:var(--sans);font-size:var(--t-lg);letter-spacing:0}
+.ind-row-other .ind-n{color:var(--red);font-size:var(--t-lg)}
+.ind-row-other:hover .ind-arrow{opacity:1;transform:none;color:var(--red)}
+
+/* ---- the spotlight: always-dark card, panes crossfade ---- */
+.ind-stage{position:sticky;top:calc(var(--nav-h) + 24px);display:grid;min-height:560px;border-radius:calc(var(--r-md) * 2);overflow:hidden;
+  background:var(--midnight);color:var(--ink);box-shadow:0 40px 80px -40px rgba(11,11,31,.55)}
+.ind-stage::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;
+  background-image:linear-gradient(var(--hairline) 1px,transparent 1px),linear-gradient(90deg,var(--hairline) 1px,transparent 1px);background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(80% 70% at 70% 30%,black,transparent);mask-image:radial-gradient(80% 70% at 70% 30%,black,transparent)}
+.ind-glow{position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,var(--glow),transparent 65%);opacity:.55;filter:blur(10px);animation:indGlow 9s ease-in-out infinite}
+@keyframes indGlow{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+.ind-pane{grid-area:1/1;position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(24px,3vw,40px);
+  opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .45s var(--ease),transform .6s var(--ease),visibility 0s .45s}
+.ind-pane.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s var(--ease) .08s,transform .7s var(--ease) .08s,visibility 0s}
+.ind-pane-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ind-count{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--dk-ink2);font-variant-numeric:tabular-nums}
+.ind-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:var(--r-pill);border:1px solid var(--dk-line2);font-size:var(--t-xs);color:var(--dk-ink)}
+.ind-tag-ico{width:18px;height:18px;color:var(--red)}
+.ind-art{aspect-ratio:4/3;max-height:260px;width:100%;border:0;background:radial-gradient(50% 55% at 50% 55%,rgba(228,66,42,.18),transparent 70%)}
+.ind-art::before{display:none}
+.ind-pane.on .ind-art .ph-float,.ind-pane.on .ind-art>img{animation:ideaDrift 7s ease-in-out infinite}
+.ind-art.has-media img{object-fit:contain}
+.ind-pain{font-family:var(--disp);font-size:clamp(22px,2vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--dk-ink);max-width:22ch}
+.ind-build{display:flex;flex-wrap:wrap;gap:8px}
+.ind-build li{padding:7px 12px;border-radius:var(--r-pill);background:rgba(255,255,255,.06);border:1px solid var(--dk-line);font-size:var(--t-sm);color:var(--dk-ink)}
+.ind-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap;margin-top:auto;padding-top:20px;border-top:1px solid var(--dk-line)}
+.ind-proof{font-size:var(--t-base);color:var(--dk-ink)}
+.ind-proof span{display:block;font-size:var(--t-xs);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dk-ink2);margin-bottom:4px}
+.ind-proof a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dk-line2)}
+.ind-proof a:hover{text-decoration-color:var(--red)}
+
+/* entrance: rows slide in one by one, the panel rises (motion.js) */
+
+/* ---- phones / tablets: accordion, the panel opens under the chosen row ---- */
+@media (max-width:900px){
+  .ind-head{grid-template-columns:1fr}
+  .ind-explorer{grid-template-columns:1fr;gap:0}
+  .ind-stage{position:relative;top:auto;min-height:0;margin:12px 0 18px}
+  .ind-name{font-size:clamp(22px,6vw,30px)}
+  .ind-art{max-height:200px}
 }
-@media (max-width:1000px){.ind-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.ind-grid{grid-template-columns:1fr}.ind-card{padding:22px}}
+.rm .ind-glow,.rm .ind-pane.on .ind-art .ph-float,.rm .ind-pane.on .ind-art>img{animation:none}

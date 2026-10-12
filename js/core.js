@@ -205,7 +205,7 @@
         '<span class="ph-block w60"></span><span class="ph-block w40"></span><span class="ph-cols"><span></span><span></span><span class="is-off"></span></span>' +
         '<span class="ph-flag">Stalled at pilot</span></span></span>'
     };
-    RM.$$('[data-ph]').forEach(function (f) {
+    RM.renderSlots = function (root) { RM.$$('[data-ph]:not(.ph-done)', root).forEach(function (f) { f.classList.add('ph-done');
       var kind = f.dataset.ph, src = f.dataset.src, alt = RM.esc(f.dataset.alt || '');
       f.classList.add('ph-' + kind);
       if (src) {
@@ -218,7 +218,8 @@
       f.setAttribute('aria-hidden', 'true');
       f.innerHTML = '<span class="ph-art">' + (ART[kind] || '') + '</span>' +
         '<figcaption class="ph-tag"><b>Image slot</b> ' + RM.esc(f.dataset.phLabel || '') + ' · ' + RM.esc(f.dataset.phSize || '') + '</figcaption>';
-    });
+    }); };
+    RM.renderSlots(document);
   })();
 
   /* the big idea, scrubbed by scroll (motion.js calls RM.ideaScrub with f = 0..4):
@@ -244,19 +245,48 @@
     if (!RM.flags.motion) bars.forEach(function (b) { b.style.setProperty('--p', 1); });
   })();
 
-  /* industries grid (RM.INDUSTRIES) + a closing "other industry" card */
+  /* industries explorer: big index on the left, dark spotlight panel on the right.
+     Hover, focus or click an industry to bring its panel forward. Phones: the panel opens under the chosen row. */
   (function () {
-    var g = $('#indGrid'); if (!g || !RM.INDUSTRIES) return;
-    g.innerHTML = RM.INDUSTRIES.map(function (d) {
-      return '<li class="ind-card"><div class="ind-top">' + RM.icon(d.icon, 'ind-ico') + '<span class="ind-tag">' + RM.esc(d.tag) + '</span></div>' +
-        '<h3>' + RM.esc(d.name) + '</h3><p class="ind-pain">' + RM.esc(d.pain) + '</p>' +
-        '<ul class="ind-build">' + d.build.map(function (b) { return '<li>' + RM.esc(b) + '</li>'; }).join('') + '</ul>' +
-        '<p class="ind-proof"><span>Worked with</span> ' + (d.work ? '<a href="#work">' + RM.esc(d.proof) + '</a>' : RM.esc(d.proof)) + '</p>' +
-        '<a class="ind-go" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></li>';
+    var idx = $('#indIndex'), stage = $('#indStage'); if (!idx || !RM.INDUSTRIES) return;
+    var D = RM.INDUSTRIES, n2 = function (i) { return (i < 9 ? '0' : '') + (i + 1); };
+    idx.innerHTML = D.map(function (d, i) {
+      return '<button class="ind-row' + (i ? '' : ' on') + '" role="tab" id="indTab-' + d.id + '" aria-controls="indPane-' + d.id + '" aria-selected="' + !i + '" data-i="' + i + '">' +
+        '<span class="ind-n">' + n2(i) + '</span><span class="ind-name">' + RM.esc(d.name) + '</span>' + RM.icon('arrowRight', 'ind-arrow') + '</button>';
     }).join('') +
-      '<li class="ind-card ind-other">' + RM.icon('indMore', 'ind-ico') + '<h3>Another industry?</h3>' +
-      '<p class="ind-pain">If a process is slow, expensive or done by hand, it is usually worth a call.</p>' +
-      '<a class="ind-go" href="#contact" data-cta="industry-other">Tell us about yours ' + RM.icon('arrowRight', 'arrow') + '</a></li>';
+      '<a class="ind-row ind-row-other" href="#contact" data-cta="industry-other"><span class="ind-n">+</span><span class="ind-name">Another industry? Tell us about yours</span>' + RM.icon('arrowRight', 'ind-arrow') + '</a>';
+    stage.innerHTML = '<span class="ind-glow" aria-hidden="true"></span>' + D.map(function (d, i) {
+      return '<div class="ind-pane' + (i ? '' : ' on') + '" role="tabpanel" id="indPane-' + d.id + '" aria-labelledby="indTab-' + d.id + '">' +
+        '<div class="ind-pane-top"><span class="ind-count">' + n2(i) + ' / ' + n2(D.length - 1) + '</span><span class="ind-tag">' + RM.icon(d.icon, 'ind-tag-ico') + RM.esc(d.tag) + '</span></div>' +
+        '<figure class="ph ind-art" data-ph="render" data-ph-label="' + RM.esc(d.name) + ' illustration" data-ph-size="1200 × 900 · transparent PNG/WebP"' + (d.img ? ' data-src="' + d.img + '"' : '') + ' data-alt=""></figure>' +
+        '<p class="ind-pain">' + RM.esc(d.pain) + '</p>' +
+        '<ul class="ind-build">' + d.build.map(function (b) { return '<li>' + RM.esc(b) + '</li>'; }).join('') + '</ul>' +
+        '<div class="ind-foot"><p class="ind-proof"><span>Worked with</span>' + (d.work ? '<a href="#work">' + RM.esc(d.proof) + '</a>' : RM.esc(d.proof)) + '</p>' +
+        '<a class="btn btn-1 btn-s" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></div></div>';
+    }).join('');
+    var rows = RM.$$('.ind-row[role="tab"]', idx), panes = RM.$$('.ind-pane', stage), cur = 0;
+    var narrow = function () { return innerWidth <= 900; };
+    function place() { /* phones: move the panel right under the active row; desktop: keep it in the right column */
+      var ex = $('#indExplorer');
+      if (narrow()) rows[cur].insertAdjacentElement('afterend', stage); else if (stage.parentNode !== ex) ex.appendChild(stage);
+    }
+    function set(i, focus) {
+      if (i === cur) return; cur = i;
+      rows.forEach(function (r, k) { r.classList.toggle('on', k === i); r.setAttribute('aria-selected', k === i); r.tabIndex = k === i ? 0 : -1; });
+      panes.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+      place(); if (focus) rows[i].focus();
+    }
+    rows.forEach(function (r, k) {
+      r.tabIndex = k ? -1 : 0;
+      r.addEventListener('click', function () { set(k); });
+      r.addEventListener('mouseenter', function () { if (!narrow() && RM.flags.fine) set(k); });
+      r.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); set((cur + d + rows.length) % rows.length, true); }
+      });
+    });
+    place(); addEventListener('resize', place, { passive: true });
+    if (RM.renderSlots) RM.renderSlots(stage);
   })();
 
   /* how we work steps */
