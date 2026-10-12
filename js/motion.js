@@ -156,18 +156,24 @@
     /* 01 AI strategy roadmap plays with the scroll: from the section coming into view until just before 02 takes over */
     /* ...and ends as 02 AI experience starts to show at the bottom of the text column */
     var col = $('#switchCol');
-    function roadEnd() {
+    /* scroll position at which panel k's top sits at `edge` px below the section top (list moving up) */
+    function scrollFor(k, edge) {
       var sr = sw.getBoundingClientRect(), y = gsap.getProperty(list, 'y') || 0;
-      var p1 = panels[1].getBoundingClientRect().top - sr.top - y;            /* 02's top inside the section, list at rest */
-      var edge = col.getBoundingClientRect().top - sr.top + col.clientHeight * .95;
-      var shift = Math.max(0, p1 - edge);
-      return st.start + shift / Math.max(1, span()) * (st.end - st.start);
+      var pk = panels[k].getBoundingClientRect().top - sr.top - y;
+      return st.start + Math.max(0, pk - edge) / Math.max(1, span()) * (st.end - st.start);
     }
+    function colEdge() { return col.getBoundingClientRect().top - sw.getBoundingClientRect().top + col.clientHeight * .95; }
+    function stageMid() { var r = stage.getBoundingClientRect(); return r.top - sw.getBoundingClientRect().top + r.height / 2; }
+    function roadEnd() { return scrollFor(1, colEdge()); }
     var road = RM.setRoadmap ? ScrollTrigger.create({ trigger: sw, start: 'top 85%',
       end: roadEnd, scrub: true, invalidateOnRefresh: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress); } }) : null;
+    /* 02 AI experience checkpoint: from its illustration switching in until 03 starts to show */
+    var ckpt = RM.setCheckpoint ? ScrollTrigger.create({ trigger: sw,
+      start: function () { return scrollFor(1, stageMid()); }, end: function () { return scrollFor(2, colEdge()); },
+      scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setCheckpoint(s.progress); } }) : null;
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * (st.end - st.start) + 2; };
-    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () {
     batch('.track .card');
@@ -176,7 +182,13 @@
     if (!cv) return;
     var road = ScrollTrigger.create({ trigger: cv, start: 'top 95%', end: 'center 30%', scrub: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress, cv); } });
-    return function () { road.kill(); RM.setRoadmap(1, cv); };
+    /* 02 checkpoint plays once when its card is swiped into view */
+    var ck = RM.checkpointCanvases && RM.checkpointCanvases.filter(function (c) { return c.closest('.panel-art'); })[0], ob = null;
+    if (ck && 'IntersectionObserver' in window) {
+      ob = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { ob.disconnect(); RM.playCheckpoint(ck); } }, { root: $('#switchPanels'), threshold: .6 });
+      ob.observe(ck.closest('.panel'));
+    }
+    return function () { road.kill(); RM.setRoadmap(1, cv); if (ob) ob.disconnect(); if (ck) RM.setCheckpoint(1, ck); };
   });
 
   /* ---------- B · how we work: counter + split bars fill as cards arrive ---------- */

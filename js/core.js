@@ -116,10 +116,8 @@
     switch (kind) {
       /* AI strategy: canvas drawn by js/roadmap.js, driven by scroll */
       case 'roadmap': return '<div class="motif motif-roadmap"><canvas class="rmap" role="img" aria-label="Many messy experiments settle into one clean rising line that passes Experiment, Prioritise and Pilot and ends on Scale"></canvas></div>';
-      case 'panels': return '<svg viewBox="0 0 400 400" class="motif">' + panel('px' + (motif.n = (motif.n || 0) + 1)) +
-        '<g class="pop"><rect class="m-panel" x="40" y="50" width="220" height="150" rx="8"/><rect class="m-soft" x="58" y="70" width="90" height="10" rx="5"/><rect class="m-soft" x="58" y="92" width="160" height="8" rx="4"/><rect class="m-soft" x="58" y="108" width="130" height="8" rx="4"/><rect class="m-btn" x="58" y="150" width="70" height="28" rx="4"/></g>' +
-        '<g class="pop"><rect class="m-panel" x="150" y="170" width="210" height="180" rx="8"/><circle class="m-node" cx="176" cy="200" r="10"/><rect class="m-soft" x="196" y="194" width="120" height="12" rx="6"/><rect class="m-panel2" x="230" y="226" width="110" height="34" rx="12"/><rect class="m-soft" x="168" y="276" width="140" height="34" rx="12"/>' + t(176, 337, 'APPROVE · EDIT · REJECT') + '</g>' +
-        '<g class="pop"><rect class="m-panel" x="40" y="250" width="120" height="100" rx="8"/><path class="m-red draw" d="M56 320 L80 300 L100 310 L140 272"/></g><text class="m-txt cv-cap" x="22" y="378">PEOPLE + INTELLIGENT SYSTEMS</text></svg>';
+      /* AI experience: canvas drawn by js/checkpoint.js, driven by scroll */
+      case 'panels': return '<div class="motif motif-roadmap"><canvas class="ckpt" role="img" aria-label="AI actions travel along a track and stop at a human review checkpoint. Most are approved, two are edited and one is sent back to the AI."></canvas></div>';
       case 'graph': return '<svg viewBox="0 0 400 400" class="motif motif-graph">' + panel('gr' + (motif.n = (motif.n || 0) + 1)) +
         '<path class="m-line draw" d="M110 100 L174 184"/><path class="m-line draw" d="M110 200 L166 200"/><path class="m-line draw" d="M110 300 L174 216"/>' +
         '<path class="m-red draw" d="M228 186 L290 136"/><path class="m-red draw" d="M234 200 L290 200"/><path class="m-red draw" d="M228 214 L290 264"/>' +
