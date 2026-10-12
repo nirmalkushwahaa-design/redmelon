@@ -234,7 +234,7 @@
     RM.ideaScrub = function (f) {
       f = Math.max(0, Math.min(3.999, f));
       var k = Math.floor(f), t = f - k, last = k === WORDS.length - 1;
-      if (k !== cur) { cur = k; word(A, k); pics.forEach(function (p, n) { p.classList.toggle('on', n === k); }); }
+      if (k !== cur) { if (cur >= 0 && RM.sfx) RM.sfx('whoosh'); cur = k; word(A, k); pics.forEach(function (p, n) { p.classList.toggle('on', n === k); }); }
       if (!last && k + 1 !== nxt) { nxt = k + 1; word(B, nxt); }
       var outl = last ? 0 : ramp(t, .35, .7), fill = last ? 0 : ramp(t, .72, 1), fade = last ? 0 : ramp(t, .45, .95);
       A.style.opacity = 1 - fade; A.style.transform = 'scale(' + (1 - fade * .04) + ')';
@@ -271,7 +271,7 @@
       if (narrow()) rows[cur].insertAdjacentElement('afterend', stage); else if (stage.parentNode !== ex) ex.appendChild(stage);
     }
     function set(i, focus) {
-      if (i === cur) return; cur = i;
+      if (i === cur) return; cur = i; if (RM.sfx) RM.sfx('note', i);
       rows.forEach(function (r, k) { r.classList.toggle('on', k === i); r.setAttribute('aria-selected', k === i); r.tabIndex = k === i ? 0 : -1; });
       panes.forEach(function (p, k) { p.classList.toggle('on', k === i); });
       place(); if (focus) rows[i].focus();

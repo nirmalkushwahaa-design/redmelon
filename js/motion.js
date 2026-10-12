@@ -253,7 +253,7 @@
     g.innerHTML = txt.split('').map(function (c) { return '<span class="fg-l">' + c + '</span>'; }).join('');
     var ls = $$('.fg-l', g);
     gsap.fromTo(ls, { yPercent: 110 }, { yPercent: 0, duration: 1.2, stagger: .06, ease: E,
-      scrollTrigger: { trigger: g, start: 'top 95%', toggleActions: 'play none none reverse' } });
+      scrollTrigger: { trigger: g, start: 'top 95%', toggleActions: 'play none none reverse', onEnter: function () { if (RM.sfx) RM.sfx('cascade', ls.length); } } });
     if (!RM.flags.fine) return;
     /* each letter leans a little toward the pointer; outer letters move more */
     var to = ls.map(function (l) { return { x: gsap.quickTo(l, 'x', { duration: 1.6, ease: 'power3' }), y: gsap.quickTo(l, 'y', { duration: 1.6, ease: 'power3' }) }; });

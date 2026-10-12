@@ -36,6 +36,12 @@
 .tgl{width:44px;height:44px;flex:none;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--ink2);
   transition:color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
 .tgl:hover{color:var(--ink);border-color:var(--ink)}
+/* sound switch: speaker with a slash when off, sound waves when on */
+.snd .snd-on{display:none}
+.snd.is-on .snd-on{display:block}
+.snd.is-on .snd-off{display:none}
+.snd.is-on{color:var(--red);border-color:var(--red)}
+.snd svg{width:18px;height:18px}
 .tgl svg{width:18px;height:18px}
 .tgl .moon{display:none}
 :root[data-ui="light"] .tgl .moon{display:block}

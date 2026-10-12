@@ -11,6 +11,7 @@
   let step=0;
   function refresh(){if(window.ScrollTrigger)ScrollTrigger.refresh();}
   function show(index,focus=true){
+    if(focus&&RM.sfx)RM.sfx('chime');
     step=index;error.textContent='';
     steps.forEach((el,i)=>el.hidden=i!==step);
     document.querySelectorAll('.brief-progress li').forEach((el,i)=>{
