@@ -175,12 +175,16 @@
     var ckpt = RM.setCheckpoint ? ScrollTrigger.create({ trigger: sw,
       start: function () { return scrollFor(1, stageMid()); }, end: function () { return scrollFor(2, stageMid()) - 60; },   /* runs right up to 03 switching in (slower scrub) */
       scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setCheckpoint(s.progress); } }) : null;
+    /* 03 AI engineering: from its illustration switching in until just before 04 switches in */
+    var obs = RM.setObserve ? ScrollTrigger.create({ trigger: sw,
+      start: function () { return scrollFor(2, stageMid()); }, end: function () { return scrollFor(3, stageMid()) - 60; },
+      scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setObserve(s.progress); } }) : null;
     /* 05 AI automation: from its illustration switching in until the pin releases */
     var auto = RM.setAutomation ? ScrollTrigger.create({ trigger: sw,
       start: function () { return scrollFor(N - 1, stageMid()); }, end: function () { return st.end - 40; },
       scrub: true, invalidateOnRefresh: true, onUpdate: function (s) { RM.setAutomation(s.progress); } }) : null;
     RM.switchScrollFor = function (k) { return st.start + (k / (N - 1)) * listLen() + 2; };
-    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } if (auto) { auto.kill(); RM.setAutomation(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
+    return function () { early.kill(); if (road) { road.kill(); RM.setRoadmap(1); } if (ckpt) { ckpt.kill(); RM.setCheckpoint(1); } if (auto) { auto.kill(); RM.setAutomation(1); } if (obs) { obs.kill(); RM.setObserve(1); } RM.setService(0); ScrollTrigger.removeEventListener('refreshInit', tuck); if (next) next.style.marginTop = ''; art.style.top = ''; sw.classList.remove('is-pinned'); RM.switchScrollFor = null; gsap.set(list, { clearProps: 'transform' }); };
   });
   mm.add('(max-width: 900px)', function () {
     batch('.track .card');
@@ -190,15 +194,15 @@
     var road = ScrollTrigger.create({ trigger: cv, start: 'top 95%', end: 'center 30%', scrub: true,
       onUpdate: function (s) { RM.setRoadmap(s.progress, cv); } });
     /* 02 checkpoint plays once when its card is swiped into view */
-    /* 02 checkpoint and 05 automation play once when their card is swiped into view */
+    /* 02-05 canvas animations play once when their card is swiped into view */
     var inCard = function (list) { return list && list.filter(function (c) { return c.closest('.panel-art'); })[0]; };
-    var ck = inCard(RM.checkpointCanvases), au = inCard(RM.automationCanvases), obs = [];
-    [[ck, RM.playCheckpoint], [au, RM.playAutomation]].forEach(function (pair) {
+    var ck = inCard(RM.checkpointCanvases), ob3 = inCard(RM.observeCanvases), ag = inCard(RM.agentCanvases), au = inCard(RM.automationCanvases), obs = [];
+    [[ck, RM.playCheckpoint], [ob3, RM.playObserve], [ag, RM.playAgent], [au, RM.playAutomation]].forEach(function (pair) {
       var c = pair[0]; if (!c || !('IntersectionObserver' in window)) return;
       var ob = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { ob.disconnect(); pair[1](c); } }, { root: $('#switchPanels'), threshold: .6 });
       ob.observe(c.closest('.panel')); obs.push(ob);
     });
-    return function () { road.kill(); RM.setRoadmap(1, cv); obs.forEach(function (o) { o.disconnect(); }); if (ck) RM.setCheckpoint(1, ck); if (au) RM.setAutomation(1, au); };
+    return function () { road.kill(); RM.setRoadmap(1, cv); obs.forEach(function (o) { o.disconnect(); }); if (ck) RM.setCheckpoint(1, ck); if (au) RM.setAutomation(1, au); if (ob3) RM.setObserve(1, ob3); };
   });
 
   /* ---------- B · how we work: counter + split bars fill as cards arrive ---------- */

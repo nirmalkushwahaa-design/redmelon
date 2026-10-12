@@ -118,31 +118,10 @@
       case 'roadmap': return '<div class="motif motif-roadmap"><canvas class="rmap" role="img" aria-label="Many messy experiments settle into one clean rising line that passes Experiment, Prioritise and Pilot and ends on Scale"></canvas></div>';
       /* AI experience: canvas drawn by js/checkpoint.js, driven by scroll */
       case 'panels': return '<div class="motif motif-roadmap"><canvas class="ckpt" role="img" aria-label="AI actions travel along a track and stop at a human review checkpoint. Most are approved, two are edited and one is sent back to the AI."></canvas></div>';
-      case 'graph': return '<svg viewBox="0 0 400 400" class="motif motif-graph">' + panel('gr' + (motif.n = (motif.n || 0) + 1)) +
-        '<path class="m-line draw" d="M110 100 L174 184"/><path class="m-line draw" d="M110 200 L166 200"/><path class="m-line draw" d="M110 300 L174 216"/>' +
-        '<path class="m-red draw" d="M228 186 L290 136"/><path class="m-red draw" d="M234 200 L290 200"/><path class="m-red draw" d="M228 214 L290 264"/>' +
-        '<g class="pop"><rect class="gr-node" x="30" y="84" width="80" height="32" rx="4"/>' + t(44, 105, 'DOCS') + '</g>' +
-        '<g class="pop"><rect class="gr-node" x="30" y="184" width="80" height="32" rx="4"/>' + t(44, 205, 'DATA') + '</g>' +
-        '<g class="pop"><rect class="gr-node" x="30" y="284" width="80" height="32" rx="4"/>' + t(44, 305, 'APIS') + '</g>' +
-        '<g class="pop"><circle class="gr-core" cx="200" cy="200" r="34"/><text class="m-txt gr-core-t" x="200" y="205" text-anchor="middle">LLM</text></g>' +
-        '<g class="pop"><rect class="gr-node" x="290" y="120" width="88" height="32" rx="4"/>' + t(302, 141, 'AGENTS') + '</g>' +
-        '<g class="pop"><rect class="gr-node" x="290" y="184" width="88" height="32" rx="4"/>' + t(302, 205, 'APPS') + '</g>' +
-        '<g class="pop"><rect class="gr-node" x="290" y="248" width="88" height="32" rx="4"/>' + t(302, 269, 'SYSTEMS') + '</g>' +
-        '<text class="m-txt cv-cap" x="22" y="372">ORCHESTRATED, OBSERVABLE, IN PRODUCTION</text></svg>';
-      case 'loop':
-        var R = 130, C0 = 2 * Math.PI * R, nodes = RM.LOOP.map(function (name, i) {
-          var a = (-90 + i * 60) * Math.PI / 180, x = 200 + R * Math.cos(a), y = 200 + R * Math.sin(a);
-          var approve = name === 'Approve', side = Math.abs(x - 200) > 20;
-          /* side nodes: label beside the dot, outside the ring; top and bottom: above / below */
-          var lx = side ? x + (x > 200 ? 20 : -20) : x, ly = side ? y + 4 : y + (y < 200 ? -20 : 30);
-          var anchor = side ? (x > 200 ? 'start' : 'end') : 'middle';
-          return '<g class="loop-node' + (approve ? ' is-approve' : '') + '"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (approve ? 13 : 10) + '"/>' +
-            t(lx.toFixed(1), ly.toFixed(1), name.toUpperCase(), anchor) + '</g>';
-        }).join('');
-        return '<svg viewBox="0 0 400 400" class="motif motif-loop">' +
-          '<circle class="loop-ring" cx="200" cy="200" r="' + R + '"/>' +
-          '<circle class="loop-prog m-red" cx="200" cy="200" r="' + R + '" transform="rotate(-90 200 200)" stroke-dasharray="' + C0.toFixed(1) + '" stroke-dashoffset="' + C0.toFixed(1) + '" data-len="' + C0.toFixed(1) + '"/>' +
-          nodes + '<text class="m-txt loop-cap" x="200" y="196" text-anchor="middle">AGENT LOOP</text><text class="loop-center" x="200" y="226" text-anchor="middle">Knowledge</text></svg>';
+      /* AI engineering: canvas drawn by js/observe.js, driven by scroll */
+      case 'graph': return '<div class="motif motif-roadmap"><canvas class="obs" role="img" aria-label="Docs, Data and APIs feed the LLM, which serves Agents, Apps and Systems. Data flows while every node shows a live metric; the APIs connection times out, retries and recovers with nothing lost."></canvas></div>';
+      /* Agentic AI: canvas drawn by js/agent.js, driven by RM.setLoop from the switcher */
+      case 'loop': return '<div class="motif motif-roadmap"><canvas class="agent" role="img" aria-label="An agent goes round the loop: knowledge, reason, plan, then it stops at approve until a person approves a refund, then it acts and learns."></canvas></div>';
       /* AI automation: canvas drawn by js/automation.js, driven by scroll */
       case 'conveyor': return '<div class="motif motif-roadmap"><canvas class="auto" role="img" aria-label="Two lanes of Intake, Decide and Act. The manual lane builds queues and finishes few items; the AI lane moves many items and sends exceptions to a person."></canvas></div>';
     }
