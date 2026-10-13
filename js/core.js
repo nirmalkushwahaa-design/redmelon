@@ -378,7 +378,7 @@
      PAGES · v2.0 is multi-page. A "#section" link whose section is not on
      this page goes to the page that holds it (e.g. #contact → contact.html).
      ===================================================================== */
-  RM.ROUTES = { top: 'index.html', idea: 'index.html#idea', services: 'services.html', studio: 'services.html#studio', how: 'services.html#how',
+  RM.ROUTES = { top: './', idea: './#idea', services: 'services.html', studio: 'services.html#studio', how: 'services.html#how',
     start: 'services.html#start', proof: 'clients.html', industries: 'clients.html', work: 'work.html', about: 'about.html',
     contact: 'contact.html', faq: 'contact.html#faq' };
   RM.route = function (scope) {
