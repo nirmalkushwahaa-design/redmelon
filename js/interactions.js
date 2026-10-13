@@ -31,9 +31,8 @@
       a.innerHTML = '<span class="rail-dot" aria-hidden="true"></span><span class="rail-lab" aria-hidden="true">' + s.dataset.rail + '</span>';
       rail.appendChild(a); s._rail = a;
     });
-    var navLinks = $$('.nav-links a'), map = { services: '#services', how: '#how', studio: '#studio', industries: '#industries', work: '#work', about: '#about', faq: '#faq' };
-    function setNav(id) { navLinks.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === map[id]); }); }
-    if (!('IntersectionObserver' in window)) return;
+    /* v2.0: the nav marks the current page (aria-current="page" in the HTML), not the section in view */
+    if (!('IntersectionObserver' in window) || !secs.length) return;
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -44,10 +43,28 @@
           rail.classList.toggle('on-dark', s.classList.contains('zone-dark'));
           rail.classList.toggle('on-light', s.classList.contains('zone-light') && root.getAttribute('data-ui') === 'dark');
         }
-        setNav(s.id);
       });
     }, { rootMargin: '-50% 0px -50% 0px' });
-    secs.concat($$('#faq,#work,#about')).forEach(function (s) { io.observe(s); });
+    secs.forEach(function (s) { io.observe(s); });
+  })();
+
+  /* ---------- phone menu: full-screen sheet with the six pages ---------- */
+  (function () {
+    var btn = $('#menuBtn'), sheet = $('#menu'); if (!btn || !sheet) return;
+    var links = $$('a', sheet);
+    function set(open) {
+      btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      root.classList.toggle('sheet-open', open); sheet.hidden = !open;
+      if (RM.lenis) { if (open) RM.lenis.stop(); else RM.lenis.start(); }
+      if (open) {
+        $('#nav').classList.remove('is-hidden');
+        if (F.motion) gsap.fromTo(links, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .6, stagger: .05, ease: RM.ease });
+        links[0].focus({ preventScroll: true });
+      }
+    }
+    btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) { set(false); btn.focus(); } });
+    addEventListener('resize', function () { if (!narrow() && !sheet.hidden) set(false); }, { passive: true });
   })();
 
   /* ---------- magnetic primary CTAs (fine pointer, motion only, max 8px) ---------- */

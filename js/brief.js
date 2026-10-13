@@ -5,7 +5,9 @@
    ===================================================================== */
 (function(){
   const RM=window.RM;
-  const form=document.getElementById('brief'),steps=[...form.querySelectorAll('.brief-step')];
+  const form=document.getElementById('brief');
+  if(!form)return;                 /* only the Contact page has the brief; other pages link to contact.html */
+  const steps=[...form.querySelectorAll('.brief-step')];
   const back=document.getElementById('brief-back'),next=document.getElementById('brief-next');
   const error=document.getElementById('brief-error'),result=document.getElementById('sent');
   let step=0;

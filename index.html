@@ -40,18 +40,13 @@
 <link rel="stylesheet" href="css/sections/proof.css">
 <link rel="stylesheet" href="css/sections/idea.css">
 <link rel="stylesheet" href="css/sections/services.css">
-<link rel="stylesheet" href="css/sections/how.css">
 <link rel="stylesheet" href="css/sections/studio.css">
-<link rel="stylesheet" href="css/sections/industries.css">
-<link rel="stylesheet" href="css/sections/about.css">
-<link rel="stylesheet" href="css/sections/start.css">
-<link rel="stylesheet" href="css/sections/faq.css">
-<link rel="stylesheet" href="css/sections/contact.css">
+<link rel="stylesheet" href="css/sections/pages.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"Redmelon","url":"https://redmelondesign.com/","logo":"https://redmelondesign.com/assets/logo.svg","description":"AI products, agents and automation for startups and enterprise teams. A human expert makes every call while AI does the volume.","areaServed":[{"@type":"Place","name":"Europe"},{"@type":"Country","name":"United States"}]}
 </script>
 </head>
-<body>
+<body data-page="index">
 
 <!-- 12.0 PRELOADER · pure CSS, always clears itself -->
 <div class="preload" aria-hidden="true">
@@ -63,29 +58,40 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- 12.1 NAV -->
+<!-- NAV (same on every page; the current page is marked with aria-current) -->
 <header class="nav" id="nav">
   <div class="nav-in">
-    <a class="logo" href="#top" aria-label="Redmelon, back to top"><img src="assets/logo.svg" alt="Redmelon" width="144" height="28"></a>
+    <a class="logo" href="#top" aria-label="Redmelon home"><img src="assets/logo.svg" alt="Redmelon" width="144" height="28"></a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#services">What we do</a>
-      <a href="#how">How we work</a>
-      <a href="#studio">Studio</a>
-      <a href="#industries">Industries</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
+      <a href="services.html">Services</a>
+      <a href="clients.html">Clients</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-1 btn-s mag" href="#contact" data-cta="nav"><span class="sheen"></span>Get a call back</a>
+      <a class="btn btn-1 btn-s mag nav-cta" href="#contact" data-cta="nav"><span class="sheen"></span>Get a call back</a>
       <button class="tgl snd" id="snd" type="button" hidden aria-pressed="false" aria-label="Turn sound on"><span class="snd-off" data-icon="soundOff"></span><span class="snd-on" data-icon="soundOn"></span></button>
       <button class="tgl" id="tgl" type="button" aria-label="Switch to light mode">
         <svg class="moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21.5 14.0784C20.3003 14.7189 18.9301 15.0821 17.4751 15.0821C12.7491 15.0821 8.91792 11.2509 8.91792 6.52485C8.91792 5.06986 9.28105 3.69968 9.92163 2.5C5.66765 3.49698 2.5 7.31513 2.5 11.8731C2.5 17.1899 6.8101 21.5 12.1269 21.5C16.6849 21.5 20.503 18.3324 21.5 14.0784Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 2V3.5M12 20.5V22M19.0708 19.0713L18.0101 18.0106M5.98926 5.98926L4.9286 4.9286M22 12H20.5M3.5 12H2M19.0713 4.92871L18.0106 5.98937M5.98975 18.0107L4.92909 19.0714" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
       </button>
+      <button class="tgl menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span class="menu-bars" aria-hidden="true"><i></i><i></i></span></button>
     </div>
   </div>
 </header>
+
+<!-- PHONE MENU -->
+<div class="sheet" id="menu" hidden>
+  <nav class="sheet-links" aria-label="Menu">
+    <a href="index.html" aria-current="page"><span>01</span>Home</a>
+    <a href="services.html"><span>02</span>Services</a>
+    <a href="clients.html"><span>03</span>Clients</a>
+    <a href="work.html"><span>04</span>Work</a>
+    <a href="about.html"><span>05</span>About</a>
+    <a href="contact.html"><span>06</span>Contact</a>
+  </nav>
+  <div class="sheet-foot"><a class="btn btn-1" href="#contact" data-cta="menu"><span class="sheen"></span>Get a call back <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a><a href="mailto:hello@redmelondesign.com">hello@redmelondesign.com</a></div>
+</div>
 
 <nav class="rail" id="rail" aria-label="Page sections"></nav>
 <div class="chip" id="chip" aria-hidden="true"><span></span></div>
@@ -144,13 +150,14 @@
   </div>
 </section>
 
-<!-- 12.5 SERVICES -->
+<!-- WHAT WE DO: the six cards (pinned horizontal track on desktop); details live on services.html -->
 <section class="sec services" id="services" data-rail="Services">
   <div class="track-pin" id="trackPin">
     <div class="wrap sec-head services-head">
       <p class="eyebrow">What we do</p>
       <h2 data-split>Six ways to start, one human expert across all of them</h2>
       <p class="lede">Pick the one closest to your problem. Whichever you choose, the same human expert stays with the work from start to finish.</p>
+      <a class="text-link" href="services.html">See all services <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a>
     </div>
     <!-- glass shape behind the cards; swap the file to change it -->
     <img class="track-glass" src="assets/img/glass-asterisk.webp" alt="" aria-hidden="true" width="378" height="376" loading="lazy" decoding="async">
@@ -158,37 +165,24 @@
       <ol class="track" id="track"></ol>
     </div>
   </div>
+</section>
 
-  <div class="switch" id="switch">
-    <div class="wrap switch-in">
-      <div class="switch-art" aria-hidden="true">
-        <div class="switch-stage" id="switchStage"></div>
-        <span class="switch-count" id="switchCount">01 / 05</span>
-      </div>
-      <div class="switch-col" id="switchCol"><div class="switch-panels" id="switchPanels"></div></div>
-    </div>
-    <div class="switch-dots" id="switchDots" role="tablist" aria-label="Choose a service"></div>
+<!-- SELECTED WORK: two projects; the rest on work.html -->
+<section class="sec work" id="work" data-rail="Work">
+  <div class="wrap">
+    <div class="sec-row"><h2 data-split>Selected work</h2><a class="text-link" href="work.html">See all work <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a></div>
+    <div class="work-grid" id="workGrid" data-limit="2" data-chip-zone="View"></div>
   </div>
 </section>
 
-<!-- HOW WE WORK · six-step timeline; the orange line fills as you scroll -->
-<section class="sec how" id="how" data-rail="How we work">
-  <div class="wrap how-grid">
-    <div class="how-head">
-      <p class="eyebrow"><span class="idea-dot" aria-hidden="true"></span>How we work</p>
-      <h2 data-split>From ambition to impact.</h2>
+<!-- INDUSTRIES STRIP: one link per industry into the explorer on clients.html -->
+<section class="sec ind-band tone-2" id="industries" data-rail="Industries">
+  <div class="wrap">
+    <div class="sec-row">
+      <div class="sec-head"><p class="eyebrow">Industries</p><h2 data-split>AI that fits how your industry works.</h2></div>
+      <a class="text-link" href="clients.html">Explore industries <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a>
     </div>
-    <div class="how-list">
-      <span class="hw-line" aria-hidden="true"><i id="hwFill"></i></span>
-      <ol class="hw-steps" id="hwSteps">
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">01</p><h3 class="hw-t">Discover</h3><p class="hw-d">Understand the business, users and opportunity.</p></li>
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">02</p><h3 class="hw-t">Define</h3><p class="hw-d">Identify where AI can create meaningful value.</p></li>
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">03</p><h3 class="hw-t">Design</h3><p class="hw-d">Create the experience, workflow or product.</p></li>
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">04</p><h3 class="hw-t">Build</h3><p class="hw-d">Engineer the intelligence, agents and technology.</p></li>
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">05</p><h3 class="hw-t">Deploy</h3><p class="hw-d">Connect it to the real business.</p></li>
-        <li class="hw-step"><span class="hw-dot" aria-hidden="true"></span><p class="hw-n">06</p><h3 class="hw-t">Evolve</h3><p class="hw-d">Measure, learn and continuously improve.</p></li>
-      </ol>
-    </div>
+    <ul class="ind-strip" id="indStrip"></ul>
   </div>
 </section>
 
@@ -203,7 +197,7 @@
         <h2 class="studio-h" data-split>AI in <em>motion.</em></h2>
         <p class="studio-sub">Animation and campaign content, made with AI and directed by people.</p>
         <p class="lede">Redmelon Studio makes 2D, 3D and AI animation for brands. AI produces the frames and the variations, and a creative director decides what goes out under your name.</p>
-        <div class="cta-row"><a class="btn btn-1 mag" href="#contact" data-cta="studio"><span class="sheen"></span>Get a call back <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a></div>
+        <div class="cta-row"><a class="btn btn-1 mag" href="#contact" data-cta="studio"><span class="sheen"></span>Get a call back <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a><a class="text-link" href="services.html#studio">More about Studio <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a></div>
       </div>
       <svg class="melon" id="melon" viewBox="0 0 300 300" aria-hidden="true">
         <g id="melonSlice">
@@ -223,117 +217,19 @@
   </div>
 </section>
 
-<!-- INDUSTRIES: pain, what we build, proof, trust tag, per-industry call back -->
-<section class="sec industries" id="industries" data-rail="Industries">
-  <div class="wrap">
-    <div class="ind-head">
-      <div>
-        <p class="eyebrow"><span class="idea-dot" aria-hidden="true"></span>Industries</p>
-        <h2 data-split>AI that fits how your industry works.</h2>
-      </div>
-      <p class="lede">The problems are specific to your sector, so the systems we build are too. Pick yours.</p>
-    </div>
-    <div class="ind-explorer" id="indExplorer">
-      <div class="ind-index" id="indIndex" role="tablist" aria-label="Industries"></div>
-      <div class="ind-stage zone-dark" id="indStage"></div>
-    </div>
+<!-- CTA BAND: closes every page except Contact -->
+<section class="sec cta-band">
+  <div class="wrap cta-band-in">
+    <p class="eyebrow">Your next chapter</p>
+    <h2 class="cta-band-h" data-split>Let’s build <span class="hl">what’s next.</span></h2>
+    <p class="lede">A complex challenge, an early idea, or something that should work better. Tell us what you know and a human expert calls you back.</p>
+    <div class="cta-row"><a class="btn btn-1 mag" href="#contact" data-cta="band"><span class="sheen"></span>Get a call back <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a></div>
   </div>
 </section>
 
-<!-- SELECTED WORK (moved after Studio) -->
-<section class="sec work" id="work">
-  <div class="wrap">
-    <h2 data-split>Selected work</h2>
-    <div class="work-grid" id="workGrid" data-chip-zone="View"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="sec about tone-2" id="about">
-  <div class="wrap about-grid">
-    <div class="about-head">
-      <p class="eyebrow">About</p>
-      <h2 class="about-h" data-split>We're building the company we wanted to work with.</h2>
-    </div>
-    <div class="about-body">
-      <p>A multidisciplinary AI company bringing together strategy, design, engineering and creative technology.</p>
-      <p>We work with ambitious organisations to turn emerging technology into something useful, usable and real.</p>
-    </div>
-  </div>
-  <!-- PHOTO SLOTS: team / workshop / studio -->
-  <div class="wrap about-strip">
-    <figure class="ph about-photo" data-ph="photo" data-src="assets/img/about-workshop.webp" data-alt="The Redmelon team around a table reviewing design work together"></figure>
-    <figure class="ph about-photo" data-ph="photo" data-src="assets/img/about-desk.webp" data-alt="A studio desk with a laptop, sketchbook, prints and coffee"></figure>
-  </div>
-</section>
-
-<!-- 12.9 START HERE -->
-<section class="sec start" id="start" data-rail="Start here">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Start here</p>
-      <h2 data-split>Where are you starting from?</h2>
-    </div>
-    <div class="tiles" id="tiles" data-chip-zone="Open"></div>
-  </div>
-</section>
-
-<!-- 12.10 FAQ -->
-<section class="sec faq tone-2" id="faq">
-  <div class="wrap faq-grid">
-    <div class="faq-side"><h2 data-split>Questions buyers ask us</h2></div>
-    <div class="faq-list" id="faqList"></div>
-  </div>
-</section>
-
-<!-- 12.11 CONTACT · three-step guided brief (restored from v0.2 as-is) -->
-<section class="sec contact" id="contact" data-rail="Contact">
-  <div class="wrap">
-    <div class="brief-layout">
-      <div class="brief-intro">
-        <p class="eyebrow">Your next chapter</p>
-        <h2>Let’s build<br>what’s next.</h2>
-        <p class="brief-lede">A complex challenge. An early idea. Something that should work better. Start with what you know.</p>
-        <div class="brief-orbit" aria-hidden="true"><span>HUMAN</span><i>×</i><span>AI</span></div>
-        <div class="brief-expect"><p class="eyebrow">A conversation, not a pitch</p><p>We’ll explore the challenge, where AI can help, and the decisions that need a person.</p><p class="brief-small">Scope, team and next steps—shaped around your project.</p></div>
-      </div>
-      <div class="brief-shell">
-        <ol class="brief-progress" aria-label="Brief progress"><li aria-current="step"><span>01</span> Your focus</li><li><span>02</span> The project</li><li><span>03</span> About you</li></ol>
-        <form id="brief" novalidate>
-          <section class="brief-step" data-step="0" aria-labelledby="brief-title-0">
-            <p class="brief-kicker">STEP 01 / 03</p><h3 id="brief-title-0" tabindex="-1">What can we help with?</h3><p class="brief-help">Choose one or more. It’s okay if you’re still figuring it out.</p>
-            <fieldset class="service-options"><legend class="brief-sr">Select services</legend>
-              <label><input type="checkbox" name="service" value="Agentic systems"><span>Agentic systems<small>Make workflows work smarter</small></span><b aria-hidden="true">+</b></label>
-              <label><input type="checkbox" name="service" value="AI engineering"><span>AI engineering<small>Turn intelligence into a product</small></span><b aria-hidden="true">+</b></label>
-              <label><input type="checkbox" name="service" value="Enterprise UX"><span>Enterprise UX<small>Build experiences people trust</small></span><b aria-hidden="true">+</b></label>
-              <label><input type="checkbox" name="service" value="Production & media"><span>Production & media<small>Create with purpose, at scale</small></span><b aria-hidden="true">+</b></label>
-              <label class="service-wide"><input type="checkbox" name="service" value="Explore together"><span>Let’s figure it out together</span><b aria-hidden="true">+</b></label>
-            </fieldset>
-          </section>
-          <section class="brief-step" data-step="1" aria-labelledby="brief-title-1" hidden>
-            <p class="brief-kicker">STEP 02 / 03</p><h3 id="brief-title-1" tabindex="-1">Tell us about the project.</h3><p class="brief-help">A few lines are enough to get started.</p>
-            <div class="field"><label for="f-stage">Where it stands today</label><select id="f-stage"><option>An idea — nothing built yet</option><option>A pilot that works in the demo</option><option>A stalled build</option><option>A live system we need to fix</option></select></div>
-            <div class="field"><label for="f-what">What would you like to build or fix? *</label><textarea id="f-what" required placeholder="The challenge, the opportunity, or the outcome you want"></textarea></div>
-            <div class="field"><label for="f-more">Anything else? (optional)</label><input id="f-more" placeholder="Timeline, constraints, or useful context"></div>
-          </section>
-          <section class="brief-step" data-step="2" aria-labelledby="brief-title-2" hidden>
-            <p class="brief-kicker">STEP 03 / 03</p><h3 id="brief-title-2" tabindex="-1">Put a name to the idea.</h3><p class="brief-help">Who should we have the conversation with?</p>
-            <div class="field"><label for="f-name">Name *</label><input id="f-name" required autocomplete="name" placeholder="Your name"></div>
-            <div class="field"><label for="f-email">Work email *</label><input id="f-email" type="email" required autocomplete="email" placeholder="you@company.com"><span class="hint" id="emailHint"></span></div>
-            <div class="field"><label for="f-co">Company *</label><input id="f-co" required autocomplete="organization" placeholder="Company name"></div>
-          </section>
-          <p id="brief-error" role="alert"></p>
-          <div class="brief-actions"><button type="button" id="brief-back" class="brief-back" hidden><span class="arrow arrow-back" data-icon="arrowLeft" aria-hidden="true"></span>Back</button><button class="btn btn-1" type="submit" id="brief-next">Continue <span class="arrow" data-icon="arrowUpRight" aria-hidden="true"></span></button></div>
-          <p class="brief-preview">Preview only—your brief stays on this page and is not sent.</p>
-        </form>
-        <div class="brief-result" id="sent" hidden tabindex="-1"><p class="eyebrow">Ready for a conversation</p><h3>Your brief, at a glance.</h3><p class="brief-help">This is a preview. Nothing has been sent.</p><dl id="brief-summary"></dl><button class="btn btn-2" id="resetForm" type="button">Edit your brief</button></div>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
 
-<!-- 12.12 FOOTER -->
+<!-- FOOTER (same on every page) -->
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -343,10 +239,10 @@
         <p class="foot-heritage">Formerly Redmelon Design. Same team.</p>
       </div>
       <nav class="foot-col" aria-labelledby="fh-1"><h3 class="foot-h" id="fh-1">What we do</h3><ul>
-        <li><a href="#svc-01">AI strategy</a></li><li><a href="#svc-02">AI experience</a></li><li><a href="#svc-03">AI engineering</a></li>
-        <li><a href="#svc-04">Agentic AI</a></li><li><a href="#svc-05">AI automation</a></li><li><a href="#studio">Redmelon Studio</a></li></ul></nav>
+        <li><a href="services.html#svc-01">AI strategy</a></li><li><a href="services.html#svc-02">AI experience</a></li><li><a href="services.html#svc-03">AI engineering</a></li>
+        <li><a href="services.html#svc-04">Agentic AI</a></li><li><a href="services.html#svc-05">AI automation</a></li><li><a href="services.html#studio">Redmelon Studio</a></li></ul></nav>
       <nav class="foot-col" aria-labelledby="fh-2"><h3 class="foot-h" id="fh-2">Company</h3><ul>
-        <li><a href="#about">About</a></li><li><a href="#how">How we work</a></li><li><a href="#industries">Industries</a></li><li><a href="#work">Work</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+        <li><a href="about.html">About</a></li><li><a href="clients.html">Clients</a></li><li><a href="work.html">Work</a></li><li><a href="services.html#how">How we work</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
       <nav class="foot-col" aria-labelledby="fh-3"><h3 class="foot-h" id="fh-3">Socials</h3><ul>
         <li><a href="https://www.linkedin.com/company/redmelon-design" target="_blank" rel="noopener">LinkedIn</a></li>
         <li class="wa-only" hidden><a href="#" id="footWa">WhatsApp</a></li>
@@ -358,7 +254,7 @@
   </div>
 </footer>
 
-<!-- 12.13 WHATSAPP (hidden until WHATSAPP_NUMBER is set) -->
+<!-- WHATSAPP (hidden until WHATSAPP_NUMBER is set) -->
 <div class="wa" id="wa" hidden>
   <div class="wa-panel" id="waPanel" role="dialog" aria-label="Chat with Redmelon" hidden>
     <div class="wa-top">
@@ -388,11 +284,6 @@
 <script src="js/hero.js"></script>
 <script src="js/dither.js"></script>
 <script src="js/interactions.js"></script>
-<script src="js/roadmap.js"></script>
-<script src="js/checkpoint.js"></script>
-<script src="js/observe.js"></script>
-<script src="js/agent.js"></script>
-<script src="js/automation.js"></script>
 <script src="js/sound.js"></script>
 <script src="js/brief.js"></script>
 <script src="js/whatsapp.js"></script>

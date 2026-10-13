@@ -87,7 +87,9 @@
     if (!grid) return;
     if (!reviewWork || !RM.WORK.length) { work.hidden = true; return; }
     if (!C.REVIEW_MODE) RM.$$('.work-need').forEach(function (n) { n.hidden = true; });
-    grid.innerHTML = RM.WORK.map(function (w, i) {
+    /* data-limit="2" on the grid shows only the first projects (home page teaser) */
+    var limit = +grid.dataset.limit || RM.WORK.length;
+    grid.innerHTML = RM.WORK.slice(0, limit).map(function (w, i) {
       var img = w.img
         ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ': ' + RM.esc(w.line) + '" width="756" height="500" loading="lazy" decoding="async">'
         : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
@@ -249,6 +251,47 @@
     });
     place(); addEventListener('resize', place, { passive: true });
     if (RM.renderSlots) RM.renderSlots(stage);
+    /* clients.html#ind-energy (from the home page strip) opens that industry */
+    var m = /^#ind-(.+)$/.exec(location.hash);
+    if (m) D.forEach(function (d, k) { if (d.id === m[1]) set(k); });
+  })();
+
+  /* home page industries strip: one link per industry, into the explorer on the Clients page */
+  (function () {
+    var ul = $('#indStrip'); if (!ul || !RM.INDUSTRIES) return;
+    ul.innerHTML = RM.INDUSTRIES.map(function (d) {
+      return '<li><a class="ind-chip" href="clients.html#ind-' + d.id + '">' + RM.icon(d.icon, 'ind-chip-ico') +
+        '<span>' + RM.esc(d.name) + '</span>' + RM.icon('arrowUpRight', 'arrow') + '</a></li>';
+    }).join('');
+  })();
+
+  /* testimonials (Clients page): real quotes from RM.QUOTES; in review mode, three marked placeholders */
+  (function () {
+    var box = $('#quoteGrid'); if (!box) return;
+    var list = RM.QUOTES.length ? RM.QUOTES : (C.REVIEW_MODE ? [1, 2, 3].map(function () {
+      return { quote: '[Quote: one or two sentences from a client]', name: '[Name]', role: '[Role]', company: '[Company]' }; }) : []);
+    if (!list.length) { box.closest('section').hidden = true; return; }
+    box.innerHTML = list.map(function (q) {
+      return '<figure class="say"><span class="say-mark" aria-hidden="true">“</span><blockquote>' + RM.txt(q.quote) + '</blockquote>' +
+        '<figcaption><b>' + RM.txt(q.name) + '</b><span>' + RM.txt(q.role) + ', ' + RM.txt(q.company) + '</span></figcaption></figure>';
+    }).join('');
+  })();
+
+  /* team (About page): RM.LEADS, roles only until real names and photos arrive */
+  (function () {
+    var ul = $('#team'); if (!ul) return;
+    ul.innerHTML = RM.LEADS.map(function (l) {
+      var ph = l.photo ? '<img src="' + RM.esc(l.photo) + '" alt="" width="400" height="500" loading="lazy">' : '<span class="lead-ph" aria-hidden="true">' + RM.esc(l.mono || '') + '</span>';
+      return '<li class="lead"><div class="lead-img">' + ph + '</div><p class="lead-name">' + RM.txt(l.name) + '</p><p class="lead-role">' + RM.txt(l.role) + '</p></li>';
+    }).join('');
+  })();
+
+  /* beliefs (About page) */
+  (function () {
+    var ol = $('#beliefs'); if (!ol || !RM.BELIEFS) return;
+    ol.innerHTML = RM.BELIEFS.map(function (b, i) {
+      return '<li class="belief"><span class="belief-n">0' + (i + 1) + '</span><h3>' + RM.esc(b.t) + '</h3><p>' + RM.txt(b.d) + '</p></li>';
+    }).join('');
   })();
 
   /* how we work steps */
@@ -330,6 +373,23 @@
       document.head.appendChild(s);
     }
   })();
+
+  /* =====================================================================
+     PAGES · v2.0 is multi-page. A "#section" link whose section is not on
+     this page goes to the page that holds it (e.g. #contact → contact.html).
+     ===================================================================== */
+  RM.ROUTES = { top: 'index.html', idea: 'index.html#idea', services: 'services.html', studio: 'services.html#studio', how: 'services.html#how',
+    start: 'services.html#start', proof: 'clients.html', industries: 'clients.html', work: 'work.html', about: 'about.html',
+    contact: 'contact.html', faq: 'contact.html#faq' };
+  RM.route = function (scope) {
+    RM.$$('a[href^="#"]', scope).forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      if (!id || document.getElementById(id)) return;
+      var to = RM.ROUTES[id] || (/^svc-0\d$/.test(id) ? 'services.html#' + id : /^ind-/.test(id) ? 'clients.html#' + id : null);
+      if (to) a.setAttribute('href', to);
+    });
+  };
+  RM.route(document);
 
   /* production: hide review-only placeholder notes */
   if (!C.REVIEW_MODE) RM.$$('.proof-need,.process-need').forEach(function (n) { n.hidden = true; });

@@ -26,7 +26,7 @@ Serve this folder with any static HTTP server. There is no build step.
 python3 -m http.server 4173
 ```
 
-Then open http://localhost:4173.
+Then open http://localhost:4173 (Home). The other pages are `services.html`, `clients.html`, `work.html`, `about.html` and `contact.html`.
 
 ## Where to edit
 
@@ -35,7 +35,11 @@ Then open http://localhost:4173.
 | Colours, fonts, sizes, radii, easing, durations | `css/tokens.css` (the only place hex values live) |
 | Lists of copy: services, steps, tiles, FAQ, logos, WhatsApp flow | `js/data.js` |
 | Site switches: review mode, WhatsApp number, form endpoint | `RM.CONFIG` in `js/data.js` |
-| Headings, ledes and section copy | `index.html` |
+| Headings, ledes and section copy | the page it sits on: `index.html`, `services.html`, `clients.html`, `work.html`, `about.html`, `contact.html` |
+| Nav, phone menu and footer | repeated in all six pages; change all six together |
+| Which page a `#section` link goes to | `RM.ROUTES` in `js/core.js` |
+| Beliefs, team, testimonials | `RM.BELIEFS`, `RM.LEADS`, `RM.QUOTES` in `js/data.js` |
+| New v2.0 pieces (page header, menu, CTA band, strips) | `css/sections/pages.css` |
 | What changed in each version | `CHANGELOG.md` |
 | One section's styling | `css/sections/<section>.css` |
 | Scroll animation, pins and scrubs | `js/motion.js` |

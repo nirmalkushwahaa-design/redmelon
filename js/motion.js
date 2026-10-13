@@ -26,6 +26,7 @@
 
   /* ---------- A · headings: SplitText line masks rise from 105% ---------- */
   function splitReveal(el, trigger, start, delay) {
+    if (!el) return null;                       /* v2.0: not every page has every heading */
     if (!window.SplitText) {
       return gsap.from(el, { opacity: 0, y: 24, duration: D.reveal, delay: delay || 0, scrollTrigger: trigger === false ? null : { trigger: trigger || el, start: start || START, once: true } });
     }
@@ -39,13 +40,13 @@
   }
 
   /* hero: held until the curtain lifts */
+  /* (home hero, and the page header on every other page: both use #heroH1 + .hero-fade) */
   var heroFade = $$('.hero-fade'), heroH = $('#heroH1');
-  gsap.set(heroFade, { opacity: 0, y: 16 });
-  gsap.set(heroH, { opacity: 0 });
+  if (heroFade.length) gsap.set(heroFade, { opacity: 0, y: 16 });
+  if (heroH) gsap.set(heroH, { opacity: 0 });
   RM.afterPreload(function () {
-    gsap.set(heroH, { opacity: 1 });
-    splitReveal(heroH, false);
-    gsap.to(heroFade, { opacity: 1, y: 0, duration: D.reveal, stagger: D.stagger, delay: .35 });
+    if (heroH) { gsap.set(heroH, { opacity: 1 }); splitReveal(heroH, false); }
+    if (heroFade.length) gsap.to(heroFade, { opacity: 1, y: 0, duration: D.reveal, stagger: D.stagger, delay: .35 });
   });
 
   /* every other H2, except the Studio one which waits for its wipe */
@@ -73,6 +74,10 @@
     } });
   })();
   batch('.lead');
+  batch('.belief');
+  batch('.say');
+  batch('.ind-chip');
+  batch('.detail');
   batch('.brief-shell');
   batch('.switch-stage');
 
@@ -109,12 +114,13 @@
     /* PIN 1 · What we do card track */
     var track = $('#track'), view = $('#trackView');
     function dist() { return Math.max(0, track.scrollWidth - view.clientWidth); }
-    gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
+    if (track) gsap.to(track, { x: function () { return -dist(); }, ease: 'none',
       scrollTrigger: { trigger: '#trackPin', start: 'top top', end: function () { return '+=' + dist(); },
         pin: true, scrub: true, invalidateOnRefresh: true, anticipatePin: 1 } });
 
     /* PIN 2 · service switcher */
-    var sw = $('#switch'), list = $('#switchPanels'), panels = $$('.panel', sw), N = panels.length;
+    var sw = $('#switch'); if (!sw) return;        /* the switcher lives on the Services page only */
+    var list = $('#switchPanels'), panels = $$('.panel', sw), N = panels.length;
     sw.classList.add('is-pinned');
     function span() { return panels[N - 1].offsetTop - panels[0].offsetTop; }
     /* HOLD: extra pinned scroll after 05 is in place, so its animation has room to play (share of the list's scroll) */
@@ -220,11 +226,13 @@
   })();
 
   /* ---------- A · Studio: circular wipe (scrubbed), then the H2 lines rise ---------- */
+  if ($('#studio')) {
   gsap.fromTo('#studioStage', { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(75% at 50% 50%)', ease: 'none',
     scrollTrigger: { trigger: '#studio', start: 'top 95%', end: 'top 15%', scrub: true } });
   splitReveal($('.studio-h'), '#studio', 'top 25%');
   gsap.fromTo('#melonSlice', { rotate: -12 }, { rotate: 10, ease: 'none',
     scrollTrigger: { trigger: '#studio', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
 
   /* ---------- B · the big idea: scrolling moves through THINK · DESIGN · BUILD · MOVE.
      Desktop: the section pins while you scroll. Phones: no pin, the words change as the section passes. ---------- */
@@ -325,7 +333,19 @@
   })();
 
   /* keep measurements honest once fonts and images settle */
-  addEventListener('load', function () { ScrollTrigger.refresh(); });
+  addEventListener('load', function () { ScrollTrigger.refresh(); arrive(); });
+  /* arriving from another page with a #hash (e.g. services.html#svc-03): the pins change the page height,
+     so jump again once they are measured. Service anchors go through RM.goTo (the pinned switcher). */
+  function arrive() {
+    var h = location.hash; if (h.length < 2) return;
+    /* clients.html#ind-energy: core.js already picked the industry; bring the explorer into view */
+    var el = /^#ind-/.test(h) ? document.getElementById('industries') : document.getElementById(h.slice(1));
+    if (!el) return;
+    setTimeout(function () {
+      if (RM.goTo && RM.goTo(h)) return;
+      if (RM.lenis) RM.lenis.scrollTo(el, { offset: -12, immediate: true }); else el.scrollIntoView();
+    }, 60);
+  }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   RM.themeHooks.push(function () { ScrollTrigger.refresh(); });
 })();

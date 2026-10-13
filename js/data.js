@@ -137,6 +137,18 @@ RM.LEADS = [
   { name: 'Studio creative director', role: '2D, 3D and AI animation', photo: '', mono: 'CD' }
 ];
 
+/* About page · what we believe. DRAFT: written from the positioning and FAQ answers already on the site; confirm with the client. */
+RM.BELIEFS = [
+  { t: 'AI does the volume. People make the calls.',
+    d: 'A human expert is involved in every stage of your project and makes every final decision. AI does the repetitive work under their review.' },
+  { t: 'Honest before billable.',
+    d: "If AI isn't the right fix for your problem, you'll hear it from us on the first call, before you spend anything." },
+  { t: 'What we build is yours.',
+    d: 'Once the project is paid, the code, designs and models we build for you belong to you.' },
+  { t: 'Your data stays yours.',
+    d: 'We sign an NDA before we see anything, and we can build and run the system inside your own environment.' }
+];
+
 /* 12.9 · start-here tiles */
 RM.TILES = [
   { id: 'idea',     title: 'We have an idea and nothing built',
