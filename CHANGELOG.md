@@ -10,6 +10,7 @@
   - **Work** (`work.html`): all projects. **About** (`about.html`): photos, four beliefs (draft copy), team (roles only, placeholders).
   - **Contact** (`contact.html`): the three-step brief, email, LinkedIn and markets, then the FAQ.
   - Shared: nav marks the current page; full-screen menu on phones; one footer; a soft cross-fade between pages.
+  - Work page: tag filter strip (All, Website, E-commerce, Product design, Brand identity, Education, Retail, Energy). One tag at a time, animated, with a live project count; `work.html?tag=retail` opens filtered. Tags also show on each project card. Edit tags in `RM.WORK` / `RM.WORK_TAGS` in `js/data.js`.
   - Links to a section on another page are routed automatically (`#contact` → `contact.html`, `#svc-03` → `services.html#svc-03`, `#ind-energy` → `clients.html#ind-energy`).
 
 ## v1.0 (13 Oct 2026), single-page site, frozen in `versions/v1.0-single-page/`

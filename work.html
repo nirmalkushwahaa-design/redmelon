@@ -109,6 +109,11 @@
 <!-- ALL PROJECTS (RM.WORK in js/data.js) -->
 <section class="sec work work-page" id="work">
   <div class="wrap">
+    <!-- FILTER STRIP: tags come from RM.WORK_TAGS; tapping one shows only the projects with it -->
+    <div class="work-filter-row">
+      <div class="work-filter" id="workFilter" role="group" aria-label="Filter projects by tag"></div>
+      <p class="work-count" id="workCount" aria-live="polite"></p>
+    </div>
     <div class="work-grid" id="workGrid" data-chip-zone="View"></div>
   </div>
 </section>

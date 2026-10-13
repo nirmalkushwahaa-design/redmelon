@@ -93,9 +93,54 @@
       var img = w.img
         ? '<img src="' + RM.esc(w.img) + '" alt="' + RM.esc(w.client) + ': ' + RM.esc(w.line) + '" width="756" height="500" loading="lazy" decoding="async">'
         : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
-      return '<article class="work-card"><div class="work-img">' + img + '</div>' +
-        '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p></div></article>';
+      var label = function (id) { var t = (RM.WORK_TAGS || []).filter(function (x) { return x.id === id; })[0]; return t ? t.label : id; };
+      var tags = (w.tags || []).map(function (t) { return '<li>' + RM.esc(label(t)) + '</li>'; }).join('');
+      return '<article class="work-card' + (i % 2 ? ' alt' : '') + '" data-tags="' + RM.esc((w.tags || []).join(' ')) + '"><div class="work-img">' + img + '</div>' +
+        '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
+        (tags ? '<ul class="work-tags" aria-label="Tags">' + tags + '</ul>' : '') + '</div></article>';
     }).join('');
+  })();
+
+  /* work page filter strip: one tag at a time; 'All' clears it. work.html?tag=retail opens filtered. */
+  (function () {
+    var bar = $('#workFilter'), grid = $('#workGrid'); if (!bar || !grid || !RM.WORK_TAGS) return;
+    var cards = RM.$$('.work-card', grid), status = $('#workCount'), cur = 'all', busy = null;
+    var used = RM.WORK_TAGS.filter(function (t) { return cards.some(function (c) { return c.dataset.tags.split(' ').indexOf(t.id) > -1; }); });
+    bar.innerHTML = [{ id: 'all', label: 'All' }].concat(used).map(function (t) {
+      var n = t.id === 'all' ? cards.length : cards.filter(function (c) { return c.dataset.tags.split(' ').indexOf(t.id) > -1; }).length;
+      return '<button type="button" class="wf" data-tag="' + t.id + '" aria-pressed="' + (t.id === 'all') + '">' + RM.esc(t.label) + '<span class="wf-n">' + n + '</span></button>';
+    }).join('');
+    var btns = RM.$$('.wf', bar);
+    function match(c, tag) { return tag === 'all' || c.dataset.tags.split(' ').indexOf(tag) > -1; }
+    function layout() {        /* second, fourth... visible card drops down (the staggered grid) */
+      var k = 0; cards.forEach(function (c) { if (!c.hidden) { c.classList.toggle('alt', k % 2 === 1); k++; } });
+      if (status) status.textContent = k + (k === 1 ? ' project' : ' projects');
+    }
+    function apply(tag, user) {
+      if (tag === cur && user) tag = 'all';
+      cur = tag;
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tag === tag); });
+      try { var u = new URL(location.href); if (tag === 'all') u.searchParams.delete('tag'); else u.searchParams.set('tag', tag); history.replaceState(null, '', u); } catch (e) {}
+      if (user) RM.track('work_filter', { tag: tag });
+      var show = cards.filter(function (c) { return match(c, tag); }), hide = cards.filter(function (c) { return !match(c, tag); });
+      if (!user || !RM.flags.motion) {
+        cards.forEach(function (c) { c.hidden = !match(c, tag); if (window.gsap) gsap.set(c, { clearProps: 'opacity,transform' }); });
+        layout(); if (window.ScrollTrigger) ScrollTrigger.refresh(); return;
+      }
+      if (busy) busy.kill();
+      /* out: cards leaving fade and sink; in: the new set rises in with a stagger */
+      busy = gsap.timeline()
+        .to(cards.filter(function (c) { return !c.hidden; }), { opacity: 0, y: 24, duration: .28, ease: 'power2.in', stagger: .03 })
+        .add(function () {
+          hide.forEach(function (c) { c.hidden = true; }); show.forEach(function (c) { c.hidden = false; });
+          layout(); ScrollTrigger.refresh();
+          RM.$$('.work-img', grid).forEach(function (w) { gsap.set(w, { clipPath: 'inset(0% 0 0 0)' }); });
+        })
+        .fromTo(show, { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: .6, stagger: .08, ease: RM.ease, clearProps: 'transform' });
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.tag, true); if (RM.sfx) RM.sfx('tick'); }); });
+    var start = null; try { start = new URL(location.href).searchParams.get('tag'); } catch (e) {}
+    apply(btns.some(function (b) { return b.dataset.tag === start; }) ? start : 'all', false);
   })();
 
   /* card track glyphs: Hugeicons stroke-rounded (js/icons.js) */

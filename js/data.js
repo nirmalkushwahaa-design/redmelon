@@ -38,10 +38,26 @@ RM.LOGOS = [
 
 /* 12.3 · selected work. Image, client name, one plain line. */
 RM.WORK = [
-  { client: 'IIT Mumbai',           line: 'A digital experience for a premier institute, showcasing its innovation, research and impact.', img: 'assets/img/work-iit.webp' },
-  { client: 'Spaces.in',            line: 'A modern, inspiring e-commerce experience for contemporary homes.',                            img: 'assets/img/work-spaces.webp' },
-  { client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp' },
-  { client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp' }
+  { client: 'IIT Mumbai',           line: 'A digital experience for a premier institute, showcasing its innovation, research and impact.', img: 'assets/img/work-iit.webp',
+    tags: ['website', 'education'] },
+  { client: 'Spaces.in',            line: 'A modern, inspiring e-commerce experience for contemporary homes.',                            img: 'assets/img/work-spaces.webp',
+    tags: ['website', 'ecommerce', 'retail'] },
+  { client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp',
+    tags: ['brand', 'website'] },
+  { client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp',
+    tags: ['website', 'product', 'energy'] }
+];
+
+/* Work page filter strip, in display order ('All' is added automatically).
+   To add a tag: add it here, then put its id in the projects' tags above. */
+RM.WORK_TAGS = [
+  { id: 'website',   label: 'Website' },
+  { id: 'ecommerce', label: 'E-commerce' },
+  { id: 'product',   label: 'Product design' },
+  { id: 'brand',     label: 'Brand identity' },
+  { id: 'education', label: 'Education' },
+  { id: 'retail',    label: 'Retail' },
+  { id: 'energy',    label: 'Energy' }
 ];
 
 /* 12.5 part 1 · card track */
