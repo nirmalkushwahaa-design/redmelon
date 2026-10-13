@@ -56,11 +56,12 @@
 
 /* work page filter strip */
 .work-filter-row{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-bottom:clamp(40px,5vw,64px)}
-.work-filter{display:flex;flex-wrap:wrap;gap:8px}
-.wf{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--line2);border-radius:var(--r-pill);
-  font-size:var(--t-sm);font-weight:500;color:var(--ink2);
+.work-filter{display:flex;flex-wrap:wrap;gap:6px}
+.wf{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:0 12px;border:1px solid var(--line2);border-radius:var(--r-pill);
+  font-size:var(--t-xs);font-weight:500;line-height:1;color:var(--ink2);
   transition:background-color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease),color var(--d-ui) var(--ease)}
-.wf-n{font-size:var(--t-xs);color:var(--ink3);font-variant-numeric:tabular-nums;transition:color var(--d-ui) var(--ease)}
+.wf::after{content:"";position:absolute;inset:-7px -2px}   /* chip looks small, but the tap area stays ~44px tall */
+.wf-n{font-size:11px;color:var(--ink3);font-variant-numeric:tabular-nums;transition:color var(--d-ui) var(--ease)}
 .wf:hover{border-color:var(--ink);color:var(--ink)}
 .wf[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--on-brand)}
 .wf[aria-pressed="true"] .wf-n{color:var(--on-brand-2)}
