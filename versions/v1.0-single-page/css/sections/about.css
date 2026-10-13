@@ -1,0 +1,16 @@
+/* ===== ABOUT (tone --bg2, grey band) ===== */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,8vw,140px);align-items:center}
+.about-h{margin-top:18px;font-size:var(--t-statement);line-height:1;letter-spacing:-.03em;max-width:13ch}
+.about-body{display:flex;flex-direction:column;gap:20px;max-width:46ch}
+.about-body p{font-size:var(--t-lede);line-height:1.7;color:var(--ink2)}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:32px}.about-h{max-width:none}}
+
+/* photo strip: wide team photo + tall desk photo, drifting at different speeds (motion.js) */
+.about-strip{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(12px,2vw,24px);align-items:start;margin-top:clamp(56px,7vw,96px)}
+.about-photo:nth-child(1){aspect-ratio:4/3;margin-top:40px}
+.about-photo:nth-child(2){aspect-ratio:4/5}
+@media (max-width:700px){
+  .about-strip{grid-template-columns:1fr}
+  .about-photo:nth-child(1){margin-top:0}
+}

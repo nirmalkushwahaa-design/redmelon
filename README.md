@@ -1,6 +1,20 @@
 # Redmelon
 
-Redmelon 0.2: the Phase 1 single-page site, built from `REDMELON-MASTER-BUILD-SPEC.md` (v1.0, 5 Oct 2026).
+**Current work: Redmelon v2.0 (in progress)**, the multi-page site: Home, Services, Clients, Work, About and Contact.
+
+## Versions
+
+| Version | What it is | Where to find it |
+|---|---|---|
+| **v2.0** (in progress) | Multi-page site. Home tells a short story; the details move to their own pages. | The project root (this folder) |
+| **v1.0** (13 Oct 2026) | Single-page site with all sections, the five scroll-driven service animations, the industries explorer and the studio showreel. | `versions/v1.0-single-page/` (frozen copy, open its `index.html`), Git tag `v1.0` |
+| v0.2 (29 Sep 2026) | Early single-page build from `REDMELON-MASTER-BUILD-SPEC.md` (v1.0, 5 Oct 2026). | Git tag `v0.2` |
+
+How versions work:
+
+- Work always happens in the project root.
+- When a version is signed off, it is frozen: a copy goes into `versions/vX.Y-short-name/` and the same commit is tagged `vX.Y`. Frozen copies are never edited.
+- Names follow `vMAJOR.MINOR`: a new major number for a new site structure, a new minor number for a round of changes on the same structure.
 
 **One message:** AI does the volume. A human expert is involved in every stage and makes every final decision.
 

@@ -1,0 +1,47 @@
+/* ===== 12.6 HOW WE WORK (.zone-light in dark mode = the flip; --bg2 in light mode) ===== */
+.process{background:var(--bg)}
+:root[data-ui="light"] .process{background:var(--bg2)}
+.process-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.process-count{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--ink3);font-variant-numeric:tabular-nums}
+.process-need{margin-top:16px;font-size:var(--t-sm)}
+.steps{margin-top:48px;display:flex;flex-direction:column}
+
+/* sticky stacked cards: each sticks 16px lower than the one before */
+.step{position:sticky;top:calc(var(--nav-h) + 24px + var(--i,0) * 16px);margin-bottom:24px}
+.step:nth-child(1){--i:0}.step:nth-child(2){--i:1}.step:nth-child(3){--i:2}.step:nth-child(4){--i:3}
+.step-in{position:relative;display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr) minmax(0,.9fr);gap:clamp(20px,3vw,48px);align-items:start;
+  padding:clamp(24px,3.4vw,44px);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);
+  box-shadow:0 -1px 0 var(--hairline),0 18px 40px -24px var(--hairline)}
+.step-n{display:block;font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--ink3)}
+.step.on .step-n{color:var(--text-red)}
+.step-title h3{margin-top:8px;font-size:var(--t-h2);letter-spacing:-.012em}
+.step-rows{display:flex;flex-direction:column;gap:18px}
+.step-row{display:flex;flex-direction:column;gap:4px;max-width:52ch}
+.step-who{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.step-row p:last-child{color:var(--ink2)}
+
+/* AI / Human expert split bar: labels only, no percentages; fills left to right */
+.split{display:flex;gap:4px;align-self:center}
+.split span{position:relative;flex:1;height:36px;border-radius:var(--r-sm);background:var(--bg2);box-shadow:inset 0 0 0 1px var(--track);overflow:hidden;display:flex;align-items:center;padding-inline:12px}
+.split i{position:absolute;inset:0;font-style:normal;display:flex;align-items:center;padding-inline:12px;clip-path:inset(0 0 0 0)}
+.split-ai i{background:var(--line)}
+.split-lead i{background:var(--red)}
+.split b{position:relative;font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.split-ai i b{color:var(--ink)}
+.split-lead i b{color:var(--on-brand)}  /* white on --red = 4.1:1 */
+
+/* step with an illustration: text + split bar on the left, picture on the right */
+.step.has-art .step-in{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-areas:"title art" "rows art" "split art";grid-template-rows:auto auto 1fr;row-gap:28px}
+.step.has-art .step-title{grid-area:title}
+.step.has-art .step-rows{grid-area:rows}
+.step.has-art .split{grid-area:split;align-self:end}
+.step-art{grid-area:art;margin:0;align-self:start}     /* top of the picture = top of '01'; its height sets the card, so the bar's bottom = picture's bottom */
+.step-art img{display:block;width:100%;height:auto}
+@media (max-width:980px){
+  .step.has-art .step-in{grid-template-columns:1fr;grid-template-areas:"title" "rows" "split" "art"}
+  .step-art img{height:auto;width:min(100%,320px)}
+  .step-in{grid-template-columns:1fr}
+  .split{align-self:stretch}
+}
+/* reduced motion: a plain vertical list */
+.rm .step{position:relative;top:auto}

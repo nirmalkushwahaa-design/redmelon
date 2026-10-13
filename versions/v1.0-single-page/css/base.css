@@ -1,0 +1,76 @@
+/* =====================================================================
+   BASE · reset, type, utilities, buttons, .need placeholder
+   ===================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--nav-h);interpolate-size:allow-keywords}
+html:not(.lenis){scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--t-base);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh}
+/* grain: one static noise overlay, never animated */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+h1,h2,h3,h4{font-family:var(--disp);margin:0;font-weight:400;letter-spacing:-.012em;line-height:1.06;text-wrap:balance}
+h2{font-size:var(--t-h2)}
+h3{font-size:var(--t-h3)}
+p{margin:0;text-wrap:pretty}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+img,svg,canvas{display:block;max-width:100%}
+input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--red-deep);color:var(--on-brand)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:var(--r-sm)}
+
+/* ---------- utilities ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:-1px}
+.skip{position:fixed;left:16px;top:-80px;z-index:400;background:var(--red-deep);color:var(--on-brand);padding:12px 18px;border-radius:var(--r-sm);font-weight:600;transition:top var(--d-ui) var(--ease)}
+.skip:focus{top:16px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+.sec{position:relative;padding-block:var(--sec-pad);background:var(--bg);color:var(--ink)}
+.tone-2{background:var(--bg2)}
+.sec-head{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.lede{font-size:var(--t-lede);line-height:1.65;color:var(--ink2);max-width:58ch}
+.body{max-width:64ch;color:var(--ink2)}
+.link{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.link:hover{text-decoration-thickness:2px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:6px 12px;border:1px solid var(--line);border-radius:var(--r-pill);font-size:var(--t-sm);color:var(--ink2)}
+
+/* missing content stays visible in review */
+.need{outline:1px dashed var(--text-red);outline-offset:1px;padding:0 4px;font-style:italic;color:var(--text-red);border-radius:2px}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:13px 24px;
+  border-radius:var(--r-sm);font-size:var(--t-sm);font-weight:600;letter-spacing:.03em;white-space:nowrap;overflow:hidden;
+  transition:background-color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease),color var(--d-ui) var(--ease)}
+.btn-1{background:var(--red-deep);color:var(--on-brand)}
+.btn-1 .sheen{position:absolute;inset:0;pointer-events:none;transform:translateX(-120%);
+  background:linear-gradient(110deg,transparent 25%,var(--sheen) 50%,transparent 75%)}
+.btn-1:hover .sheen{transition:transform var(--d-reveal) var(--ease);transform:translateX(120%)}
+.btn-ghost{border:1px solid var(--line2);color:var(--ink)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--red);color:var(--text-red)}
+.btn-s{min-height:44px;padding:10px 18px}
+.arrow{display:inline-block;transition:transform var(--d-ui) var(--ease)}
+.btn:hover .arrow,a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
+/* arrows are Hugeicons (stroke rounded) SVGs, sized to the text they sit in */
+svg.arrow{width:1.15em;height:1.15em;flex:none;vertical-align:-.22em}
+button:hover .arrow-back{transform:translateX(-4px)}
+.text-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:var(--t-sm);font-weight:600;color:var(--ink);
+  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2)}
+.text-link:hover{text-decoration-color:var(--ink)}
+.mag{will-change:transform}
+
+/* ---------- touch: no hover lifts ---------- */
+@media (hover:none){ .btn-1:hover .sheen{transform:translateX(-120%)} }
+
+/* ---------- reduced motion: final state, no transitions ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* SplitText line masks: leave room for descenders (g, y, p) so they aren't clipped */
+[data-split]>div{padding-bottom:.14em;margin-bottom:-.14em}

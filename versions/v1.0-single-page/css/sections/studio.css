@@ -1,0 +1,34 @@
+/* ===== 12.7 REDMELON STUDIO (.zone-dark, signature moment) ===== */
+.studio{position:relative;background:var(--bg)}
+.studio-stage{position:relative;min-height:100svh;display:flex;align-items:center;background:var(--art-0);color:var(--ink);overflow:hidden}
+.motion .studio-stage{clip-path:circle(0% at 50% 50%)}
+.studio-stage .dither{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.studio-shade{position:absolute;inset:0;background:linear-gradient(90deg,var(--scrim) 0,var(--scrim-mid) 50%,var(--scrim-low) 100%)}
+.studio-in{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center;padding-block:140px 160px}
+.studio-h{margin-top:18px;font-size:var(--t-display);line-height:.98;letter-spacing:-.03em}
+.studio-h em{font-style:normal;color:var(--art-3)}
+.studio-sub{margin-top:22px;font-family:var(--disp);font-size:var(--t-2xl);line-height:1.25;max-width:26ch}
+.studio .lede{margin-top:18px;color:var(--ink2)}
+.melon{width:100%;max-width:360px;justify-self:center;overflow:visible}
+/* showreel slot: full row under the copy and the melon */
+.studio-reel{grid-column:1/-1;width:100%;aspect-ratio:16/9;margin-top:24px;border-color:var(--dk-line)}
+.melon-flesh{fill:var(--red)}
+.melon-pith{fill:none;stroke:var(--dk-ink);stroke-width:10;opacity:.9}
+.melon-rind{fill:none;stroke:var(--rind);stroke-width:12}
+.melon-seeds{fill:var(--art-0)}
+#melonSlice{transform-box:fill-box;transform-origin:50% 30%}
+
+.ticker{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px 0;border-top:1px solid var(--line);background:var(--backdrop);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}
+.ticker-track{display:flex;width:max-content;animation:marquee 48s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:flex;align-items:center;gap:48px;padding-right:48px;font-family:var(--disp);font-size:var(--t-ticker);white-space:nowrap;color:var(--ink)}
+.ticker-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink3)}
+.rm .ticker-track{animation:none}
+
+@media (max-width:900px){
+  .studio-in{grid-template-columns:1fr;padding-block:120px 140px}
+  .melon{max-width:200px;justify-self:start;order:-1}
+  .studio-reel{margin-top:8px}
+  .studio-shade{background:linear-gradient(180deg,var(--scrim-mid) 0,var(--scrim) 60%)}
+}

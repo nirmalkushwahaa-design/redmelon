@@ -1,0 +1,219 @@
+/* =====================================================================
+   COMPONENTS · preloader, nav, rail, cursor chip, form fields, dots,
+   WhatsApp widget, footer, view transition
+   ===================================================================== */
+
+/* ---------- preloader: pure CSS, clears itself with or without JS ---------- */
+.preload{position:fixed;inset:0;z-index:var(--z-preload);display:grid;place-items:center;background:var(--bg);
+  clip-path:inset(0 0 0 0);pointer-events:none;
+  animation:curtain var(--d-wipe) var(--ease) var(--d-preload) forwards}
+.preload-in{display:grid;justify-items:center;gap:22px}
+.preload-mark{height:34px;width:auto;animation:pre-mark var(--d-reveal) var(--ease) both}
+.preload-bar{display:block;width:132px;height:2px;background:var(--line);overflow:hidden;border-radius:2px}
+.preload-bar i{display:block;height:100%;background:var(--red);transform-origin:left;transform:scaleX(0);
+  animation:pre-fill var(--d-preload) var(--ease) forwards}
+@keyframes curtain{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
+@keyframes pre-mark{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pre-fill{to{transform:scaleX(1)}}
+.no-preload .preload{display:none}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:var(--z-nav);padding-top:env(safe-area-inset-top,0px);
+  border-bottom:1px solid transparent;
+  transition:background-color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease),transform var(--d-ui) var(--ease)}
+.nav.is-stuck{background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom-color:var(--line);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%)}
+.nav.is-hidden{transform:translateY(-100%)}
+.nav-in{display:flex;align-items:center;gap:24px;max-width:var(--max);margin:0 auto;padding:12px var(--gut);min-height:var(--nav-h)}
+.logo{display:flex;align-items:center;min-height:44px}
+.logo img{height:28px;width:auto}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:var(--t-sm);font-weight:500;color:var(--ink2);transition:color var(--d-ui) var(--ease)}
+.nav-links a::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--d-ui) var(--ease)}
+.nav-links a:hover,.nav-links a.on{color:var(--ink)}
+.nav-links a.on::after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.tgl{width:44px;height:44px;flex:none;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--ink2);
+  transition:color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
+.tgl:hover{color:var(--ink);border-color:var(--ink)}
+/* sound switch: speaker with a slash when off, sound waves when on */
+.snd .snd-on{display:none}
+.snd.is-on .snd-on{display:block}
+.snd.is-on .snd-off{display:none}
+.snd.is-on{color:var(--red);border-color:var(--red)}
+.snd svg{width:18px;height:18px}
+.tgl svg{width:18px;height:18px}
+.tgl .moon{display:none}
+:root[data-ui="light"] .tgl .moon{display:block}
+:root[data-ui="light"] .tgl .sun{display:none}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .nav-actions{margin-left:auto}
+}
+@media (max-width:380px){
+  .nav-in{gap:10px}
+  .logo img{height:22px}
+  .nav-actions .btn{padding-inline:14px}
+}
+
+/* ---------- side rail (8 entries) ---------- */
+.rail{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:var(--z-rail);display:flex;flex-direction:column;gap:2px}
+.rail a{display:flex;align-items:center;gap:10px;min-height:24px;min-width:24px;padding:0 0 0 8px;opacity:.5;transition:opacity var(--d-ui) var(--ease)}
+.rail a:hover,.rail a[aria-current="true"]{opacity:1}
+.rail-dot{width:7px;height:7px;border-radius:50%;background:var(--ink3);flex:none;transition:background-color var(--d-ui) var(--ease),box-shadow var(--d-ui) var(--ease)}
+.rail a[aria-current="true"] .rail-dot{background:var(--red);box-shadow:0 0 0 4px var(--redSoft)}
+.rail-lab{font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);white-space:nowrap;opacity:0;transform:translateX(-4px);transition:opacity var(--d-ui) var(--ease),transform var(--d-ui) var(--ease)}
+/* only the active entry (and hovered/focused ones) show their label, so labels never sit on content */
+.rail a[aria-current="true"] .rail-lab,.rail a:hover .rail-lab,.rail a:focus-visible .rail-lab{opacity:1;transform:none}
+.rail.on-dark{--ink3:var(--dk-ink2);--ink2:var(--dk-ink2)}
+.rail.on-light{--ink3:var(--line2);--ink2:var(--midnight)}
+@media (max-width:1439px){.rail-lab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+@media (max-width:1180px){.rail{display:none}}
+
+/* ---------- context cursor chip (pointer only) ---------- */
+.chip{position:fixed;left:0;top:0;z-index:var(--z-cursor);pointer-events:none;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;
+  background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:var(--t-xs);font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  transform:scale(0);transition:transform var(--d-ui) var(--ease);will-change:transform,left,top}
+.chip.on{transform:scale(1)}
+@media (hover:none){.chip{display:none}}
+.rm .chip{display:none}
+
+/* ---------- carousel dots ---------- */
+.dot{width:24px;height:24px;display:grid;place-items:center;border-radius:50%}
+.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--track);transition:background-color var(--d-ui) var(--ease),transform var(--d-ui) var(--ease)}
+.dot.on::before{background:var(--red);transform:scale(1.2)}
+
+/* ---------- form fields ---------- */
+.field{position:relative;display:flex;flex-direction:column;gap:6px;margin-bottom:16px;min-width:0}
+.field label{font-size:var(--t-sm);font-weight:500;color:var(--ink)}
+.req{color:var(--ink3)}
+.field input,.field select{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line2);border-radius:var(--r-sm);
+  font-size:var(--t-base);color:var(--ink);
+  /* focus line: a red bar that draws from the left */
+  background:linear-gradient(var(--red),var(--red)) left bottom/0 2px no-repeat,var(--surface);
+  transition:border-color var(--d-ui) var(--ease),background-size var(--d-ui) var(--ease)}
+.field input::placeholder{color:var(--ink3)}
+.field select{appearance:none;-webkit-appearance:none;padding-right:40px;
+  background:linear-gradient(var(--red),var(--red)) left bottom/0 2px no-repeat,
+    linear-gradient(45deg,transparent 50%,var(--ink2) 50%) calc(100% - 20px) 50%/5px 5px no-repeat,
+    linear-gradient(135deg,var(--ink2) 50%,transparent 50%) calc(100% - 15px) 50%/5px 5px no-repeat,var(--surface)}
+.field :is(input,select):focus{outline:none;border-color:var(--ink);background-size:100% 2px,5px 5px,5px 5px}
+.field :is(input,select):focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.field.bad :is(input,select){border-color:var(--text-red)}
+.hint{font-size:var(--t-xs);color:var(--ink3)}
+.hint:empty,.err:empty{display:none}
+.err{font-size:var(--t-sm);color:var(--text-red)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.field-row{grid-template-columns:1fr}}
+
+/* ---------- WhatsApp widget ---------- */
+.wa{position:fixed;right:20px;bottom:20px;z-index:var(--z-wa);display:flex;flex-direction:column;align-items:flex-end;gap:12px;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.wa-fab{width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:var(--shadow);
+  transition:transform var(--d-ui) var(--ease)}
+.wa-fab:hover{transform:scale(1.06)}
+.wa-fab svg{width:28px;height:28px;color:var(--on-brand)}
+@media (max-width:560px){.wa{right:14px;bottom:14px}.wa-fab{width:52px;height:52px}}
+.wa-panel{width:min(348px,calc(100vw - 28px));background:var(--surface);border:1px solid var(--line2);border-radius:var(--r-md);overflow:hidden;
+  box-shadow:var(--shadow);transform-origin:bottom right}
+.wa-panel.opening{animation:wa-in var(--d-ui) var(--ease) both}
+@keyframes wa-in{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.wa-top{display:flex;align-items:center;gap:11px;padding:14px 16px;background:var(--wa-deep);color:var(--on-brand)}
+.wa-av{width:36px;height:36px;border-radius:50%;background:var(--sheen);display:grid;place-items:center;font-family:var(--disp)}
+.wa-t1{font-weight:600;font-size:var(--t-sm);line-height:1.2}
+.wa-t2{font-size:var(--t-xs);opacity:.9}
+.wa-x{margin-left:auto;width:44px;height:44px;font-size:var(--t-2xl);line-height:1;color:var(--on-brand)}
+.wa-body{display:flex;flex-direction:column;gap:9px;max-height:320px;overflow-y:auto;padding:16px;background:var(--bg2)}
+.wa-msg{max-width:86%;padding:10px 13px;border-radius:var(--r-md);font-size:var(--t-sm);line-height:1.5}
+.wa-in{align-self:flex-start;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.wa-out{align-self:flex-end;background:var(--wa);color:var(--wa-ink);font-weight:500}
+.wa-opts{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--line);background:var(--surface)}
+.wa-opt{min-height:44px;padding:8px 14px;border:1px solid var(--line2);border-radius:var(--r-pill);font-size:var(--t-sm);color:var(--ink);transition:border-color var(--d-ui) var(--ease)}
+.wa-opt:hover{border-color:var(--ink)}
+.wa-opt.go{background:var(--wa);border-color:var(--wa);color:var(--wa-ink);font-weight:600}
+
+/* ---------- footer: brand + four link columns, giant faded wordmark ---------- */
+.foot{position:relative;background:var(--bg);color:var(--ink);padding:clamp(64px,7vw,104px) 0 0;border-top:1px solid var(--line);overflow:hidden}
+.foot-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px;align-items:start}
+.foot-logo{height:28px;width:auto}
+.foot-copy{margin-top:20px;font-size:var(--t-sm);color:var(--ink2)}
+.foot-heritage{margin-top:8px;font-size:var(--t-sm);color:var(--ink3);max-width:34ch}
+.foot .foot-h{font-family:var(--sans);font-size:var(--t-sm);font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink);margin-bottom:18px}
+.foot li{font-size:var(--t-sm);color:var(--ink2);margin-bottom:10px}
+.foot li a{display:inline-flex;align-items:center;min-height:28px;transition:color var(--d-ui) var(--ease)}
+.foot li a:hover{color:var(--ink)}
+/* the giant wordmark fades out toward the bottom; static, never animated */
+.foot-giant{margin:clamp(56px,7vw,110px) 0 0;font-family:var(--disp);font-size:clamp(72px,17vw,250px);line-height:.8;letter-spacing:-.04em;
+  text-align:center;white-space:nowrap;user-select:none;pointer-events:none;padding-bottom:.06em;
+  background:linear-gradient(180deg,var(--line) 0%,var(--line) 35%,transparent 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* letters rise from below as the footer arrives, then drift slowly with the pointer (motion.js) */
+.foot-giant{overflow:hidden}
+.foot-giant .fg-l{display:inline-block;background:inherit;-webkit-background-clip:text;background-clip:text;will-change:transform}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+@media (max-width:340px){.foot-grid{grid-template-columns:1fr}}
+
+/* ---------- theme view transition ---------- */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+
+/* =====================================================================
+   IMAGE SLOTS (.ph) · designed placeholders until the real files land.
+   Swap: add data-src (and data-alt) on the <figure>; the art and tag disappear.
+   ===================================================================== */
+.ph{position:relative;margin:0;overflow:hidden;border-radius:var(--r-md);border:1px solid var(--line);
+  background:radial-gradient(60% 60% at 50% 45%,var(--redSoft),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg2))}
+.ph::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.8;
+  background-image:linear-gradient(var(--hairline) 1px,transparent 1px),linear-gradient(90deg,var(--hairline) 1px,transparent 1px);background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,black,transparent 75%);mask-image:radial-gradient(circle at 50% 50%,black,transparent 75%)}
+.ph.has-media{background:none;border:0}
+.ph.has-media::before{display:none}
+.ph>img,.ph>video{display:block;width:100%;height:100%;object-fit:cover}
+.ph-art{position:absolute;inset:0;display:grid;place-items:center}
+.ph-tag{position:absolute;left:12px;bottom:12px;z-index:2;max-width:calc(100% - 24px);padding:6px 10px;border-radius:var(--r-pill);
+  font-size:11px;line-height:1.3;letter-spacing:.02em;color:var(--ink2);background:color-mix(in srgb,var(--surface) 86%,transparent);border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ph-tag b{color:var(--text-red);font-weight:600;margin-right:4px}
+
+/* render: AI core cube with chips, floating */
+.ph-render{border-style:dashed;background:radial-gradient(50% 50% at 50% 55%,var(--redSoft),transparent 72%)}
+.ph-render::before{opacity:.5}
+.ph-glow{position:absolute;left:50%;top:55%;width:46%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,var(--glow),transparent 65%);filter:blur(24px);opacity:.55;animation:phPulse 4.8s ease-in-out infinite}
+.ph-float{display:block;width:74%;animation:phFloat 6s ease-in-out infinite}
+.ph-svg{display:block;width:100%;height:auto;overflow:visible}
+.ph-body{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+.ph-dome{fill:var(--red)}
+.ph-star{fill:var(--red)}
+.ph-chip{fill:var(--surface);stroke:var(--line);stroke-width:1.5;animation:phFloat 5s ease-in-out infinite}
+.ph-chip.c2{animation-delay:-1.6s}.ph-chip.c3{animation-delay:-3.2s}
+.ph-wire{fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:4 5;animation:phWire 1.6s linear infinite;opacity:.7}
+
+/* photo: quiet frame with an image icon */
+.ph-photo .ph-icon{width:56px}
+.ph-line{fill:none;stroke:var(--line2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ph-dot{fill:var(--red)}
+
+/* video: play button with a slow pulse */
+.ph-video{background:radial-gradient(40% 50% at 50% 50%,var(--redSoft),transparent 70%),linear-gradient(160deg,var(--surface2),var(--bg))}
+.ph-play{position:relative;z-index:1;display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--red);color:var(--on-brand);
+  box-shadow:0 0 0 0 var(--glow);animation:phRing 2.6s var(--ease) infinite}
+.ph-play svg{width:30px;height:30px;fill:currentColor;margin-left:4px}
+
+/* screen: a half-built dashboard with a warning flag */
+.ph-browser{position:relative;width:min(78%,760px);border-radius:10px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;animation:phFloat 7s ease-in-out infinite}
+.ph-bar{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.ph-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.ph-page{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px}
+.ph-block{display:block;height:12px;border-radius:6px;background:var(--line)}
+.ph-block.w60{width:60%}.ph-block.w40{width:40%;opacity:.7}
+.ph-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.ph-cols span{height:clamp(54px,8vw,110px);border-radius:8px;background:var(--bg2);border:1px solid var(--line)}
+.ph-cols .is-off{border-style:dashed;background:none}
+.ph-flag{position:absolute;right:22px;top:18px;padding:5px 10px;border-radius:var(--r-pill);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--on-brand);background:var(--red);animation:phBlink 2.4s ease-in-out infinite}
+
+@keyframes phFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes phPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(.92)}50%{opacity:.7;transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes phWire{to{stroke-dashoffset:-18}}
+@keyframes phRing{0%{box-shadow:0 0 0 0 var(--glow)}70%,100%{box-shadow:0 0 0 22px transparent}}
+@keyframes phBlink{0%,100%{opacity:1}50%{opacity:.55}}
+.rm .ph *{animation:none!important}

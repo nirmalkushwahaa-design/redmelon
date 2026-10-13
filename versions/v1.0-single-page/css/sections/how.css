@@ -1,0 +1,24 @@
+/* ===== HOW WE WORK · six-step timeline (white band) ===== */
+.how{background:var(--bg)}
+.how-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.how-head{position:sticky;top:calc(var(--nav-h) + 32px)}
+.how-head h2{margin-top:16px;max-width:12ch}
+.how-list{position:relative;padding-left:clamp(36px,4vw,52px)}
+/* the track and its orange fill (scaleY driven by scroll in motion.js) */
+.hw-line{position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line)}
+.hw-line i{position:absolute;inset:0;background:var(--red);transform-origin:top;transform:scaleY(var(--hw,1))}
+.hw-step{position:relative;padding:28px 0 36px;border-bottom:1px solid var(--line)}
+.hw-step:last-child{border-bottom:0}
+.hw-dot{position:absolute;left:calc(clamp(36px,4vw,52px) * -1 - 8px);top:34px;width:17px;height:17px;border-radius:50%;
+  background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--line2);transition:background-color var(--d-ui) var(--ease),box-shadow var(--d-ui) var(--ease)}
+.hw-n{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--ink3);transition:color var(--d-ui) var(--ease)}
+.hw-t{margin-top:10px;font-size:clamp(40px,4.8vw,76px);letter-spacing:-.03em;line-height:1;color:var(--ink3);transition:color .5s var(--ease)}
+.hw-d{margin-top:16px;font-size:var(--t-lg);color:var(--ink2)}
+/* reached steps */
+.hw-step.on .hw-dot,html:not(.motion) .hw-dot{background:var(--red);box-shadow:0 0 0 6px var(--redSoft)}
+.hw-step.on .hw-n,html:not(.motion) .hw-n{color:var(--red)}
+.hw-step.on .hw-t,html:not(.motion) .hw-t{color:var(--ink)}
+@media (max-width:900px){
+  .how-grid{grid-template-columns:1fr}
+  .how-head{position:static}
+}

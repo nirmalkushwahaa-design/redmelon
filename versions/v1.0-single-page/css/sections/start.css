@@ -1,0 +1,33 @@
+/* ===== 12.9 START HERE · expanding tiles (tone --bg2) ===== */
+.start{background:var(--bg)}   /* white band */
+.tiles{display:flex;gap:12px;margin-top:48px;height:440px}
+.tile{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);
+  color:var(--ink);overflow:hidden;transition:flex var(--d-reveal) var(--ease),background-color var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
+.tile-head{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:0;padding:24px;text-align:left;min-height:44px}
+.tile-n{position:absolute;top:22px;left:24px;font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--ink3)}
+.tile-t{font-family:var(--disp);font-size:var(--t-2xl);line-height:1.15;max-width:14ch}
+.tile-plus{position:absolute;top:16px;right:16px;width:32px;height:32px;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;
+  transition:transform var(--d-ui) var(--ease),border-color var(--d-ui) var(--ease)}
+.tile-body{position:relative;z-index:1;display:grid;grid-template-rows:0fr;padding:0 24px;transition:grid-template-rows var(--d-reveal) var(--ease),padding var(--d-reveal) var(--ease)}
+.tile-inner{min-height:0;overflow:hidden;padding:4px}
+.tile-body p{color:var(--dk-ink2);max-width:34ch}
+.tile-body .btn{margin-top:18px}
+.tile-glow{position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:0;transition:opacity var(--d-reveal) var(--ease)}
+/* hover only previews the border */
+@media (hover:hover){.tile:not(.open):hover{border-color:var(--line2)}}
+/* open tile */
+.tile.open{flex:2.6;background:var(--midnight);border-color:var(--midnight);color:var(--dk-ink)}
+.tile.open .tile-head{flex:1 1 auto;justify-content:flex-start;padding-top:64px}
+.tile.open .tile-n{color:var(--art-3)}
+.tile.open .tile-plus{transform:rotate(45deg);border-color:var(--dk-line2)}
+.tile.open .tile-body{grid-template-rows:1fr;padding-bottom:24px}
+.tile.open .tile-glow{opacity:1}
+
+/* mobile: a stacked accordion */
+@media (max-width:900px){
+  .tiles{flex-direction:column;height:auto}
+  .tile,.tile.open{flex:none}
+  .tile-head,.tile.open .tile-head{padding:56px 20px 20px}
+  .tile-n{left:20px}
+  .tile-body{padding-inline:20px}
+}

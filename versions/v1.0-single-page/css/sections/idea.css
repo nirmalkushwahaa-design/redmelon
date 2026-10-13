@@ -1,0 +1,41 @@
+/* ===== THE BIG IDEA · one huge word at a time (Think · Design · Build · Move) ===== */
+.idea{background:var(--bg)}
+.idea-eyebrow{gap:12px}
+.idea-dot{width:7px;height:7px;border-radius:50%;background:var(--red)}
+.idea-h{margin-top:18px;font-size:var(--t-h2);max-width:14ch}
+/* the word: two stacked layers (solid current word, outlined next word) crossfaded by scroll */
+.idea-word{display:grid;margin-top:clamp(36px,4.5vw,72px);font-family:var(--disp);font-size:min(var(--t-display),9.5vw);   /* same size as the hero headline */
+  line-height:.8;letter-spacing:-.045em;padding-bottom:.04em;white-space:nowrap}
+.idea-l{grid-area:1/1;display:flex;align-items:flex-end;transform-origin:left bottom;will-change:opacity,transform}
+.idea-a{color:var(--ink)}
+.idea-b{--fill:0;opacity:0;color:color-mix(in srgb,var(--ink) calc(var(--fill) * 100%),transparent);-webkit-text-stroke:1.5px var(--line2)}
+.idea-stop{flex:none;width:.2em;height:.2em;margin:0 0 .01em .05em;border-radius:50%;background:var(--red)}
+.idea-b .idea-stop{background:color-mix(in srgb,var(--red) calc(var(--fill) * 100%),transparent);box-shadow:inset 0 0 0 1.5px var(--line2)}
+/* progress: four segments, the active one fills */
+.idea-bars{display:flex;gap:8px;margin-top:clamp(32px,4vw,64px)}
+.idea-bars i{position:relative;width:min(60px,12vw);height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.idea-bars i::after{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(var(--p,0));transform-origin:left}
+.idea-body{margin-top:clamp(28px,3.5vw,52px);max-width:52ch;font-size:var(--t-lede);line-height:1.7;color:var(--ink2)}
+.idea-body strong{color:var(--ink);font-weight:500}
+
+/* two columns: copy left, the picture for the current word right */
+.idea-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:stretch}
+/* desktop: the picture column is as tall as the copy, and the picture fills it */
+.idea-art{position:relative;min-height:clamp(420px,42vw,720px)}
+.idea-pic{position:absolute;inset:0;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.idea-pic.on{opacity:1;transform:none}
+.idea-pic.has-media img{object-fit:contain}
+.idea-pic{overflow:visible}                               /* the drift never gets cut off */
+.idea-pic.has-media img{padding-block:5%;box-sizing:border-box}
+/* the picture never sits still: a slow drift up and down while you read */
+.idea-pic>img,.idea-pic .ph-art{animation:ideaDrift 7s ease-in-out infinite}
+@keyframes ideaDrift{0%,100%{transform:translateY(-10px)}50%{transform:translateY(12px)}}
+.rm .idea-pic>img,.rm .idea-pic .ph-art{animation:none}
+/* pinned (motion.js): the section fills the screen while you scroll through the four words */
+.idea{padding-top:clamp(56px,6vw,88px)}
+.idea.is-pinned{min-height:100vh;display:flex;align-items:center;padding-block:calc(var(--nav-h) + 16px) 16px}   /* content starts at the top: no empty band above it */
+@media (max-width:900px){
+  .idea-grid{grid-template-columns:1fr}
+  .idea-art{order:-1;max-width:420px;width:100%;min-height:0;aspect-ratio:1.15}
+  .idea-word{font-size:clamp(64px,19vw,140px)}
+}

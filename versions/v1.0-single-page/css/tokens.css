@@ -1,0 +1,89 @@
+/* =====================================================================
+   REDMELON · TOKENS
+   Every colour, font, size, radius, easing and duration lives here.
+   Brand changes happen in this file only. No raw hex anywhere else.
+   ===================================================================== */
+
+/* ---------- LIGHT values (light mode, and the .zone-light flip) ---------- */
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF; --bg2:#F0F0F0; --surface:#FFFFFF; --surface2:#F0F0F0;
+  --line:#D6D6D6; --line2:#8A8A8A; --hairline:rgba(16,16,45,.07);
+  --ink:#222222; --ink2:#505050; --ink3:#6B6B6B;
+  --red:#E4422A; --red-deep:var(--red); --text-red:var(--red); --accent:var(--red);   /* one orange everywhere (Nirmal, 6 Oct) */ --redSoft:rgba(228,66,42,.10);
+  --rind:#8CC63F; --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12; --midnight:#10102D;
+  --on-brand:#FFFFFF; --focus:#10102D;
+  /* frosted-glass cards (What we do) */
+  --glass:rgba(255,255,255,.08); --glass-line:rgba(255,255,255,.18); --glass-ink:#222222; --glass-ink2:#505050;
+  /* text and lines on an orange (--red) surface, e.g. the brief card */
+  --on-brand-2:rgba(255,255,255,.9); --on-brand-line:rgba(255,255,255,.38); --on-brand-line2:rgba(255,255,255,.72); --on-brand-soft:rgba(255,255,255,.12);
+  --art-0:#0B0B1F; --art-1:#7A2320; --art-2:#C23824; --art-3:#FF6A52;
+  --track:var(--line2);                       /* progress tracks, >=3:1 */
+
+  /* fixed values used by always-dark art (Studio, contact panel, midnight tiles) */
+  --dk-ink:#F2F2F7; --dk-ink2:#A3A9C2; --dk-line:#2A2A4F; --dk-line2:#6E6E96;
+  --scrim:rgba(11,11,31,.92); --scrim-mid:rgba(11,11,31,.6); --scrim-low:rgba(11,11,31,.1);
+  --glow:rgba(228,66,42,.55); --sheen:rgba(255,255,255,.42); --shadow:0 20px 48px rgba(0,0,0,.28);
+  --backdrop:rgba(11,11,31,.55);
+
+  /* WhatsApp brand (third-party, kept with the widget tokens) */
+  --wa:#25D366; --wa-deep:#128C7E; --wa-ink:#07301B;
+
+  /* type */
+  --disp:"Cal Sans","Rubik",system-ui,sans-serif;
+  --sans:"Rubik",system-ui,-apple-system,sans-serif;
+  --t-xs:12px; --t-sm:14px; --t-base:16px; --t-lg:18px; --t-xl:20px; --t-2xl:24px; --t-3xl:30px;
+  --t-display:clamp(48px,7.4vw,120px);        /* ONLY hero h1 + Studio h2 */
+  --t-h2:clamp(30px,3.6vw,52px);
+  --t-statement:clamp(40px,5.4vw,88px);       /* About statement heading */
+  --t-h3:clamp(22px,2.2vw,30px);
+  --t-lede:clamp(16px,1.2vw,18px);
+  --t-num:clamp(72px,8vw,120px);              /* outlined card numbers (numerals, not headings) */
+  --t-ticker:clamp(22px,2.6vw,36px);
+
+  /* layout */
+  --gut:clamp(16px,5vw,88px); --max:1280px;
+  --edge:max(var(--gut),calc((100vw - var(--max)) / 2 + var(--gut)));  /* content edge */
+  --r-sm:4px; --r-md:8px; --r-pill:50px;
+  --sec-pad:clamp(80px,9vw,140px);
+  --nav-h:72px;
+
+  /* motion */
+  --ease:cubic-bezier(.2,.8,.2,1);            /* the ONE easing curve */
+  --d-ui:.3s; --d-reveal:.8s; --d-wipe:1.1s;
+  --stagger:.06s;
+  --d-preload:1.2s;
+
+  /* z-index */
+  --z-rail:50; --z-nav:70; --z-cursor:80; --z-wa:90; --z-sheet:95; --z-preload:300;
+}
+
+/* ---------- DARK values (default) ---------- */
+:root[data-ui="dark"]{
+  color-scheme:dark;
+  --bg:#0B0B1F; --bg2:#16163A; --surface:#16163A; --surface2:#1C1C46;
+  --line:#2A2A4F; --line2:#6E6E96; --hairline:rgba(255,255,255,.07);
+  --ink:#F2F2F7; --ink2:#A3A9C2; --ink3:#9AA7B3;
+  --text-red:var(--red); --accent:var(--red); --redSoft:rgba(228,66,42,.17);
+  --ok:#8CC63F; --ok-soft:rgba(140,198,63,.13); --text-ok:#A9D96B; --focus:#50E3C2;
+}
+
+/* ---------- the one light "flip" section in dark mode: copies LIGHT values ---------- */
+:root[data-ui="dark"] .zone-light{
+  color-scheme:light;
+  --bg:#FFFFFF; --bg2:#F0F0F0; --surface:#FFFFFF; --surface2:#F0F0F0;
+  --line:#D6D6D6; --line2:#8A8A8A; --hairline:rgba(16,16,45,.07);
+  --ink:#222222; --ink2:#505050; --ink3:#6B6B6B;
+  --text-red:var(--red); --accent:var(--red); --redSoft:rgba(228,66,42,.10);
+  --ok:#4E7A18; --ok-soft:rgba(78,122,24,.09); --text-ok:#3A5C12; --focus:#10102D;
+}
+
+/* ---------- always-dark panels (Studio, contact art): copies DARK values ---------- */
+.zone-dark{
+  color-scheme:dark;
+  --bg:#0B0B1F; --bg2:#16163A; --surface:#16163A; --surface2:#1C1C46;
+  --line:#2A2A4F; --line2:#6E6E96; --hairline:rgba(255,255,255,.07);
+  --ink:#F2F2F7; --ink2:#A3A9C2; --ink3:#9AA7B3;
+  --text-red:var(--red); --accent:var(--red); --redSoft:rgba(228,66,42,.17);
+  --ok:#8CC63F; --ok-soft:rgba(140,198,63,.13); --text-ok:#A9D96B; --focus:#50E3C2;
+}
