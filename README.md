@@ -36,6 +36,7 @@ Then open http://localhost:4173.
 | Lists of copy: services, steps, tiles, FAQ, logos, WhatsApp flow | `js/data.js` |
 | Site switches: review mode, WhatsApp number, form endpoint | `RM.CONFIG` in `js/data.js` |
 | Headings, ledes and section copy | `index.html` |
+| What changed in each version | `CHANGELOG.md` |
 | One section's styling | `css/sections/<section>.css` |
 | Scroll animation, pins and scrubs | `js/motion.js` |
 
