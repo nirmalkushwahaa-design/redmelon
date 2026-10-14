@@ -69,7 +69,8 @@
      -50% loop is seamless. Hover swaps the name for its stat (first-draft behaviour). */
   (function () {
     var ul = $('#logos'); if (!ul) return;
-    var base = []; for (var i = 0; i < 4; i++) base = base.concat(RM.LOGOS);
+    var base = [], reps = Math.max(1, Math.ceil(12 / RM.LOGOS.length)); for (var i = 0; i < reps; i++) base = base.concat(RM.LOGOS);
+    ul.style.animationDuration = Math.round(base.length * 4.6) + 's';   /* same speed per name however long the list */
     var list = base.concat(base);
     ul.innerHTML = list.map(function (l, k) {
       var stat = l.v ? '<span class="marquee-stat" aria-hidden="true"><span class="marquee-stat-v">' +

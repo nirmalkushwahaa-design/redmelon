@@ -29,11 +29,57 @@ RM.AB = {
    THE FIGURES ARE PLACEHOLDERS from the first draft: not measured and not cleared
    by any client. Replace with real numbers, or set v to '' to hide a stat. */
 RM.LOGOS = [
-  { name: 'Mondelez',  color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
-  { name: 'DBS Bank',  color: '#ED0000', dark: '#FF3333', v: '3\u00d7',   l: 'review throughput',       up: true  },
-  { name: 'Ford',      color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
-  { name: 'Ogilvy',    color: '#E81F23', dark: '#EB4448', v: '2.5\u00d7', l: 'concepts per sprint',     up: true  },
-  { name: 'GridCrest', color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false }
+  /* Client list from the logo sheet (14 Oct), grouped by industry. Names show in brand colour
+     (color = light mode, dark = dark mode; '' = neutral). Only the five first-draft entries carry hover stats. */
+  /* engineering, infrastructure and building materials */
+  { name: 'L&T',               color: '#1D4F91', dark: '#6E9BE0' },
+  { name: 'JSW',               color: '#1F3C88', dark: '#6D8DE0' },
+  { name: 'UltraTech Cement',  color: '#A07F00', dark: '#FFD200' },
+  { name: 'NITCO',             color: '',        dark: '' },
+  { name: 'Hager',             color: '#2D8CC4', dark: '#5BB8EA' },
+  { name: 'Coromandel',        color: '#D9790F', dark: '#FFA940' },
+  /* energy and utilities */
+  { name: 'Torrent Power',     color: '#D9790F', dark: '#F7A04B' },
+  { name: 'Mahesh Gas',        color: '#2E3192', dark: '#8A8EF0' },
+  { name: 'GridCrest',         color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false },
+  /* automotive */
+  { name: 'Tata Motors',       color: '#1F5BA8', dark: '#5C95E6' },
+  { name: 'Ford',              color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
+  { name: 'CarWale',           color: '#D0201A', dark: '#FF5148' },
+  /* telecom */
+  { name: 'Vodafone',          color: '#E60000', dark: '#FF3B3B' },
+  /* banking, finance and professional services */
+  { name: 'DBS Bank',          color: '#ED0000', dark: '#FF3333', v: '3×',   l: 'review throughput',       up: true  },
+  { name: 'EY',                color: '#2E2E38', dark: '#FFE600' },
+  { name: 'Centuro Global',    color: '#6B2C5F', dark: '#C982BC' },
+  /* food and beverage, FMCG */
+  { name: 'Mondelez',          color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
+  { name: 'Red Bull',          color: '#DB0A40', dark: '#FF4D73' },
+  /* healthcare and pharma */
+  { name: 'Johnson & Johnson', color: '#D51900', dark: '#FF4A33' },
+  { name: 'Glenmark',          color: '#D7282F', dark: '#FF5A5F' },
+  /* beauty */
+  { name: "L'Oréal",      color: '',        dark: '' },
+  /* fashion and apparel */
+  { name: 'Raymond',           color: '#C8102E', dark: '#FF4560' },
+  { name: 'Bestseller',        color: '',        dark: '' },
+  { name: 'Vero Moda',         color: '',        dark: '' },
+  /* health and fitness */
+  { name: 'cure.fit',          color: '',        dark: '' },
+  /* education and learning */
+  { name: 'Ryan International', color: '#1C3F94', dark: '#6D8DE0' },
+  { name: 'Vidyalankar',       color: '#D71920', dark: '#FF4B50' },
+  { name: 'G-Cube',            color: '#D24A04', dark: '#FF7A3D' },
+  /* technology */
+  { name: 'U-TO Solutions',    color: '#1B75BB', dark: '#4FA3E6' },
+  /* advertising, marketing and events */
+  { name: 'Ogilvy',            color: '#E81F23', dark: '#EB4448', v: '2.5×', l: 'concepts per sprint',     up: true  },
+  { name: 'Indigo Consulting', color: '#2A6EBB', dark: '#5FA0E8' },
+  { name: 'Percept ICE',       color: '#D71E24', dark: '#FF5056' },
+  { name: '70 Event Media Group', color: '#D9790F', dark: '#FFA940' },
+  { name: 'The Big Small Events', color: '',     dark: '' },
+  { name: 'vCloudx',           color: '#D62A43', dark: '#FF5C70' }
+  /* not added (could not identify; confirm with Nirmal): the 'VIVCOOO' cloud logo and the dark square gold logo */
 ];
 
 /* 12.3 · selected work. Image, client name, one plain line. */
@@ -101,22 +147,22 @@ RM.LOOP = ['Knowledge', 'Reason', 'Plan', 'Approve', 'Act', 'Learn'];
 RM.INDUSTRIES = [
   { id: 'finance', cta: 'finance', icon: 'indBank', name: 'Financial services', tag: 'Runs inside your environment',
     pain: 'Onboarding checks take days and still miss the risky files.',
-    build: ['Document checking agents', 'Risk flagging', 'Analyst copilots'], proof: 'DBS Bank' },
+    build: ['Document checking agents', 'Risk flagging', 'Analyst copilots'], proof: 'DBS Bank · EY' },
   { id: 'brands', cta: 'consumer brands', icon: 'indBrand', name: 'Consumer brands & FMCG', tag: 'Brand rules built in',
     pain: 'Every market needs its own assets, and approvals slow everything down.',
-    build: ['Campaign asset generation', 'Brand review flows', 'Content at scale'], proof: 'Mondelez · Ogilvy' },
+    build: ['Campaign asset generation', 'Brand review flows', 'Content at scale'], proof: 'Mondelez · Red Bull · Ogilvy' },
   { id: 'energy', cta: 'energy', icon: 'indEnergy', name: 'Energy & utilities', tag: 'Works with live meter data',
     pain: 'Field and support teams are buried in meter data and tickets.',
-    build: ['Smart-meter assistants', 'Outage triage', 'Customer copilots'], proof: 'Gridcrest Technology', work: true },
+    build: ['Smart-meter assistants', 'Outage triage', 'Customer copilots'], proof: 'Gridcrest Technology · Torrent Power · Mahesh Gas', work: true },
   { id: 'auto', cta: 'manufacturing', icon: 'indAuto', name: 'Automotive & manufacturing', tag: 'Connects to existing systems',
     pain: 'Quality checks and service manuals still run on manual effort.',
-    build: ['Visual quality checks', 'Service knowledge search', 'Supply data agents'], proof: 'Ford' },
+    build: ['Visual quality checks', 'Service knowledge search', 'Supply data agents'], proof: 'Ford · Tata Motors · JSW' },
   { id: 'edu', cta: 'education', icon: 'indEdu', name: 'Education', tag: 'Privacy first',
     pain: 'Students and staff wait days for answers that already exist somewhere.',
-    build: ['Student service assistants', 'Research search', 'Admissions support'], proof: 'IIT Mumbai', work: true },
+    build: ['Student service assistants', 'Research search', 'Admissions support'], proof: 'IIT Mumbai · Ryan International · Vidyalankar', work: true },
   { id: 'retail', cta: 'retail', icon: 'indRetail', name: 'Retail & e-commerce', tag: 'Plugs into your catalogue',
     pain: "Product content and search can't keep up with the catalogue.",
-    build: ['Product content generation', 'Smart search', 'Personalisation'], proof: 'Spaces.in', work: true }
+    build: ['Product content generation', 'Smart search', 'Personalisation'], proof: 'Spaces.in · Raymond · Bestseller', work: true }
 ];
 
 /* 12.6 · how we work */
