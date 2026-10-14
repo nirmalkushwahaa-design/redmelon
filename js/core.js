@@ -340,6 +340,22 @@
     }).join('');
   })();
 
+  /* stats (About page) */
+  (function () {
+    var ul = $('#stats'); if (!ul || !RM.STATS) return;
+    ul.innerHTML = RM.STATS.map(function (s) {
+      return '<li class="stat"><span class="stat-ico" aria-hidden="true">' + RM.icon(s.icon, '') + '</span><p class="stat-v">' + RM.esc(s.v) + '</p><p class="stat-l">' + RM.esc(s.l) + '</p></li>';
+    }).join('');
+  })();
+
+  /* values (About page) */
+  (function () {
+    var ol = $('#values'); if (!ol || !RM.VALUES) return;
+    ol.innerHTML = '<li class="value value-lead"><h2 class="value-lead-h" data-split>Our<br>Values</h2></li>' + RM.VALUES.map(function (v, i) {
+      return '<li class="value"><span class="value-n">0' + (i + 1) + '.</span><h3>' + RM.esc(v.t) + '</h3><p>' + RM.txt(v.d) + '</p></li>';
+    }).join('');
+  })();
+
   /* beliefs (About page) */
   (function () {
     var ol = $('#beliefs'); if (!ol || !RM.BELIEFS) return;

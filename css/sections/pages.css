@@ -102,6 +102,37 @@ body[data-page="services"] .page-hero{border-bottom:0;padding-bottom:clamp(24px,
 .story-body strong{font-weight:600;color:var(--accent)}
 @media (max-width:900px){.story-grid{grid-template-columns:1fr}.story-head{position:static}.story-body{padding-top:0}}
 
+/* ---------- about: in numbers (3 × 2 with dividers) ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat{display:flex;align-items:center;gap:16px;padding:clamp(28px,3.5vw,52px) clamp(16px,3vw,48px);border-left:1px solid var(--line);border-top:1px solid var(--line)}
+.stat:nth-child(3n+1){border-left:0}
+.stat:nth-child(-n+3){border-top:0}
+.stat-ico{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:50%;background:var(--redSoft);color:var(--accent)}
+.stat-ico svg{width:20px;height:20px}
+.stat-v{font-family:var(--disp);font-size:clamp(44px,5.2vw,80px);line-height:1;letter-spacing:-.03em;color:var(--ink)}
+.stat-l{font-size:var(--t-base);line-height:1.3;color:var(--ink2);max-width:12ch}
+@media (max-width:900px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-left:0;border-top:1px solid var(--line)}
+  .stat:nth-child(-n+3){border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:0}
+  .stat:nth-child(even){border-left:1px solid var(--line)}
+  .stat{flex-direction:column;align-items:flex-start;gap:10px}
+}
+
+/* ---------- about: our values (orange lead tile + five numbered cards) ---------- */
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.value{display:flex;flex-direction:column;gap:18px;min-height:clamp(320px,30vw,420px);padding:clamp(24px,2.8vw,44px);border-radius:calc(var(--r-md) * 2);background:var(--bg2);
+  transition:transform var(--d-ui) var(--ease)}
+.value:not(.value-lead):hover{transform:translateY(-4px)}
+.value-lead{background:var(--red);color:var(--on-brand)}
+.value-lead-h{font-size:clamp(48px,5.6vw,88px);line-height:.95;letter-spacing:-.03em}
+.value-n{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--bg);font-family:var(--disp);font-size:var(--t-2xl);color:var(--ink);margin-bottom:12px}
+.value h3{font-size:var(--t-3xl);line-height:1.1}
+.value p{color:var(--ink2);line-height:1.7}
+@media (max-width:900px){.values{grid-template-columns:1fr 1fr}.value{min-height:0}}
+@media (max-width:600px){.values{grid-template-columns:1fr}}
+
 /* ---------- about: beliefs ---------- */
 .beliefs-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px);align-items:start}
 .beliefs-head{position:sticky;top:calc(var(--nav-h) + 32px)}

@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/sections/hero.css">
 <link rel="stylesheet" href="css/sections/about.css">
+<link rel="stylesheet" href="css/sections/services.css">
 <link rel="stylesheet" href="css/sections/pages.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"Redmelon","url":"https://redmelondesign.com/","logo":"https://redmelondesign.com/assets/logo.svg","description":"AI products, agents and automation for startups and enterprise teams. A human expert makes every call while AI does the volume.","areaServed":[{"@type":"Place","name":"Europe"},{"@type":"Country","name":"United States"}]}
@@ -130,12 +131,31 @@
   </div>
 </section>
 
-<!-- BELIEFS (RM.BELIEFS in js/data.js) -->
-<section class="sec beliefs" id="beliefs-sec" data-rail="What we believe">
-  <div class="wrap beliefs-grid">
-    <div class="sec-head beliefs-head"><p class="eyebrow">What we believe</p><h2 data-split>Four things we hold to on every project.</h2></div>
-    <ol class="belief-list" id="beliefs"></ol>
+<!-- IN NUMBERS (RM.STATS in js/data.js) -->
+<section class="sec stats-sec tone-2" id="numbers" data-rail="In numbers">
+  <div class="wrap"><h2 class="sr-only">Redmelon in numbers</h2><ul class="stats" id="stats"></ul></div>
+</section>
+
+<!-- WHAT WE DO: the six cards (pinned horizontal track on desktop); details live on services.html -->
+<section class="sec services" id="services" data-rail="Services">
+  <div class="track-pin" id="trackPin">
+    <div class="wrap sec-head services-head">
+      <p class="eyebrow">What we do</p>
+      <h2 data-split>Six ways to start, one human expert across all of them</h2>
+      <p class="lede">Pick the one closest to your problem. Whichever you choose, the same human expert stays with the work from start to finish.</p>
+      <a class="text-link" href="services.html">See all services <span class="arrow" data-icon="arrowRight" aria-hidden="true"></span></a>
+    </div>
+    <!-- glass shape behind the cards; swap the file to change it -->
+    <img class="track-glass" src="assets/img/glass-asterisk.webp" alt="" aria-hidden="true" width="378" height="376" loading="lazy" decoding="async">
+    <div class="track-view" id="trackView" tabindex="0" role="region" aria-label="Services, use left and right arrow keys to move" data-chip-zone="Drag">
+      <ol class="track" id="track"></ol>
+    </div>
   </div>
+</section>
+
+<!-- OUR VALUES (RM.VALUES in js/data.js) -->
+<section class="sec values-sec" id="values-sec" data-rail="Our values">
+  <div class="wrap"><ol class="values" id="values"></ol></div>
 </section>
 
 <!-- TEAM (RM.LEADS in js/data.js): roles only until real names and photos arrive -->

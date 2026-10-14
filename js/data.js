@@ -54,6 +54,7 @@ RM.LOGOS = [
   /* banking, finance and professional services */
   { name: 'DBS Bank', ind: 'finance',          color: '#ED0000', dark: '#FF3333', v: '3×',   l: 'review throughput',       up: true  },
   { name: 'EY', ind: 'finance',                color: '#2E2E38', dark: '#FFE600' },
+  { name: 'Stripe', ind: 'finance', color: '#635BFF', dark: '#8F88FF' },
   { name: 'Centuro Global', ind: 'finance',    color: '#6B2C5F', dark: '#C982BC' },
   /* food and beverage, FMCG */
   { name: 'Mondelez', ind: 'brands',          color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
@@ -243,6 +244,30 @@ RM.BELIEFS = [
     d: 'Once the project is paid, the code, designs and models we build for you belong to you.' },
   { t: 'Your data stays yours.',
     d: 'We sign an NDA before we see anything, and we can build and run the system inside your own environment.' }
+];
+
+/* About page · in numbers (client's figures, 14 Oct) */
+RM.STATS = [
+  { v: '128+', l: 'Delivered projects', icon: 'statProjects' },
+  { v: '20+',  l: 'Personalities',      icon: 'statPeople' },
+  { v: '02',   l: 'Unicorns',           icon: 'statUnicorn' },
+  { v: '580M', l: 'Pixels pushed',      icon: 'statPixels' },
+  { v: '112K', l: 'Coffees',            icon: 'statCoffee' },
+  { v: '13',   l: 'Years in business',  icon: 'statYears' }
+];
+
+/* About page · our values (client's copy, 14 Oct). Replaces the drafted RM.BELIEFS on the page. */
+RM.VALUES = [
+  { t: 'Founder Centric',
+    d: 'Building and scaling a business goes beyond simple challenges because it demands continuous pursuit of bigger goals. Our services include bold strategies alongside direct support and essential clarity, so founders can overcome challenges while capturing opportunities and succeed throughout all business stages.' },
+  { t: 'Performance',
+    d: 'Our precise movements enable us to direct suitable expertise to every project for flawless execution and outstanding outcomes. Our streamlined approach maintains efficient workflows and project timelines while producing top-quality results on every occasion.' },
+  { t: 'Personal Accountability',
+    d: 'Each promise we fulfil leads projects to successful outcomes through accountable work and dedicated efforts. Transparency and open communication form our foundation and enable us to align each step with your vision.' },
+  { t: 'Dedication & Collaboration',
+    d: 'Our team is filled with driven specialists who deliver precision skills alongside innovative thinking. Our collaborative approach enables us to approach each project with a new perspective while pushing limits to achieve transformative results.' },
+  { t: 'Growth Mindset',
+    d: 'Each obstacle presents an opportunity for development, which allows us to hone our skills purposefully and elevate our expertise. Growth serves as our foundational mindset, which propels us to create new solutions while adapting to change and leading confidently.' }
 ];
 
 /* 12.9 · start-here tiles */
