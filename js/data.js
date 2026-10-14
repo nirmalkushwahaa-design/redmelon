@@ -84,15 +84,39 @@ RM.LOGOS = [
 
 /* 12.3 · selected work. Image, client name, one plain line. */
 RM.WORK = [
-  { client: 'IIT Mumbai',           line: 'A digital experience for a premier institute, showcasing its innovation, research and impact.', img: 'assets/img/work-iit.webp',
+  { slug: 'iit-mumbai', client: 'IIT Mumbai',           line: 'A digital experience for a premier institute, showcasing its innovation, research and impact.', img: 'assets/img/work-iit.webp',
     tags: ['website', 'education'] },
-  { client: 'Spaces.in',            line: 'A modern, inspiring e-commerce experience for contemporary homes.',                            img: 'assets/img/work-spaces.webp',
+  { slug: 'spaces', client: 'Spaces.in',            line: 'A modern, inspiring e-commerce experience for contemporary homes.',                            img: 'assets/img/work-spaces.webp',
     tags: ['website', 'ecommerce', 'retail'] },
-  { client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp',
+  { slug: 'redmelon', client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp',
     tags: ['brand', 'website'] },
-  { client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp',
+  { slug: 'gridcrest', client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp',
     tags: ['website', 'product', 'energy'] }
 ];
+
+/* PROJECT DETAIL PAGE (project.html?p=<slug>): one template, filled from RM.WORK.
+   Add a `detail` block to a project above when its data is ready. Every field is optional;
+   a missing one shows as a dashed [NEED] placeholder in review mode, and in production the block hides.
+
+   detail: {
+     title:     'Headline for the case study',                  // falls back to the card line
+     summary:   'Two or three sentences: what it is and why it mattered.',
+     industry:  'Education',
+     services:  ['Website', 'UX/UI design', 'Development'],
+     year:      '2025',
+     duration:  '12 weeks',
+     platform:  'Webflow',
+     url:       'https://example.com',                          // live site button
+     cover:     'assets/img/work-x-cover.webp',                 // wide hero image (else the card image)
+     challenge: 'What was wrong or missing before we started.',
+     approach:  'How we tackled it, and where AI and the human expert each came in.',
+     outcome:   'What changed for the client.',
+     results:   [{ v: '3x', l: 'more enquiries' }, { v: '40%', l: 'faster pages' }],
+     scope:     ['Discovery', 'Information architecture', 'Design system', 'Webflow build'],
+     gallery:   [{ src: 'assets/img/x-1.webp', alt: '...', wide: true }, { src: '...', alt: '...' }],
+     quote:     { quote: '...', name: '...', role: '...' }
+   }
+*/
 
 /* Work page filter strip, in display order ('All' is added automatically).
    To add a tag: add it here, then put its id in the projects' tags above. */

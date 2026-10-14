@@ -38,6 +38,7 @@ Then open http://localhost:4173 (Home). The other pages are `services.html`, `cl
 | Headings, ledes and section copy | the page it sits on: `index.html`, `services.html`, `clients.html`, `work.html`, `about.html`, `contact.html` |
 | Nav, phone menu and footer | repeated in all six pages; change all six together |
 | Which page a `#section` link goes to | `RM.ROUTES` in `js/core.js` |
+| A project's detail page (`project.html?p=<slug>`) | the `detail` block on that project in `RM.WORK`, `js/data.js` (the field list is in the comment under `RM.WORK`) |
 | Beliefs, team, testimonials | `RM.BELIEFS`, `RM.LEADS`, `RM.QUOTES` in `js/data.js` |
 | New v2.0 pieces (page header, menu, CTA band, strips) | `css/sections/pages.css` |
 | What changed in each version | `CHANGELOG.md` |

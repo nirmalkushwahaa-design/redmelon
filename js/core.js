@@ -96,8 +96,9 @@
         : '<span class="work-ph work-ph-' + (w.art || 1) + '" aria-hidden="true"></span><span class="ph-tag" aria-hidden="true"><b>Image slot</b> Case study · 1600 × 1280 · JPG/WebP</span>';
       var label = function (id) { var t = (RM.WORK_TAGS || []).filter(function (x) { return x.id === id; })[0]; return t ? t.label : id; };
       var tags = (w.tags || []).map(function (t) { return '<li>' + RM.esc(label(t)) + '</li>'; }).join('');
-      return '<article class="work-card' + (i % 2 ? ' alt' : '') + '" data-tags="' + RM.esc((w.tags || []).join(' ')) + '"><div class="work-img">' + img + '</div>' +
-        '<div class="work-meta"><h3>' + RM.txt(w.client) + '</h3><p>' + RM.txt(w.line) + '</p>' +
+      var href = w.slug ? 'project.html?p=' + encodeURIComponent(w.slug) : '';
+      return '<article class="work-card' + (i % 2 ? ' alt' : '') + (href ? ' has-link' : '') + '" data-tags="' + RM.esc((w.tags || []).join(' ')) + '"><div class="work-img">' + img + '</div>' +
+        '<div class="work-meta"><h3>' + (href ? '<a class="work-link" href="' + href + '">' + RM.txt(w.client) + '</a>' : RM.txt(w.client)) + '</h3><p>' + RM.txt(w.line) + '</p>' +
         (tags ? '<ul class="work-tags" aria-label="Tags">' + tags + '</ul>' : '') + '</div></article>';
     }).join('');
   })();

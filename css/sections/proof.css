@@ -50,6 +50,11 @@
 .work-ph-4{background:radial-gradient(circle at 50% 50%,var(--redSoft),transparent 55%),radial-gradient(circle,var(--line2) 1.2px,transparent 1.5px) 0 0/22px 22px,var(--bg2)}
 .work-meta{padding-top:18px;display:flex;flex-direction:column;gap:6px}
 .work-meta h3{font-size:var(--t-2xl)}
+/* whole card opens the project page (the name is the real link; its ::after covers the card) */
+.work-card.has-link{position:relative;cursor:pointer}
+.work-link::after{content:"";position:absolute;inset:0;z-index:1}
+.work-link{transition:color var(--d-ui) var(--ease)}
+.work-card.has-link:hover .work-link{color:var(--accent)}
 .work-meta p{color:var(--ink2)}
 .work-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .work-tags li{padding:3px 10px;border:1px solid var(--line);border-radius:var(--r-pill);font-size:var(--t-xs);color:var(--ink3)}

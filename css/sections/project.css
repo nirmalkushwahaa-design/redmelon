@@ -1,0 +1,89 @@
+/* =====================================================================
+   PROJECT DETAIL · project.html (one template for every project)
+   header + meta · cover · story (challenge / approach / outcome) ·
+   results · gallery · scope · client quote · more work · next project
+   ===================================================================== */
+
+/* ---------- header ---------- */
+.pj-hero{padding-bottom:clamp(40px,5vw,72px)}
+.pj-crumb{display:flex;align-items:center;gap:10px;font-size:var(--t-sm);color:var(--ink3)}
+.pj-crumb a{color:var(--ink2);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line2)}
+.pj-crumb a:hover{color:var(--ink);text-decoration-color:var(--red)}
+.pj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:28px}
+.pj-tags a{display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border:1px solid var(--line2);border-radius:var(--r-pill);font-size:var(--t-xs);color:var(--ink2);
+  transition:border-color var(--d-ui) var(--ease),color var(--d-ui) var(--ease)}
+.pj-tags a:hover{border-color:var(--red);color:var(--text-red)}
+.pj-h{margin-top:18px;max-width:20ch;font-size:clamp(40px,5.2vw,80px)}
+.pj-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px 32px;margin:clamp(40px,5vw,64px) 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.pj-meta dt{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.pj-meta dd{margin:8px 0 0;font-family:var(--disp);font-size:var(--t-lg);line-height:1.3;color:var(--ink)}
+.pj-live{display:flex;align-items:flex-end}
+
+/* ---------- cover: wide image right under the header ---------- */
+.pj-cover-sec{background:var(--bg);padding-top:clamp(32px,4vw,56px)}
+.pj-cover{aspect-ratio:16/9;width:100%}
+.pj-cover.has-media img{border-radius:var(--r-md)}
+
+/* ---------- story: number + heading on the left, text on the right ---------- */
+.pj-story-in{display:flex;flex-direction:column}
+.pj-block{display:grid;grid-template-columns:80px minmax(0,4fr) minmax(0,7fr);gap:24px 40px;padding:clamp(32px,4vw,56px) 0;border-top:1px solid var(--line)}
+.pj-block:last-child{border-bottom:1px solid var(--line)}
+.pj-n{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;color:var(--text-red);padding-top:.6em}
+.pj-bh{font-size:var(--t-h3)}
+.pj-bt{font-size:var(--t-lede);line-height:1.7;color:var(--ink2);max-width:62ch}
+@media (max-width:800px){.pj-block{grid-template-columns:1fr;gap:12px}.pj-n{padding-top:0}}
+
+/* ---------- results ---------- */
+.pj-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:48px}
+.pj-stat{padding:28px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+.pj-v{font-family:var(--disp);font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-.02em;color:var(--accent)}
+.pj-l{margin-top:12px;color:var(--ink2)}
+
+/* ---------- gallery: wide shots fill the row, the rest sit two-up ---------- */
+.pj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px)}
+.pj-shot{aspect-ratio:1/1}
+.pj-shot.is-wide{grid-column:1/-1;aspect-ratio:16/9}
+.pj-shot.has-media{aspect-ratio:auto}
+.pj-shot.has-media img{border-radius:var(--r-md);height:auto}
+@media (max-width:700px){.pj-gallery{grid-template-columns:1fr}}
+
+/* ---------- scope ---------- */
+.pj-scope-in{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:start}
+.pj-scope{border-top:1px solid var(--line)}
+.pj-scope li{display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-family:var(--disp);font-size:var(--t-xl)}
+.pj-scope li span{font-family:var(--sans);font-size:var(--t-xs);font-weight:600;letter-spacing:.12em;color:var(--ink3)}
+@media (max-width:800px){.pj-scope-in{grid-template-columns:1fr}}
+
+/* ---------- client quote ---------- */
+.pj-quote{margin:0 auto;max-width:900px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
+.pj-quote blockquote{margin:0;font-family:var(--disp);font-size:clamp(24px,2.8vw,40px);line-height:1.25;letter-spacing:-.01em}
+.pj-quote figcaption{display:flex;flex-direction:column;gap:4px;font-size:var(--t-sm);color:var(--ink2)}
+.pj-quote figcaption b{font-weight:600;color:var(--ink)}
+.pj-quote .say-mark{height:40px;font-size:96px}
+
+/* ---------- more work: three cards ---------- */
+.pj-more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:40px}
+.pj-card{position:relative;display:flex;flex-direction:column}
+.pj-card-img{position:relative;aspect-ratio:756/500;overflow:hidden;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface)}
+.pj-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.pj-card:hover .pj-card-img img{transform:scale(1.05)}
+.pj-card-tags{margin-top:16px;font-size:var(--t-xs);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.pj-card h3{margin-top:8px;font-size:var(--t-2xl)}
+.pj-card-link::after{content:"";position:absolute;inset:0;z-index:1}
+.pj-card-link{transition:color var(--d-ui) var(--ease)}
+.pj-card:hover .pj-card-link{color:var(--accent)}
+.pj-card-line{margin-top:6px;color:var(--ink2)}
+@media (max-width:900px){.pj-more{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pj-more{grid-template-columns:1fr}}
+
+/* ---------- next project: one big link with a picture that slides in on hover ---------- */
+.pj-next-sec{background:var(--bg);border-top:1px solid var(--line)}
+.pj-next{position:relative;display:flex;flex-direction:column;gap:14px;padding:clamp(56px,7vw,110px) 0;overflow:hidden}
+.pj-next-name{display:inline-flex;align-items:center;gap:18px;font-family:var(--disp);font-size:clamp(40px,7vw,112px);line-height:1;letter-spacing:-.03em;color:var(--ink);
+  transition:color var(--d-ui) var(--ease)}
+.pj-next-name .arrow{width:.6em;height:.6em}
+.pj-next:hover .pj-next-name{color:var(--accent)}
+.pj-next-img{position:absolute;right:0;top:50%;width:min(36%,420px);aspect-ratio:756/500;object-fit:cover;border-radius:var(--r-md);
+  opacity:0;transform:translate(24px,-50%) rotate(3deg);transition:opacity .5s var(--ease),transform .7s var(--ease);pointer-events:none}
+.pj-next:hover .pj-next-img,.pj-next:focus-visible .pj-next-img{opacity:1;transform:translate(0,-50%) rotate(-2deg)}
+@media (hover:none),(max-width:800px){.pj-next-img{display:none}}

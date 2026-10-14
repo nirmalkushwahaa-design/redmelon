@@ -78,6 +78,8 @@
   batch('.say');
   batch('.ind-chip');
   batch('.detail');
+  batch('.pj-card');
+  batch('.pj-stat');
   batch('.brief-shell');
   batch('.switch-stage');
 
