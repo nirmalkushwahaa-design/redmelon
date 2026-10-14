@@ -1,7 +1,7 @@
 /* =====================================================================
    PROJECT DETAIL · project.html (one template for every project)
    header + meta · cover · story (challenge / approach / outcome) ·
-   results · gallery · scope · client quote · more work · next project
+   gallery · scope · client quote · more work · next project
    ===================================================================== */
 
 /* ---------- header ---------- */
@@ -32,12 +32,6 @@
 .pj-bh{font-size:var(--t-h3)}
 .pj-bt{font-size:var(--t-lede);line-height:1.7;color:var(--ink2);max-width:62ch}
 @media (max-width:800px){.pj-block{grid-template-columns:1fr;gap:12px}.pj-n{padding-top:0}}
-
-/* ---------- results ---------- */
-.pj-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:48px}
-.pj-stat{padding:28px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
-.pj-v{font-family:var(--disp);font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-.02em;color:var(--accent)}
-.pj-l{margin-top:12px;color:var(--ink2)}
 
 /* ---------- gallery: wide shots fill the row, the rest sit two-up ---------- */
 .pj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px)}

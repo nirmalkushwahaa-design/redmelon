@@ -18,7 +18,7 @@
   if (idx < 0) {                                           /* unknown project: friendly dead end */
     $('#heroH1').textContent = 'Project not found';
     $('#pjSummary').innerHTML = 'That project may have moved. <a class="link" href="work.html">See all work</a>.';
-    ['#pjMeta', '#pjTags', '.pj-cover-sec', '#story', '#results', '#gallery', '#scope', '#quote', '#more', '.pj-next-sec'].forEach(function (s) { var el = $(s); if (el) el.hidden = true; });
+    ['#pjMeta', '#pjTags', '.pj-cover-sec', '#story', '#gallery', '#scope', '#quote', '#more', '.pj-next-sec'].forEach(function (s) { var el = $(s); if (el) el.hidden = true; });
     return;
   }
 
@@ -65,11 +65,6 @@
       return '<article class="pj-block"><p class="pj-n">' + s[0] + '</p><h2 class="pj-bh" data-split>' + s[1] + '</h2><p class="pj-bt">' + val(s[2], s[3]) + '</p></article>';
     }).join('');
   } else hide('#story');
-
-  /* ---------- results ---------- */
-  var res = d.results && d.results.length ? d.results : review ? [{ v: '[NEED: 3×]', l: '[NEED: what it measures]' }, { v: '[NEED: 40%]', l: '[NEED: what it measures]' }, { v: '[NEED: 12 wks]', l: '[NEED: what it measures]' }] : [];
-  if (res.length) $('#pjStats').innerHTML = res.map(function (r) { return '<li class="pj-stat"><p class="pj-v">' + RM.txt(r.v) + '</p><p class="pj-l">' + RM.txt(r.l) + '</p></li>'; }).join('');
-  else hide('#results');
 
   /* ---------- gallery: wide pictures span the full row, the rest sit two-up ---------- */
   var gal = d.gallery && d.gallery.length ? d.gallery : review ? [{ wide: true, label: 'Key screen, full width', size: '2400 × 1350' }, { label: 'Detail', size: '1200 × 1200' }, { label: 'Detail', size: '1200 × 1200' }, { wide: true, label: 'Mobile screens or flow', size: '2400 × 1350' }] : [];

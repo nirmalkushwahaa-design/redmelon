@@ -115,7 +115,6 @@ RM.WORK = [
      challenge: 'What was wrong or missing before we started.',
      approach:  'How we tackled it, and where AI and the human expert each came in.',
      outcome:   'What changed for the client.',
-     results:   [{ v: '3x', l: 'more enquiries' }, { v: '40%', l: 'faster pages' }],
      scope:     ['Discovery', 'Information architecture', 'Design system', 'Webflow build'],
      gallery:   [{ src: 'assets/img/x-1.webp', alt: '...', wide: true }, { src: '...', alt: '...' }],
      quote:     { quote: '...', name: '...', role: '...' }
