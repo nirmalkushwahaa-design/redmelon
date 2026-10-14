@@ -228,10 +228,9 @@ RM.QUOTES = [
   /* Add real client quotes here: { quote, name, role, company }. The carousel stays hidden while empty. */
 ];
 RM.LEADS = [
-  /* PLACEHOLDER: roles only. Add real names and photos. */
-  { name: 'AI engineering lead', role: 'LLM systems, data and integrations', photo: '', mono: 'AE' },
-  { name: 'Product design lead', role: 'AI experience and human review flows', photo: '', mono: 'PD' },
-  { name: 'Studio creative director', role: '2D, 3D and AI animation', photo: '', mono: 'CD' }
+  /* About page team. photo: 'assets/img/team-x.webp' (portrait, 4:5) replaces the initials. */
+  { name: 'Rakshit Shah', role: 'Founder & Chief Experience Officer', photo: '', mono: 'RS' },
+  { name: 'Arko Provo Mukherjee', role: 'Chief Creative Officer', photo: '', mono: 'AM' }
 ];
 
 /* About page · what we believe. DRAFT: written from the positioning and FAQ answers already on the site; confirm with the client. */
