@@ -91,7 +91,8 @@ RM.WORK = [
   { slug: 'redmelon', client: 'Redmelon',             line: 'An AI-driven design studio for modern brands: our own identity and website.',                 img: 'assets/img/work-redmelon.webp',
     tags: ['brand', 'website'] },
   { slug: 'gridcrest', client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp',
-    tags: ['website', 'product', 'energy'] }
+    tags: ['website', 'product', 'energy'],
+    detail: { industry: 'Energy', services: ['Branding & Website Design'], year: '2026', duration: '20 Days', platform: 'PC' } }
 ];
 
 /* PROJECT DETAIL PAGE (project.html?p=<slug>): one template, filled from RM.WORK.
