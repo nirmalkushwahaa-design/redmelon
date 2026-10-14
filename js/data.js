@@ -93,6 +93,7 @@ RM.WORK = [
   { slug: 'gridcrest', client: 'Gridcrest Technology', line: 'Website and product experience for a smarter, more connected grid.',                           img: 'assets/img/work-gridcrest.webp',
     tags: ['website', 'product', 'energy'],
     detail: { industry: 'Energy', services: ['Branding & Website Design'], year: '2026', duration: '20 Days', platform: 'PC',
+      url: 'https://gridcrest.io/',
       challenge: 'Gridcrest Technology was ready to establish itself in the Indian energy market, but it had no brand identity and no website. Without them, the company had no clear way to introduce itself to customers and partners, or to stand out in a sector led by established names.',
       approach: 'We started with the Gridcrest team to agree the scope: what the brand needed to say, and which pages the website needed to carry it. With that settled, we created the brand identity and designed the website pages around it, delivering the full project in 20 days.',
       outcome: 'Gridcrest now has a consistent brand identity and a professional website. The company has a recognisable presence in the Indian energy market, and a credible place to send every customer and partner it meets.' } }
