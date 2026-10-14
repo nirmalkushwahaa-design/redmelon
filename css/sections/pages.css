@@ -69,7 +69,11 @@ html:active-view-transition-type(page)::view-transition-new(root){animation:page
 @media (max-width:560px){.ind-strip{grid-template-columns:1fr}}
 
 /* ---------- services page: the switcher follows the page header directly ---------- */
-.services-page{padding-top:clamp(56px,6vw,96px)}
+/* services page: no divider lines and no empty band between the header and the switcher; switcher on white */
+.services-page{padding-top:0}
+body[data-page="services"] .page-hero{border-bottom:0;padding-bottom:clamp(24px,3vw,48px)}
+.services-page .switch{border-top:0;background:var(--bg)}
+@media (min-width:901px){.services-page{margin-top:-140px}}   /* the pinned switcher keeps space above 01; overlap it with the header's bottom space */
 
 /* ---------- work page: grid straight under the header ---------- */
 .work-page .work-grid{margin-top:0}
