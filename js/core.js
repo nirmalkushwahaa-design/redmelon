@@ -97,9 +97,11 @@
       var label = function (id) { var t = (RM.WORK_TAGS || []).filter(function (x) { return x.id === id; })[0]; return t ? t.label : id; };
       var tags = (w.tags || []).map(function (t) { return '<li>' + RM.esc(label(t)) + '</li>'; }).join('');
       var href = w.slug ? 'project.html?p=' + encodeURIComponent(w.slug) : '';
-      return '<article class="work-card' + (i % 2 ? ' alt' : '') + (href ? ' has-link' : '') + '" data-tags="' + RM.esc((w.tags || []).join(' ')) + '"><div class="work-img">' + img + '</div>' +
+      return '<article class="work-card' + (i % 2 ? ' alt' : '') + (href ? ' has-link' : '') + '" data-tags="' + RM.esc((w.tags || []).join(' ')) + '"><div class="work-img">' + img +
+        /* tags sit in a notch cut into the image's top-right corner; they slide in on hover (always shown on touch) */
+        (tags ? '<ul class="work-tags" aria-label="Tags">' + tags + '</ul>' : '') + '</div>' +
         '<div class="work-meta"><h3>' + (href ? '<a class="work-link" href="' + href + '">' + RM.txt(w.client) + '</a>' : RM.txt(w.client)) + '</h3><p>' + RM.txt(w.line) + '</p>' +
-        (tags ? '<ul class="work-tags" aria-label="Tags">' + tags + '</ul>' : '') + '</div></article>';
+        '</div></article>';
     }).join('');
   })();
 

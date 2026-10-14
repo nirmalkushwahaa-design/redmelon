@@ -38,7 +38,7 @@
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
 .work-card{display:flex;flex-direction:column}
 .work-card.alt{margin-top:80px}   /* every second visible card (set in core.js, so filtering keeps the stagger) */
-.work-img{position:relative;aspect-ratio:756/500;overflow:hidden;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line)}
+.work-img{position:relative;aspect-ratio:756/500;overflow:hidden;border-radius:var(--r-md);background:var(--surface)}   /* no border: the tag notch has to cut cleanly into the corner */
 .work-img img,.work-ph{transition:transform .9s var(--ease)}
 .work-img img{width:100%;height:100%;object-fit:cover}
 .work-card:hover .work-img img,.work-card:hover .work-ph{transform:scale(1.05)}      /* slow zoom on hover */
@@ -56,8 +56,18 @@
 .work-link{transition:color var(--d-ui) var(--ease)}
 .work-card.has-link:hover .work-link{color:var(--accent)}
 .work-meta p{color:var(--ink2)}
-.work-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.work-tags li{padding:3px 10px;border:1px solid var(--line);border-radius:var(--r-pill);font-size:var(--t-xs);color:var(--ink3)}
+.work-tags{--notch:16px;position:absolute;top:0;right:0;z-index:2;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;max-width:calc(100% - 48px);
+  padding:0 0 12px 12px;background:var(--bg);border-bottom-left-radius:var(--notch);
+  transform:translateY(calc(-100% - var(--notch) - 2px));transition:transform .55s var(--ease)}
+/* the two inverted corners that make the notch look cut out of the picture */
+.work-tags::before,.work-tags::after{content:"";position:absolute;width:var(--notch);height:var(--notch);pointer-events:none;
+  background:radial-gradient(circle at 0 100%,transparent calc(var(--notch) - .5px),var(--bg) var(--notch))}
+.work-tags::before{top:0;left:calc(var(--notch) * -1)}
+.work-tags::after{right:0;bottom:calc(var(--notch) * -1)}
+.work-tags li{padding:8px 16px;border-radius:var(--r-pill);background:var(--bg2);font-size:var(--t-sm);line-height:1.2;color:var(--ink);white-space:nowrap}
+.work-card:hover .work-tags,.work-card:focus-within .work-tags{transform:none}
+@media (hover:none){.work-tags{transform:none}}            /* touch: no hover, so the tags always show */
+.rm .work-tags{transition:none}
 
 /* work page filter strip */
 .work-filter-row{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-bottom:clamp(40px,5vw,64px)}
