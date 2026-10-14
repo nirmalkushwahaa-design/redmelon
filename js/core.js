@@ -266,14 +266,19 @@
         '<span class="ind-n">' + n2(i) + '</span><span class="ind-name">' + RM.esc(d.name) + '</span>' + RM.icon('arrowRight', 'ind-arrow') + '</button>';
     }).join('') +
       '<a class="ind-row ind-row-other" href="#contact" data-cta="industry-other"><span class="ind-n">+</span><span class="ind-name">Another industry? Tell us about yours</span>' + RM.icon('arrowRight', 'ind-arrow') + '</a>';
+    /* panel: the industry's clients as a logo board (wordmarks in brand colour until logo files are added) */
+    var byInd = function (id) { return (RM.LOGOS || []).filter(function (l) { return l.ind === id; }); };
     stage.innerHTML = '<span class="ind-glow" aria-hidden="true"></span>' + D.map(function (d, i) {
+      var cl = byInd(d.id);
       return '<div class="ind-pane' + (i ? '' : ' on') + '" role="tabpanel" id="indPane-' + d.id + '" aria-labelledby="indTab-' + d.id + '">' +
-        '<div class="ind-pane-top"><span class="ind-count">' + n2(i) + ' / ' + n2(D.length - 1) + '</span><span class="ind-tag">' + RM.icon(d.icon, 'ind-tag-ico') + RM.esc(d.tag) + '</span></div>' +
-        '<figure class="ph ind-art" data-ph="render" data-ph-label="' + RM.esc(d.name) + ' illustration" data-ph-size="1200 × 900 · transparent PNG/WebP"' + (d.img ? ' data-src="' + d.img + '"' : '') + ' data-alt=""></figure>' +
-        '<p class="ind-pain">' + RM.esc(d.pain) + '</p>' +
-        '<ul class="ind-build">' + d.build.map(function (b) { return '<li>' + RM.esc(b) + '</li>'; }).join('') + '</ul>' +
-        '<div class="ind-foot"><p class="ind-proof"><span>Worked with</span>' + (d.work ? '<a href="#work">' + RM.esc(d.proof) + '</a>' : RM.esc(d.proof)) + '</p>' +
-        '<a class="btn btn-1 btn-s" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></div></div>';
+        '<div class="ind-pane-top"><span class="ind-count">' + n2(i) + ' / ' + n2(D.length - 1) + '</span><span class="ind-tag">' + RM.icon(d.icon, 'ind-tag-ico') +
+          cl.length + (cl.length === 1 ? ' client' : ' clients') + '</span></div>' +
+        '<h3 class="ind-pane-h">' + RM.esc(d.name) + '</h3>' +
+        '<ul class="ind-logos" aria-label="Clients in ' + RM.esc(d.name) + '">' + cl.map(function (l, k) {
+          return '<li class="ind-logo" style="--i:' + k + (l.dark ? ';--c:' + l.dark : '') + '">' +
+            (l.logo ? '<img src="' + RM.esc(l.logo) + '" alt="' + RM.esc(l.name) + '" loading="lazy">' : '<span>' + RM.esc(l.name) + '</span>') + '</li>';
+        }).join('') + '</ul>' +
+        '<div class="ind-foot"><a class="btn btn-1 btn-s" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></div></div>';
     }).join('');
     var rows = RM.$$('.ind-row[role="tab"]', idx), panes = RM.$$('.ind-pane', stage), cur = 0;
     var narrow = function () { return innerWidth <= 900; };
