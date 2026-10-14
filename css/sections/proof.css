@@ -56,8 +56,8 @@
 .work-link{transition:color var(--d-ui) var(--ease)}
 .work-card.has-link:hover .work-link{color:var(--accent)}
 .work-meta p{color:var(--ink2)}
-.work-tags{--notch:16px;position:absolute;top:0;right:0;z-index:2;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;max-width:calc(100% - 48px);
-  padding:0 0 12px 12px;background:var(--bg);border-bottom-left-radius:var(--notch);
+.work-tags{--notch:16px;position:absolute;top:-2px;right:-2px;z-index:2;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;max-width:calc(100% - 46px);
+  padding:2px 2px 12px 12px;   /* overlaps the picture's edge by 2px so no hairline of the image shows at the top or right */background:var(--bg);border-bottom-left-radius:var(--notch);
   transform:translateY(calc(-100% - var(--notch) - 2px));transition:transform .55s var(--ease)}
 /* the two inverted corners that make the notch look cut out of the picture */
 .work-tags::before,.work-tags::after{content:"";position:absolute;width:var(--notch);height:var(--notch);pointer-events:none;
@@ -66,7 +66,10 @@
 .work-tags::after{right:0;bottom:calc(var(--notch) * -1)}
 .work-tags li{padding:8px 16px;border-radius:var(--r-pill);background:var(--bg2);font-size:var(--t-sm);line-height:1.2;color:var(--ink);white-space:nowrap}
 .work-card:hover .work-tags,.work-card:focus-within .work-tags{transform:none}
-@media (hover:none){.work-tags{transform:none}}            /* touch: no hover, so the tags always show */
+/* while the tags show, the picture's top-right corner is square (the notch covers it), so no curved edge peeks through */
+.work-img{transition:border-top-right-radius .2s var(--ease)}
+.work-card:has(.work-tags):hover .work-img,.work-card:has(.work-tags):focus-within .work-img{border-top-right-radius:0}
+@media (hover:none){.work-tags{transform:none}.work-card:has(.work-tags) .work-img{border-top-right-radius:0}}            /* touch: no hover, so the tags always show */
 .rm .work-tags{transition:none}
 
 /* work page filter strip */
