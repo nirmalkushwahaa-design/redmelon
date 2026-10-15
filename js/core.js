@@ -78,7 +78,9 @@
         '<span class="marquee-stat-l">' + RM.esc(l.l) + '</span></span>' : '';
       return '<li class="marquee-cell' + (l.v ? ' has-stat' : '') + '"' + (k >= RM.LOGOS.length ? ' aria-hidden="true"' : '') +
         (l.color ? ' style="--brand-l:' + l.color + ';--brand-d:' + l.dark + '"' : '') +
-        '><span class="marquee-name">' + RM.esc(l.name) + '</span>' + stat + '</li>';
+        '>' + (l.logo
+          ? '<span class="marquee-name marquee-logo"><img src="' + RM.esc(l.logo) + '" alt="' + RM.esc(l.name) + '" loading="lazy" decoding="async"></span>'
+          : '<span class="marquee-name">' + RM.esc(l.name) + '</span>') + stat + '</li>';
     }).join('');
   })();
 
@@ -277,7 +279,7 @@
           cl.length + (cl.length === 1 ? ' client' : ' clients') + '</span></div>' +
         '<h3 class="ind-pane-h">' + RM.esc(d.name) + '</h3>' +
         '<ul class="ind-logos" aria-label="Clients in ' + RM.esc(d.name) + '">' + cl.map(function (l, k) {
-          return '<li class="ind-logo" style="--i:' + k + (l.dark ? ';--c:' + l.dark : '') + '">' +
+          return '<li class="ind-logo' + (l.logo ? ' has-logo' : '') + '" style="--i:' + k + (l.dark ? ';--c:' + l.dark : '') + '">' +
             (l.logo ? '<img src="' + RM.esc(l.logo) + '" alt="' + RM.esc(l.name) + '" loading="lazy">' : '<span>' + RM.esc(l.name) + '</span>') + '</li>';
         }).join('') + '</ul>' +
         '<div class="ind-foot"><a class="btn btn-1 btn-s" href="#contact" data-cta="industry-' + d.id + '">Talk to us about ' + RM.esc(d.cta) + ' ' + RM.icon('arrowRight', 'arrow') + '</a></div></div>';

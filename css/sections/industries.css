@@ -79,3 +79,8 @@
   .ind-art{max-height:200px}
 }
 .rm .ind-glow,.rm .ind-pane.on .ind-art .ph-float,.rm .ind-pane.on .ind-art>img{animation:none}
+
+/* real logos in the industry board: white tile, logo centred */
+.ind-logo.has-logo{background:#fff;border-color:transparent}
+.ind-logo.has-logo img{max-width:82%;max-height:52px;width:auto;height:auto;object-fit:contain}
+.ind-logo.has-logo:hover{border-color:var(--red);background:#fff}

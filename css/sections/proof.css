@@ -93,3 +93,9 @@
   .work-count{margin-left:0}
 }
 @media (max-width:800px){.work-grid{grid-template-columns:1fr}.work-card.alt{margin-top:0}}
+
+/* real client logos (assets/logos): each sits on a light chip so dark and black marks read in both themes */
+.marquee-logo{display:grid;place-items:center;height:64px;padding:10px 22px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+:root[data-ui="dark"] .marquee-logo{border-color:transparent}
+.marquee-logo img{display:block;max-height:44px;max-width:150px;width:auto;height:auto;object-fit:contain}
+.marquee-cell:has(.marquee-logo){min-width:0;padding:0 6px}

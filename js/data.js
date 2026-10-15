@@ -31,58 +31,58 @@ RM.AB = {
 RM.LOGOS = [
   /* Client list from the logo sheet (14 Oct), grouped by industry. Names show in brand colour
      (color = light mode, dark = dark mode; '' = neutral). ind = the industry it shows under in the
-     Clients explorer (RM.INDUSTRIES ids). Optional logo: 'assets/logos/x.svg' shows the logo file instead of the name. Only the five first-draft entries carry hover stats. */
+     Clients explorer (RM.INDUSTRIES ids). logo = the real logo (cut from the client's logo sheet, 14 Oct); without one the name shows as a wordmark. Only the five first-draft entries carry hover stats. */
   /* engineering, infrastructure and building materials */
-  { name: 'L&T', ind: 'auto',               color: '#1D4F91', dark: '#6E9BE0' },
-  { name: 'JSW', ind: 'auto',               color: '#1F3C88', dark: '#6D8DE0' },
-  { name: 'UltraTech Cement', ind: 'auto',  color: '#A07F00', dark: '#FFD200' },
-  { name: 'NITCO', ind: 'auto',             color: '',        dark: '' },
-  { name: 'Hager', ind: 'auto',             color: '#2D8CC4', dark: '#5BB8EA' },
-  { name: 'Coromandel', ind: 'auto',        color: '#D9790F', dark: '#FFA940' },
+  { name: 'L&T', logo: 'assets/logos/lt.webp', ind: 'auto',               color: '#1D4F91', dark: '#6E9BE0' },
+  { name: 'JSW', logo: 'assets/logos/jsw.webp', ind: 'auto',               color: '#1F3C88', dark: '#6D8DE0' },
+  { name: 'UltraTech Cement', logo: 'assets/logos/ultratech-cement.webp', ind: 'auto',  color: '#A07F00', dark: '#FFD200' },
+  { name: 'NITCO', logo: 'assets/logos/nitco.webp', ind: 'auto',             color: '',        dark: '' },
+  { name: 'Hager', logo: 'assets/logos/hager.webp', ind: 'auto',             color: '#2D8CC4', dark: '#5BB8EA' },
+  { name: 'Coromandel', logo: 'assets/logos/coromandel.webp', ind: 'auto',        color: '#D9790F', dark: '#FFA940' },
   /* energy and utilities */
-  { name: 'Torrent Power', ind: 'energy',     color: '#D9790F', dark: '#F7A04B' },
-  { name: 'Mahesh Gas', ind: 'energy',        color: '#2E3192', dark: '#8A8EF0' },
+  { name: 'Torrent Power', logo: 'assets/logos/torrent-power.webp', ind: 'energy',     color: '#D9790F', dark: '#F7A04B' },
+  { name: 'Mahesh Gas', logo: 'assets/logos/mahesh-gas.webp', ind: 'energy',        color: '#2E3192', dark: '#8A8EF0' },
   { name: 'GridCrest', ind: 'energy',         color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false },
   /* automotive */
   { name: 'IIT Mumbai', ind: 'edu', color: '', dark: '' },
   { name: 'Spaces.in', ind: 'retail', color: '', dark: '' },
-  { name: 'Tata Motors', ind: 'auto',       color: '#1F5BA8', dark: '#5C95E6' },
-  { name: 'Ford', ind: 'auto',              color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
-  { name: 'CarWale', ind: 'auto',           color: '#D0201A', dark: '#FF5148' },
+  { name: 'Tata Motors', logo: 'assets/logos/tata-motors.webp', ind: 'auto',       color: '#1F5BA8', dark: '#5C95E6' },
+  { name: 'Ford', logo: 'assets/logos/ford.webp', ind: 'auto',              color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
+  { name: 'CarWale', logo: 'assets/logos/carwale.webp', ind: 'auto',           color: '#D0201A', dark: '#FF5148' },
   /* telecom */
-  { name: 'Vodafone', ind: 'tech',          color: '#E60000', dark: '#FF3B3B' },
+  { name: 'Vodafone', logo: 'assets/logos/vodafone.webp', ind: 'tech',          color: '#E60000', dark: '#FF3B3B' },
   /* banking, finance and professional services */
-  { name: 'DBS Bank', ind: 'finance',          color: '#ED0000', dark: '#FF3333', v: '3×',   l: 'review throughput',       up: true  },
-  { name: 'EY', ind: 'finance',                color: '#2E2E38', dark: '#FFE600' },
+  { name: 'DBS Bank', logo: 'assets/logos/dbs-bank.webp', ind: 'finance',          color: '#ED0000', dark: '#FF3333', v: '3×',   l: 'review throughput',       up: true  },
+  { name: 'EY', logo: 'assets/logos/ey.webp', ind: 'finance',                color: '#2E2E38', dark: '#FFE600' },
   { name: 'Stripe', ind: 'finance', color: '#635BFF', dark: '#8F88FF' },
-  { name: 'Centuro Global', ind: 'finance',    color: '#6B2C5F', dark: '#C982BC' },
+  { name: 'Centuro Global', logo: 'assets/logos/centuro-global.webp', ind: 'finance',    color: '#6B2C5F', dark: '#C982BC' },
   /* food and beverage, FMCG */
-  { name: 'Mondelez', ind: 'brands',          color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
-  { name: 'Red Bull', ind: 'brands',          color: '#DB0A40', dark: '#FF4D73' },
+  { name: 'Mondelez', logo: 'assets/logos/mondelez.webp', ind: 'brands',          color: '#502172', dark: '#A668D3', v: '40%',  l: 'faster asset turnaround', up: false },
+  { name: 'Red Bull', logo: 'assets/logos/red-bull.webp', ind: 'brands',          color: '#DB0A40', dark: '#FF4D73' },
   /* healthcare and pharma */
-  { name: 'Johnson & Johnson', ind: 'health', color: '#D51900', dark: '#FF4A33' },
-  { name: 'Glenmark', ind: 'health',          color: '#D7282F', dark: '#FF5A5F' },
+  { name: 'Johnson & Johnson', logo: 'assets/logos/johnson-johnson.webp', ind: 'health', color: '#D51900', dark: '#FF4A33' },
+  { name: 'Glenmark', logo: 'assets/logos/glenmark.webp', ind: 'health',          color: '#D7282F', dark: '#FF5A5F' },
   /* beauty */
-  { name: "L'Oréal", ind: 'brands',      color: '',        dark: '' },
+  { name: "L'Oréal", logo: 'assets/logos/loreal.webp', ind: 'brands',      color: '',        dark: '' },
   /* fashion and apparel */
-  { name: 'Raymond', ind: 'retail',           color: '#C8102E', dark: '#FF4560' },
-  { name: 'Bestseller', ind: 'retail',        color: '',        dark: '' },
-  { name: 'Vero Moda', ind: 'retail',         color: '',        dark: '' },
+  { name: 'Raymond', logo: 'assets/logos/raymond.webp', ind: 'retail',           color: '#C8102E', dark: '#FF4560' },
+  { name: 'Bestseller', logo: 'assets/logos/bestseller.webp', ind: 'retail',        color: '',        dark: '' },
+  { name: 'Vero Moda', logo: 'assets/logos/vero-moda.webp', ind: 'retail',         color: '',        dark: '' },
   /* health and fitness */
-  { name: 'cure.fit', ind: 'health',          color: '',        dark: '' },
+  { name: 'cure.fit', logo: 'assets/logos/cure-fit.webp', ind: 'health',          color: '',        dark: '' },
   /* education and learning */
-  { name: 'Ryan International', ind: 'edu', color: '#1C3F94', dark: '#6D8DE0' },
-  { name: 'Vidyalankar', ind: 'edu',       color: '#D71920', dark: '#FF4B50' },
-  { name: 'G-Cube', ind: 'edu',            color: '#D24A04', dark: '#FF7A3D' },
+  { name: 'Ryan International', logo: 'assets/logos/ryan-international.webp', ind: 'edu', color: '#1C3F94', dark: '#6D8DE0' },
+  { name: 'Vidyalankar', logo: 'assets/logos/vidyalankar.webp', ind: 'edu',       color: '#D71920', dark: '#FF4B50' },
+  { name: 'G-Cube', logo: 'assets/logos/g-cube.webp', ind: 'edu',            color: '#D24A04', dark: '#FF7A3D' },
   /* technology */
-  { name: 'U-TO Solutions', ind: 'tech',    color: '#1B75BB', dark: '#4FA3E6' },
+  { name: 'U-TO Solutions', logo: 'assets/logos/u-to-solutions.webp', ind: 'tech',    color: '#1B75BB', dark: '#4FA3E6' },
   /* advertising, marketing and events */
-  { name: 'Ogilvy', ind: 'media',            color: '#E81F23', dark: '#EB4448', v: '2.5×', l: 'concepts per sprint',     up: true  },
-  { name: 'Indigo Consulting', ind: 'media', color: '#2A6EBB', dark: '#5FA0E8' },
-  { name: 'Percept ICE', ind: 'media',       color: '#D71E24', dark: '#FF5056' },
-  { name: '70 Event Media Group', ind: 'media', color: '#D9790F', dark: '#FFA940' },
-  { name: 'The Big Small Events', ind: 'media', color: '',     dark: '' },
-  { name: 'vCloudx', ind: 'media',           color: '#D62A43', dark: '#FF5C70' }
+  { name: 'Ogilvy', logo: 'assets/logos/ogilvy.webp', ind: 'media',            color: '#E81F23', dark: '#EB4448', v: '2.5×', l: 'concepts per sprint',     up: true  },
+  { name: 'Indigo Consulting', logo: 'assets/logos/indigo-consulting.webp', ind: 'media', color: '#2A6EBB', dark: '#5FA0E8' },
+  { name: 'Percept ICE', logo: 'assets/logos/percept-ice.webp', ind: 'media',       color: '#D71E24', dark: '#FF5056' },
+  { name: '70 Event Media Group', logo: 'assets/logos/70-event-media-group.webp', ind: 'media', color: '#D9790F', dark: '#FFA940' },
+  { name: 'The Big Small Events', logo: 'assets/logos/the-big-small-events.webp', ind: 'media', color: '',     dark: '' },
+  { name: 'vCloudx', logo: 'assets/logos/vcloudx.webp', ind: 'media',           color: '#D62A43', dark: '#FF5C70' }
   /* not added (could not identify; confirm with Nirmal): the 'VIVCOOO' cloud logo and the dark square gold logo */
 ];
 
