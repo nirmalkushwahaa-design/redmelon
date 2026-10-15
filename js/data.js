@@ -14,7 +14,8 @@ RM.CONFIG = {
   WHATSAPP_NUMBER: '',   /* digits only with country code, e.g. '447700900000' */
   FORM_ENDPOINT: '',     /* email service, CRM or Google Sheet. Empty = simulate */
   CONTACT_EMAIL: 'hello@redmelondesign.com',   /* PLACEHOLDER: confirm */
-  QUOTE_INTERVAL: 7000
+  QUOTE_INTERVAL: 7000,
+  SHOW_PROJECT_PAGES: false   /* project detail pages (project.html) are hidden for now: cards don't link, and project.html sends visitors to work.html. Set true to switch them back on. */
 };
 
 /* A/B test copy (12.2). Swap HERO_H1 to test; the live H1 is in index.html. */

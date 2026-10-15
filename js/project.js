@@ -9,6 +9,7 @@
   'use strict';
   var RM = window.RM, $ = RM.$, C = RM.CONFIG;
   if (!$('#pjStory')) return;
+  if (!C.SHOW_PROJECT_PAGES) { location.replace('work.html'); return; }   /* detail pages hidden for now (RM.CONFIG) */
 
   var slug = null; try { slug = new URL(location.href).searchParams.get('p'); } catch (e) {}
   var list = RM.WORK || [], idx = -1;
