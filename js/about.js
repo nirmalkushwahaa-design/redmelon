@@ -27,11 +27,6 @@
         return gsap.from(self.words, { yPercent: 115, rotate: 4, duration: 1.1, stagger: .07, ease: E });
       } });
     });
-    /* marquee leans with scroll speed */
-    var mq = $('.ab-marquee'); if (!mq) return;
-    var to = gsap.quickTo(mq, 'skewX', { duration: .5 }), rest = gsap.delayedCall(.15, function () { to(0); }).pause();
-    ScrollTrigger.create({ trigger: '.ab-hero', start: 'top top', end: 'bottom top',
-      onUpdate: function (s) { to(gsap.utils.clamp(-10, 10, s.getVelocity() / -250)); rest.restart(true); } });
   })();
 
   /* 2 · studio photo: a card in the middle of the screen that grows to fill it (desktop pin); phones: an inset wipe */

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- About: removed the "Thinker’s Hub / Techie’s Cockpit / Creative Canvas" marquee strip under the hero.
 - About: story paragraphs set in regular-weight Rubik instead of bold display type.
 
 ## v2.0 (in progress)

@@ -170,7 +170,7 @@ body[data-page="services"] .page-hero{border-bottom:0;padding-bottom:clamp(24px,
 /* =====================================================================
    ABOUT PAGE v2 (motion in js/about.js)
    ===================================================================== */
-/* hero: very large headline, marquee at the foot */
+/* hero: very large headline */
 .ab-hero{position:relative;overflow:hidden;background:var(--bg);padding:calc(var(--nav-h) + clamp(40px,6vh,96px)) 0 0;min-height:100svh;display:flex;flex-direction:column}
 .ab-hero-in{position:relative;z-index:2;pointer-events:none;flex:1}
 .ab-hero-in a{pointer-events:auto}
@@ -180,13 +180,6 @@ body[data-page="services"] .page-hero{border-bottom:0;padding-bottom:clamp(24px,
 .ab-h>div{padding-bottom:.08em;margin-bottom:-.08em}            /* SplitText word masks: keep descenders */
 .ab-hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap;margin-top:clamp(32px,4vw,56px)}
 .ab-hero-foot .cue{margin-top:0}
-.ab-marquee{position:relative;z-index:2;margin-top:clamp(32px,5vh,72px);padding:clamp(14px,1.6vw,22px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}
-.ab-marquee-track{display:flex;align-items:center;gap:clamp(24px,3vw,48px);width:max-content;animation:marquee 36s linear infinite}
-.ab-marquee-track span{font-family:var(--disp);font-size:clamp(28px,4vw,64px);line-height:1;letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
-.ab-marquee-track span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.2px var(--ink2)}   /* every other phrase in outline */
-.ab-marquee-track i{font-style:normal;font-size:clamp(20px,2.4vw,36px);color:var(--accent)}
-.rm .ab-marquee-track{animation:none}
 
 /* image reveal */
 .ab-reveal{position:relative;background:var(--bg);display:grid;place-items:center;overflow:hidden}
