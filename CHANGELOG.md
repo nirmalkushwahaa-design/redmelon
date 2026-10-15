@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- About: story paragraphs set in regular-weight Rubik instead of bold display type.
+
 ## v2.0 (in progress)
 - Multi-page site: Home, Services, Clients, Work, About, Contact. The home page becomes a short story; the details move to their own pages.
 - Repo cleaned: old archived sections and unused section styles (problem, process) removed from the working site. They remain in `versions/v1.0-single-page/`.
