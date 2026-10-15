@@ -1,9 +1,5 @@
 # Changelog
 
-## Unreleased
-- About: removed the "Thinker’s Hub / Techie’s Cockpit / Creative Canvas" marquee strip under the hero.
-- About: story paragraphs set in regular-weight Rubik instead of bold display type.
-
 ## v2.0 (in progress)
 - Multi-page site: Home, Services, Clients, Work, About, Contact. The home page becomes a short story; the details move to their own pages.
 - Repo cleaned: old archived sections and unused section styles (problem, process) removed from the working site. They remain in `versions/v1.0-single-page/`.
@@ -20,6 +16,11 @@
   - 14 Oct: industries explorer redesigned as a client logo board. Hovering (or tapping) an industry shows its clients as tiles in brand colour, with a client count and a call-to-action. Nine industries now (added Healthcare & wellness, Technology & telecom, Advertising, media & events) so every client has a home. Each client's industry is the `ind` field in `RM.LOGOS`; add `logo: 'assets/logos/x.svg'` to show a logo file instead of the name.
   - 14 Oct: About page now runs: header, photos, Our story ("Spreading Red"), In numbers (6 stats), What we do (the six service cards), Our values (5, client copy; replaces the drafted beliefs), Team (Rakshit Shah, Arko Provo Mukherjee), CTA. Stripe added to the client list (Financial services).
   - 15 Oct: About page rebuilt with motion, based on verified 2026 Awwwards winners (LPAS SOTD, Sadu Media, TBWA\HAKUHODO, Kavieng Creative; all GSAP): kinetic word-by-word headline + skewing marquee, studio photo that grows to full screen (pinned), story text that fills in as you read with red ink spreading through "Red", counting numbers with popping icons, stacked sticky value cards with a pinned 01–05 counter, one team photo slot with names. Motion lives in `js/about.js`.
+  - 15 Oct: About team section shows one team photo only (names removed; photo slot waits for the file).
+  - 15 Oct: real client logos: 34 logos cut from the client's logo sheet (`assets/logos/*.webp`) replace the names on the logo wall and the industries board. Stripe, GridCrest, IIT Mumbai and Spaces.in still show their names until logo files arrive.
+  - 15 Oct: Work: the "View" cursor on work images is gone, and project detail pages are hidden (`RM.CONFIG.SHOW_PROJECT_PAGES = false`; cards don't link and `project.html` sends visitors to `work.html`). Set it to `true` to bring them back.
+  - 15 Oct: About story paragraphs set in regular-weight Rubik instead of bold display type.
+  - 15 Oct: About: the "Thinker’s Hub / Techie’s Cockpit / Creative Canvas" marquee strip under the hero removed.
   - Links to a section on another page are routed automatically (`#contact` → `contact.html`, `#svc-03` → `services.html#svc-03`, `#ind-energy` → `clients.html#ind-energy`).
 
 ## v1.0 (13 Oct 2026), single-page site, frozen in `versions/v1.0-single-page/`
