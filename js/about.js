@@ -119,7 +119,7 @@
     gsap.timeline({ scrollTrigger: { trigger: f, start: 'top 85%', once: true } })
       .fromTo(f, { clipPath: 'inset(100% 0 0 0 round 16px)' }, { clipPath: 'inset(0% 0 0 0 round 16px)', duration: 1.2 })
       .fromTo(f.firstElementChild, { scale: 1.15 }, { scale: 1, duration: 1.6 }, 0);
-    var names = $$('.team-names .tn');
+    var names = $$('.team-names .tn'); if (!names.length) return;
     gsap.set(names, { opacity: 0, y: 30 });
     ScrollTrigger.create({ trigger: '.team-names', start: 'top 90%', once: true,
       onEnter: function () { gsap.to(names, { opacity: 1, y: 0, duration: .8, stagger: .12 }); } });
