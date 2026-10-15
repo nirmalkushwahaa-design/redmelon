@@ -80,7 +80,6 @@
   batch('.detail');
   batch('.pj-card');
   batch('.stat');
-  batch('.value');
   batch('.brief-shell');
   batch('.switch-stage');
 

@@ -334,6 +334,11 @@
   /* team (About page): RM.LEADS, roles only until real names and photos arrive */
   (function () {
     var ul = $('#team'); if (!ul) return;
+    /* About page: one team photo above, names and roles listed under it */
+    if (ul.classList.contains('team-names')) {
+      ul.innerHTML = RM.LEADS.map(function (l) { return '<li class="tn"><p class="tn-name">' + RM.txt(l.name) + '</p><p class="tn-role">' + RM.txt(l.role) + '</p></li>'; }).join('');
+      return;
+    }
     ul.innerHTML = RM.LEADS.map(function (l) {
       var ph = l.photo ? '<img src="' + RM.esc(l.photo) + '" alt="" width="400" height="500" loading="lazy">' : '<span class="lead-ph" aria-hidden="true">' + RM.esc(l.mono || '') + '</span>';
       return '<li class="lead"><div class="lead-img">' + ph + '</div><p class="lead-name">' + RM.txt(l.name) + '</p><p class="lead-role">' + RM.txt(l.role) + '</p></li>';
@@ -351,8 +356,8 @@
   /* values (About page) */
   (function () {
     var ol = $('#values'); if (!ol || !RM.VALUES) return;
-    ol.innerHTML = '<li class="value value-lead"><h2 class="value-lead-h" data-split>Our<br>Values</h2></li>' + RM.VALUES.map(function (v, i) {
-      return '<li class="value"><span class="value-n">0' + (i + 1) + '.</span><h3>' + RM.esc(v.t) + '</h3><p>' + RM.txt(v.d) + '</p></li>';
+    ol.innerHTML = RM.VALUES.map(function (v, i) {
+      return '<li class="value" style="--i:' + i + '"><span class="value-n">0' + (i + 1) + '.</span><h3>' + RM.esc(v.t) + '</h3><p>' + RM.txt(v.d) + '</p></li>';
     }).join('');
   })();
 
