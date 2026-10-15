@@ -43,10 +43,10 @@ RM.LOGOS = [
   /* energy and utilities */
   { name: 'Torrent Power', logo: 'assets/logos/torrent-power.webp', ind: 'energy',     color: '#D9790F', dark: '#F7A04B' },
   { name: 'Mahesh Gas', logo: 'assets/logos/mahesh-gas.webp', ind: 'energy',        color: '#2E3192', dark: '#8A8EF0' },
-  { name: 'GridCrest', ind: 'energy',         color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false },
+  { name: 'GridCrest', logo: 'assets/logos/gridcrest.webp', ind: 'energy',         color: '',        dark: '',        v: '35%',  l: 'shorter handover',        up: false },
   /* automotive */
   { name: 'IIT Mumbai', ind: 'edu', color: '', dark: '' },
-  { name: 'Spaces.in', ind: 'retail', color: '', dark: '' },
+  { name: 'Spaces.in', logo: 'assets/logos/spaces.webp', ind: 'retail', color: '', dark: '' },
   { name: 'Tata Motors', logo: 'assets/logos/tata-motors.webp', ind: 'auto',       color: '#1F5BA8', dark: '#5C95E6' },
   { name: 'Ford', logo: 'assets/logos/ford.webp', ind: 'auto',              color: '#003478', dark: '#1C7EFF', v: '60%',  l: 'less manual QA',          up: false },
   { name: 'CarWale', logo: 'assets/logos/carwale.webp', ind: 'auto',           color: '#D0201A', dark: '#FF5148' },
