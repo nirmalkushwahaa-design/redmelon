@@ -26,6 +26,7 @@
   - 16 Oct: Plassbox cover replaced with Nirmal's new image.
   - 16 Oct: Centuro Global corporate website cover replaced with Nirmal's new image.
   - 16 Oct: vCloudx cover replaced with Nirmal's new image.
+  - 16 Oct: CarWale cover replaced with Nirmal's new image.
   - Links to a section on another page are routed automatically (`#contact` → `contact.html`, `#svc-03` → `services.html#svc-03`, `#ind-energy` → `clients.html#ind-energy`).
 
 ## v1.0 (13 Oct 2026), single-page site, frozen in `versions/v1.0-single-page/`
