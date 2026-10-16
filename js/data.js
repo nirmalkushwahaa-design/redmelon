@@ -200,7 +200,10 @@ RM.WORK = [
     tags: ['website'],
     detail: { title: 'Web Application', industry: 'Workspaces', services: ['UI design', 'UI animation'],
       year: '2018', duration: '4 months', platform: 'Web',
-      scope: ['Focus groups', 'Competitive analysis', 'User stories', 'Task flows', 'Information architecture', 'Paper wireframes', 'UI design', 'UI animation'] } }
+      scope: ['Focus groups', 'Competitive analysis', 'User stories', 'Task flows', 'Information architecture', 'Paper wireframes', 'UI design', 'UI animation'] } },
+  { slug: 'irasva', client: 'Irasva', line: 'A refined e-commerce experience for contemporary fine diamond jewellery.', img: 'assets/img/work-irasva.webp',
+    tags: ['website', 'ecommerce', 'retail'],
+    detail: { industry: 'Fine jewellery', services: ['E-commerce website'], platform: 'Web', url: 'https://www.irasva.com/' } }
 ];
 
 /* PROJECT DETAIL PAGE (project.html?p=<slug>): one template, filled from RM.WORK.
